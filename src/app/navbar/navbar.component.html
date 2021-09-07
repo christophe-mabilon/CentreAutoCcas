@@ -1,0 +1,53 @@
+<!--navbar-user-->
+<nav class="navbar navbar-expand-lg top mx-0 px-0 align-item-center my-auto">
+  <section class="container-fluid justify-content-between m-0">
+    <!--marque visible smartphone-tablette-->
+    <a class="d-block d-xs-flex navbar-brand d-lg-none" href="#">Centre’Auto’Ccas</a>
+    <!--menu de recherche-->
+    <button *ngIf="searchButton; else elseSearch" (click)="clickEvent()"
+            class="navbar-brand justify-content-left fw-lighter text-nowrap recherche-btn btn_search_bar"
+            id="search_bar"><i class="fas fa-search me-1"></i>Rechercher mon véhicule
+    </button>
+    <ng-template #elseSearch>
+      <button (click)="clickEvent()"
+              class="navbar-brand justify-content-left fw-lighter text-nowrap recherche-btn btn_search_bar"
+              id="search_bar2"><i class="far fa-times-circle me-1"></i>Fermer la barre de recherche
+      </button>
+    </ng-template>
+    <!---icon burger--->
+    <button [attr.aria-expanded]="expression" class="navbar-toggler my-2" type="button" (click)="toggleNavbar()"
+            data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon my-2"></span>
+    </button>
+    <!--liens-->
+    <div [ngClass]="{ 'show': navbarOpen }" class="collapse navbar-collapse" id="navbarNavAltMarkup"></div>
+      <div class="navbar-nav align-items-strech align-items-lg-center justify-content-lg-right pl-auto">
+        <a class="nav-link d-inline-flex" aria-current="page" [routerLink]="['/home']">Acceuil</a>
+        <a class="nav-link d-inline-flex" [routerLink]="['/contact']"><i class="fas fa-at me-1"></i>Contact</a>
+
+        <div *ngIf="isAdmin">
+          <b class="text-white me-2">Bienvenue Admin</b>
+          <a class="ms-2 text-decoration-none" (click)="pageAdmin()">Mon compte</a>
+          <a class="ms-2 text-decoration-none" (click)="logout()">Se deconnecter</a>
+        </div>
+            <div *ngIf="!isAdmin && isLogged" class="d-flex text-white">
+              <b class="text-white me-2">Bienvenue {{username}}</b>
+              <a class="ms-2 text-decoration-none" (click)="pageUser()">Mon compte</a>
+              <a class="ms-2 text-decoration-none" (click)="logout()">Se deconnecter</a>
+            </div>
+
+        <div *ngIf="!isLogged">
+          <div class="d-flex text-white">
+            <a class="nav-link text-white text-nowrap pro" (click)="open()"><i class="fas fa-user-tie me-1 pro"></i>Accès
+              professionnels</a>
+          </div>
+        </div>
+
+
+
+      </div>
+
+  </section>
+
+</nav>

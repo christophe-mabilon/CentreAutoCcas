@@ -1,0 +1,19 @@
+<div class="container-fluid row">
+<app-carrousel class="col"[annonce]="annonce" ></app-carrousel>
+  <div class="col-6" *ngFor="let item of annonce">
+    <h4 class="align-annonces-start text-uppercase flex-wrap">
+    <b class="text-start marque">{{item.brand.name}}</b>
+    <b class="ms-1 modele">{{item.model.name}}</b>
+  </h4>
+    <div id="description_courte" class=" text-start text-black">
+      <p class="modele_complement flex-wrap">{{item.modelComplement}}</p>
+      <p *ngIf="item.modelComplement2" class="modele_complement flex-wrap">{{item.modelComplement2}}</p>
+      <p class="annee">Année : {{item.year}}</p>
+      <p class="kilometres">kilometres: {{item.kilometre}} Km</p>
+      <p class="carburant">Carburant: {{item.fuel}}</p>
+      <p class="boite">Boite: {{item.gearbox}}</p>
+    </div>
+
+      <b class="btn btn-info plusInfos prix col-6 align-annonces-center p-auto">{{item.price}}€</b>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+<app-navbar-user></app-navbar-user>
+<div class="container-fluid bg-dark text-light p-0">
+  <div class="bg-img"></div>
+  <h2 class="text-center my-3">Ajouter une annonce</h2>
+  <p class="text-center mb-3">Merci de remplir tous les champs et de présciser le maximum d'information sur le
+    véhicule</p>
+  <p class="text-center my-md-3">Toutes annonces doivent etre verifiées et confirmées par l'administrateur du site avant
+    ajout</p>
+
+  <div class="container px-0">
+    <form [formGroup]="addForm" (ngSubmit)="addAnnonce()" class="row form-group py-3">
+
+      <div class="col col-md-3 form-group">
+        <select id="region" formControlName="region" class="form-select mb-3" name="region">
+          <option value="" disabled>Séléctionner votre région</option>
+          <option *ngFor="let region of regions" value="{{region.id}}">{{ region.name}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="marque" formControlName="brand" (change)="selectMarques($event)" class="form-select mb-3"
+                name="brand">
+          <option value="" disabled>Marque du véhicule</option>
+          <option *ngFor="let marque of marques" value="{{marque.id}}">{{ marque.name}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="model" formControlName="model" class="form-select mb-3" name="model">
+          <option value="" disabled>Modèle du véhicule</option>
+          <option *ngFor="let selectedModel of selectedModels" value="{{selectedModel.modelId}}"
+                  selected>{{selectedModel.brand}} - {{selectedModel.model}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="type" formControlName="typeOfVehicule" class="form-select mb-3" name="type">
+          <option value="" disabled>Type de véhicule</option>
+          <option *ngFor="let type of types" value="{{type.name}}">{{ type.name}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="carburant" formControlName="fuel" class="form-select mb-3" name="carburant">
+          <option value="" disabled>Type de carburant</option>
+          <option *ngFor="let carburant of carburants" value="{{carburant.name}}">{{carburant.name}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text"
+               class="form-control" name="kilometrage">
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="annee" formControlName="year" class="form-select mb-3" name="annee">
+          <option value="" disabled>Année de mise en circulation</option>
+          <option *ngFor='let in of annee(22) ;let i = index' value="{{i+2000}}">{{i + 2000}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="puissance" formControlName="power" class="form-select mb-3" name="puissance">
+          <option value="" disabled>Puissance Fiscale du véhicule en chx</option>
+          <option *ngFor='let in of puissance(17) ;let i = index' value="{{i+4}}">{{i + 4}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="boite" formControlName="gearbox" class="form-select mb-3" name="boite">
+          <option value="" disabled>Boite de vitesse du véhicule</option>
+          <option value="Automatique">Automatique</option>
+          <option value="Manuelle">Manuelle</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="portes" formControlName="doors" class="form-select mb-3" name="portes">
+          <option value="" disabled>Nombre de portes du véhicule</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="places" formControlName="places" class="form-select mb-3" name="places">
+          <option value="" disabled>Nombre de place du véhicule</option>
+          <option *ngFor='let in of nbPlaces(8) ;let i = index'>{{i + 2}}</option>
+        </select>
+      </div>
+
+      <div class="col col-md-3 form-group">
+        <select id="garage" formControlName="garageId" class="form-select mb-3" name="garage">
+          <option value="" disabled>Séléctionner votre Garage</option>
+          <option *ngFor="let garage of garages" value="{{garage.id}}">{{garage.name}}</option>
+        </select>
+
+      </div>
+
+      <div class="col-12 form-group mb-3">
+        <textarea formControlName="description" id=description class="form-control"
+                  placeholder="Déscription du véhicule" name="description"></textarea>
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <label class="input-group-text btn-blue" for="photo1">Ajouter une photo du véhicule</label>
+        <input formControlName="photo1" type="file" class="form-control" name="photo1" id="photo1">
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <label class="input-group-text btn-blue" for="photo2">Ajouter une photo du véhicule</label>
+        <input formControlName="photo2" type="file" class="form-control" name="photo2" id="photo2">
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <label class="input-group-text btn-blue" for="photo3">Ajouter une photo du véhicule</label>
+        <input formControlName="photo3" type="file" class="form-control" name="photo3" id="photo3">
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <label class="input-group-text btn-blue" for="photo4">Ajouter une photo du véhicule</label>
+        <input formControlName="photo4" type="file" class="form-control" name="photo4" id="photo4">
+      </div>
+
+      <div class="col col-md-3 form-group mb-3">
+        <label class="input-group-text btn-blue" for="photo5">Ajouter une photo du véhicule</label>
+        <input formControlName="photo5" type="file" class="form-control" name="photo5" id="photo5">
+      </div>
+
+
+      <label class="form-check-label">
+        <input type="checkbox" formControlName="accept" class="form-check-input">
+        J'accepte les conditions
+      </label>
+      <div class="form-group">
+        <button type="submit" class="btn btn-green mt-3">Ajouter l'annonce</button>
+      </div>
+    </form>
+
+
+  </div>
+
+</div>

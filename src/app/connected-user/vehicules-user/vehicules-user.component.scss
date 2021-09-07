@@ -1,0 +1,85 @@
+ul{
+  align-items:center;
+  border-bottom: 1px solid white;
+}
+li{
+  list-style: none;
+}
+
+.blue {
+  border-radius: 5px;
+  background: linear-gradient(
+      to bottom,
+      rgb(14, 49, 154) 0%,
+      rgb(20, 40, 86) 100%
+  );
+  border:1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 1px 1px rgba(255,255,255,0.1);
+  color:white;
+
+}
+a.blue:hover{
+  background: linear-gradient(
+      to bottom,
+      rgb(0, 27, 114) 0%,
+      rgb(32, 66, 139) 100%
+  );
+  box-shadow: 0 2px 3px rgba(255,255,255,0.2);
+  transition:ease-in 0.2s;
+}
+
+.green {
+  border-radius: 5px;
+  background: linear-gradient(
+      to bottom,
+      rgb(37, 115, 2) 0%,
+      rgb(23, 145, 47) 100%
+  );
+  border:1px solid rgba(255,255,255,0.7);
+  color:white;
+  box-shadow: 0 1px 1px rgba(255,255,255,0.1);
+}
+a.green:hover{
+  background: linear-gradient(
+      to bottom,
+      rgb(13, 70, 1) 0%,
+      rgb(12, 138, 35) 100%
+  );
+  box-shadow: 0 2px 3px rgba(255,255,255,0.2);
+  transition:ease-in 0.2s;
+}
+
+.red {
+  border-radius: 5px;
+  background: linear-gradient(
+      to bottom,
+      rgb(152, 25, 25) 0%,
+      rgb(110, 19, 29) 100%
+  );
+  border:1px solid rgba(255,255,255,0.7);
+  color:white;
+  box-shadow: 0 1px 1px rgba(255,255,255,0.1);
+}
+
+a.red:hover{
+  background: linear-gradient(
+      to bottom,
+      rgb(145, 22, 22) 0%,
+      rgb(139, 32, 41) 100%
+  );
+  box-shadow: 0 2px 3px rgba(255,255,255,0.2);
+  transition:ease-in 0.2s;
+}
+.bg-img{
+  background: linear-gradient(to top,
+    rgba(200, 12, 151, 0.7) 0%,
+    rgba(86, 192, 253, 0.8) 100%),
+  url('../../../assets/garage/add_garage.jpg');
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgb(2, 2, 2, 0.4);
+  height: 250px;
+  magin:0;
+  padding:0;
+}

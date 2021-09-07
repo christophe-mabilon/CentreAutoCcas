@@ -1,0 +1,363 @@
+.stick {
+  position: sticky;
+  top: 37px;
+  z-index: 500;
+}
+
+ng-template:nth-child(2),
+ng-template:nth-child(3) {
+  height: auto;
+}
+.scene {
+  background: transparent !important;
+  position: relative;
+  width: 110px;
+  height: 150px;
+  margin: 0;
+  padding: 0;
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  position: absolute;
+  transform: translateZ(-600px);
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.carousel__cell {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(58, 58, 58, 0.3);
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 0;
+  --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+}
+button .precedant-button,
+.suivant-button {
+  width: auto;
+  margin: auto;
+}
+
+.carousel__cell:nth-child(1) {
+  transform: rotateY(10deg) translateZ(600px);
+}
+.carousel__cell:nth-child(2) {
+  transform: rotateY(20deg) translateZ(600px);
+}
+.carousel__cell:nth-child(3) {
+  transform: rotateY(30deg) translateZ(600px);
+}
+.carousel__cell:nth-child(4) {
+  transform: rotateY(40deg) translateZ(600px);
+}
+.carousel__cell:nth-child(5) {
+  transform: rotateY(50deg) translateZ(600px);
+}
+.carousel__cell:nth-child(6) {
+  transform: rotateY(60deg) translateZ(600px);
+}
+.carousel__cell:nth-child(7) {
+  transform: rotateY(70deg) translateZ(600px);
+}
+.carousel__cell:nth-child(8) {
+  transform: rotateY(80deg) translateZ(600px);
+}
+.carousel__cell:nth-child(9) {
+  transform: rotateY(90deg) translateZ(600px);
+}
+.carousel__cell:nth-child(10) {
+  transform: rotateY(100deg) translateZ(600px);
+}
+.carousel__cell:nth-child(11) {
+  transform: rotateY(110deg) translateZ(600px);
+}
+.carousel__cell:nth-child(12) {
+  transform: rotateY(120deg) translateZ(600px);
+}
+.carousel__cell:nth-child(13) {
+  transform: rotateY(130deg) translateZ(600px);
+}
+.carousel__cell:nth-child(14) {
+  transform: rotateY(140deg) translateZ(600px);
+}
+.carousel__cell:nth-child(15) {
+  transform: rotateY(150deg) translateZ(600px);
+}
+.carousel__cell:nth-child(16) {
+  transform: rotateY(160deg) translateZ(600px);
+}
+.carousel__cell:nth-child(17) {
+  transform: rotateY(170deg) translateZ(600px);
+}
+.carousel__cell:nth-child(18) {
+  transform: rotateY(180deg) translateZ(600px);
+}
+.carousel__cell:nth-child(19) {
+  transform: rotateY(190deg) translateZ(600px);
+}
+.carousel__cell:nth-child(20) {
+  transform: rotateY(200deg) translateZ(600px);
+}
+.carousel__cell:nth-child(21) {
+  transform: rotateY(210deg) translateZ(600px);
+}
+.carousel__cell:nth-child(22) {
+  transform: rotateY(220deg) translateZ(600px);
+}
+.carousel__cell:nth-child(23) {
+  transform: rotateY(230deg) translateZ(600px);
+}
+.carousel__cell:nth-child(24) {
+  transform: rotateY(240deg) translateZ(600px);
+}
+.carousel__cell:nth-child(25) {
+  transform: rotateY(250deg) translateZ(600px);
+}
+.carousel__cell:nth-child(26) {
+  transform: rotateY(260deg) translateZ(600px);
+}
+.carousel__cell:nth-child(27) {
+  transform: rotateY(270deg) translateZ(600px);
+}
+.carousel__cell:nth-child(28) {
+  transform: rotateY(280deg) translateZ(600px);
+}
+.carousel__cell:nth-child(29) {
+  transform: rotateY(290deg) translateZ(600px);
+}
+.carousel__cell:nth-child(30) {
+  transform: rotateY(300deg) translateZ(600px);
+}
+.carousel__cell:nth-child(31) {
+  transform: rotateY(310deg) translateZ(600px);
+}
+.carousel__cell:nth-child(32) {
+  transform: rotateY(320deg) translateZ(600px);
+}
+.carousel__cell:nth-child(33) {
+  transform: rotateY(330deg) translateZ(600px);
+}
+.carousel__cell:nth-child(34) {
+  transform: rotateY(340deg) translateZ(600px);
+}
+.carousel__cell:nth-child(35) {
+  transform: rotateY(350deg) translateZ(600px);
+}
+.carousel__cell:nth-child(36) {
+  transform: rotateY(360deg) translateZ(600px);
+}
+
+.bg-blue-light {
+  background: linear-gradient(
+    to top,
+    rgba(76, 189, 243, 1) 60%,
+    rgba(86, 192, 253, 1) 100%
+  );
+}
+
+#barreRecherche {
+  margin-top: 50px;
+}
+.select-marque {
+  background-color: rgba(255, 255, 255, 1) !important;
+  border: 1px solid rgba(5, 89, 138, 0.7) !important;
+  color: rgb(255, 255, 255) !important;
+  margin: 1px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.btn-select {
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 18, 80, 0.7) 0%,
+    rgba(13, 18, 80, 0.9) 50%,
+    rgba(13, 18, 80, 0.7) 100%
+  );
+  border: 0.5px solid rgba(9, 12, 151, 0.3);
+  border-radius: 7px;
+}
+
+.btn-select:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
+  );
+}
+
+.page_suivante {
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 156, 240, 1) 0%,
+    rgba(12, 156, 240, 1) 100%
+  ) !important;
+  color: white;
+}
+
+.page_suivante:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
+  ) !important;
+}
+
+.retour {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  ) !important;
+  color: white !important;
+  border-radius: 7px;
+  border: 1px solid white;
+}
+
+.retour:hover {
+  background: linear-gradient(
+    to bottom,
+    rgb(140, 0, 0) 0%,
+    rgba(140, 0, 0, 1) 100%
+  ) !important;
+}
+
+.recherche {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
+  ) !important;
+  color: white !important;
+  border: 1px solid white !important;
+  border-radius: 7px !important;
+  margin-top: 30px;
+  width:100%;
+  
+}
+
+.recherche:hover {
+  background: linear-gradient(
+    rgb(32, 230, 14) 0%,
+    rgba(0, 140, 0, 1) 15%,
+    rgba(9, 255, 0, 1) 100%
+  ) !important;
+
+  transition: 4s;
+}
+
+.filtre-suivant {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 1) !important;
+}
+/*text-color*/
+.text-dark-2 {
+  color: rgb(10, 10, 27);
+}
+// We need to use ::ng-deep to overcome view encapsulation
+::ng-deep {
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #ffffff;
+    height: 10px;
+  }
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    background: linear-gradient(rgb(0, 132, 162) 3%, rgb(0, 132, 162) 87%);
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 16px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: -9px;
+    background: linear-gradient(
+      to bottom,
+      rgba(1, 175, 214),
+      rgba(0, 96, 118, 1),
+      rgba(1, 175, 214)
+    );
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bubble {
+    font-size: 13px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-limit {
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: rgb(143, 143, 142);
+  }
+}
+/***************** espacement menu search ****************/
+.type,
+.modele,
+.carburant,
+.annee,.places {
+  margin-top: 25px;
+}
+
+.type,
+.modele,
+.carburant,
+.annee,.regions {
+  margin: 30px auto 20px auto;
+}
+.annee {
+  margin: 20px auto 20px auto;
+}
+.prix {
+  margin: 20px auto 20px auto;
+}
+
+.kilometrage,
+.prix_vehicule,
+.boite,
+.portes
+ {
+  margin: 20px auto 20px auto;
+}
+#slider-prix,
+#slider-kilo,
+#slider-annee,
+#slider-puissance {
+  background-color: rgb(206, 209, 209) !important;
+  border: 1px solid rgba(9, 102, 156, 1) !important;
+  position: relative;
+  top: 10px;
+}
+@media only screen and (max-width: 485px) {
+    .stick {
+        position: sticky;
+        top: 84px;
+        z-index: 500;
+      }
+  }

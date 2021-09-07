@@ -1,0 +1,186 @@
+.bg-dark-body {
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 18, 80, 0.8) 0%,
+    rgba(13, 18, 80, 1) 50%,
+    rgba(13, 18, 80, 0.8) 100%
+  );
+}
+ul {
+  list-style: none;
+}
+
+.acheter {
+  height: 12rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgb(33, 37, 41, 0.8);
+}
+/**************presentation*********************/
+main #presentation ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+#presentation1 {
+  color: white;
+  background: linear-gradient(
+      to bottom,
+      rgb(21, 76, 226, 1) 0%,
+      rgba(10, 155, 212, 1) 35%,
+      rgba(16, 153, 207, 0.3) 100%
+    ),
+    url('../../assets/header/1jumelle.png');
+  text-decoration: none;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+#presentation1 h2 {
+  padding-top: 10%;
+  text-shadow: 1px 2px 2.5px rgba(0, 0, 0, 1);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#presentation1 p {
+  padding-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+#presentation2 {
+  color: white;
+
+  background: linear-gradient(
+      to bottom,
+      rgb(21, 76, 226, 1) 0%,
+      rgba(10, 155, 212, 1) 35%,
+      rgba(16, 153, 207, 0.3) 100%
+    ),
+    url('../../assets/header/2.loupe.png');
+  text-decoration: none;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+#presentation2 h2 {
+  padding-top: 10%;
+  text-shadow: 1px 2px 2.5px rgba(0, 0, 0, 1);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#presentation2 p {
+  padding-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+#presentation3 {
+  color: white;
+  padding: 10px 10px 50px 10px;
+  background: linear-gradient(
+      to bottom,
+      rgb(21, 76, 226, 1) 0%,
+      rgba(10, 155, 212, 1) 35%,
+      rgba(16, 153, 207, 0.3) 100%
+    ),
+    url('../../assets/header/reseserve.png');
+  text-decoration: none;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+#presentation3 h2 {
+  padding-top: 10%;
+  text-shadow: 1px 2px 2.5px rgba(0, 0, 0, 1);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#presentation3 p {
+  padding-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+#presentation4 {
+  color: white;
+  padding: 10px 10px 50px 10px;
+  background: linear-gradient(
+      to bottom,
+      rgb(21, 76, 226, 1) 0%,
+      rgba(10, 155, 212, 1) 35%,
+      rgba(16, 153, 207, 0.3) 100%
+    ),
+    url('../../assets/header/road.jpg');
+  text-decoration: none;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+#presentation4 h2 {
+  padding-top: 10%;
+  text-shadow: 1px 2px 2.5px rgba(0, 0, 0, 1);
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#presentation4 p {
+  padding-top: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+.pub {
+  background: linear-gradient(
+    to bottom,
+    rgba(72, 119, 248, 1) 0%,
+    rgba(0, 89, 190, 0.7) 60%,
+    rgba(0, 89, 190, 0.9) 100%
+  );
+}
+.titre_pub {
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 1px rgb(33, 37, 41);
+}
+.titre_pub_purple {
+  font-weight: bold;
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 1px rgb(70, 3, 118);
+}
+.titre_pub-light {
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0.5px 1px rgb(33, 37, 41);
+}
+h2 {
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.purple {
+  color: rgb(2, 53, 95);
+}
+.petit-logo {
+  width: 5rem;
+}
+ul li {
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+.contour {
+  border-bottom: 3px solid rgba(33, 37, 41, 0.3);
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+section.presentation2 {
+  border-top: solid 1px rgba(33, 37, 41, 0.3);
+  border-bottom: solid 1px rgba(33, 37, 41, 0.3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}

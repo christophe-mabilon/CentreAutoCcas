@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "svipas.prettier-plus"
+    }
+}

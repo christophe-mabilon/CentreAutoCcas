@@ -1,0 +1,94 @@
+ngb-carousel {
+width:100%;
+
+}
+
+ngb-carousel img {
+  width: 100%;
+
+  outline: none;
+}
+
+ngb-carousel {
+  width: inherit;
+  height: inherit;
+}
+.carousel-inner {
+  overflow: visible;
+}
+.carousel-item {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  z-index: -1;
+}
+.carousel-item.active{
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+.carousel-control-prev {
+  z-index: 5000;
+  position:relative;
+}
+.carousel-control-next {
+  z-index: 5000;
+}
+
+.carousel-indicators{
+  z-index: 5000;
+}
+.prime {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-top: 150px solid rgb(2, 187, 2);
+  border-right: 150px solid transparent;
+  color: white;
+  z-index: 500;
+  top: 0px;
+  position: absolute;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}
+.prime p {
+  line-height: 1rem;
+  transform: rotate(-45deg);
+  position: absolute;
+  bottom: 80px;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-right: 2px;
+  flex-wrap: wrap;
+}
+.topOccas {
+  height: 0;
+  width: 0;
+  border-bottom: 150px solid rgb(123, 5, 208);
+  border-left: 150px solid transparent;
+  color: white;
+  z-index: 7;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.topOccas p:nth-child(1) {
+  transform: rotate(0deg);
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  text-align: center;
+  z-index: 7;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}
+.topOccas p:nth-child(2) {
+  transform: rotate(0deg);
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  text-align: center;
+  z-index: 7;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}

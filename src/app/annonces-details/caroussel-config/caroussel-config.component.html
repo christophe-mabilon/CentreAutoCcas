@@ -1,0 +1,79 @@
+<ngb-carousel *ngFor="let item of annonce;let i = index">
+
+  <ng-template ngbSlide *ngIf="item.photos[0]">
+    <div class="picsum-img-wrapper">
+      <img src="{{item.photos[0]}}" alt="Angular Carousel 1">
+      <div *ngIf="item.primeEco" class="d-flex prime">
+        <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+      </div>
+      <div *ngIf="item.topOcass" class="d-flex topOccas">
+        <p>Top</p>
+        <p>Ocas</p>
+      </div>
+    </div>
+  </ng-template>
+  <div class="carousel-caption">
+    <h3>CentreAutoCcas</h3>
+  </div>
+  <ng-template ngbSlide *ngIf="item.photos[1]">
+    <div class="picsum-img-wrapper">
+      <img src="{{item.photos[1]}}" alt="Angular Carousel 1">
+      <div *ngIf="item.primeEco" class="d-flex prime">
+        <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+      </div>
+      <div *ngIf="item.topOcass" class="d-flex topOccas">
+        <p>Top</p>
+        <p>Ocas</p>
+      </div>
+    </div>
+    <div class="carousel-caption">
+      <h3>CentreAutoCcas</h3>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide *ngIf="item.photos[2]">
+    <div class="picsum-img-wrapper">
+      <img src="{{item.photos[2]}}" alt="Angular Carousel 1">
+      <div *ngIf="item.primeEco" class="d-flex prime">
+        <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+      </div>
+      <div *ngIf="item.topOcass" class="d-flex topOccas">
+        <p>Top</p>
+        <p>Ocas</p>
+      </div>
+    </div>
+    <div class="carousel-caption">
+      <h3>CentreAutoCcas</h3>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="item.photos[3]">
+    <div class="picsum-img-wrapper">
+      <img src="{{item.photos[3]}}" alt="Angular Carousel 1">
+      <div *ngIf="item.primeEco" class="d-flex prime">
+        <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+      </div>
+      <div *ngIf="item.topOcass" class="d-flex topOccas">
+        <p>Top</p>
+        <p>Ocas</p>
+      </div>
+    </div>
+    <div class="carousel-caption">
+      <h3>CentreAutoCcas</h3>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide *ngIf="item.photos[4]">
+    <div class="picsum-img-wrapper">
+      <img src="{{item.photos[4]}}" alt="Angular Carousel 1">
+      <div *ngIf="item.primeEco" class="d-flex prime">
+        <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+      </div>
+      <div *ngIf="item.topOcass" class="d-flex topOccas">
+        <p>Top</p>
+        <p>Ocas</p>
+      </div>
+    </div>
+    <div class="carousel-caption">
+      <h3>CentreAutoCcas</h3>
+    </div>
+  </ng-template>
+
+</ngb-carousel>
