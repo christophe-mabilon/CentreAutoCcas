@@ -11,7 +11,7 @@
   <input formControlName="username" type="texte" name="username" size="10" class="form-control  p-2 m-2" id="username" placeholder="Utilisateur">
 
   <label for="password" class="visually-hidden">Mot de passe</label>
-  <input [value]="showPassword" formControlName="password" [type]="showPassword ? 'password' : 'text'" name="password" size="10" class="form-control  p-2 m-2" id="password" placeholder="Mot de passe">
+  <input formControlName="password"  [type]="showPassword ? 'text':'password'" name="password" size="10" class="form-control  p-2 m-2" id="password" placeholder="Mot de passe">
   <button type="submit" class="btn connexion text-nowrap rounded p-2 m-2" ><small class="text-white">Se Connecter</small></button>
   </form>
 

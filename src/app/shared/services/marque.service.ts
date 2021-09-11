@@ -17,7 +17,7 @@ export class MarqueService {
     {id: 3,name: "AUDI", img: "../../assets/logo/logo-audi.png", description: "logo-audi"},
     {id: 4,name: "BENTLEY", img: "../../assets/logo/logo-Bentley.png", description: "logo-Bentley"},
     {id: 5,name: "BMW", img: "../../assets/logo/logo-bmw.png", description: "logo-BMW"},
-    {id: 6,name: "HEVROLET", img: "../../assets/logo/logo-Chevrolet.png", description: "logo-Chevrolet.png"},
+    {id: 6,name: "CHEVROLET", img: "../../assets/logo/logo-Chevrolet.png", description: "logo-Chevrolet.png"},
     {id: 7,name: "CHRYSLER", img: "../../assets/logo/logo-chrysler.png", description: "logo-chrysler"},
     {id: 8,name: "CITROËN", img: "../../assets/logo/logo-Citroen.png", description: "logo-Citroen"},
     {id: 9,name: "DACIA", img: "../../assets/logo/logo-dacia.png", description: "logo-dacia"},

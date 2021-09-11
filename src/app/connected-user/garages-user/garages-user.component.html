@@ -1,9 +1,14 @@
 <app-navbar-user></app-navbar-user>
 <div class="container-fluid bg-dark text-white px-0">
-  <div class="bg-img"></div>
-  <h3 class="py3 text-center py-3">Vos garages</h3>
-  <div *ngIf="garages; else garageBlock">
-  <section *ngFor="let garage of garages;let i =index">
+  <div class="bg-img m-0">
+    <div class="align-items-center py-auto">
+      <h2 class="text-center pt-5 pb-3 fs-1">Vos Garages</h2>
+      <div *ngIf="garages; else garageBlock"></div>
+    </div>
+
+  </div>
+
+    <section *ngFor="let garage of garages;let i =index">
 
       <ul  class="row px-0 pb-2 mb-md-0">
         <li class="col-3 col-md"><div class="text-center"><p class="text-info">Numero de garage</p><p>{{i+1}}</p></div></li>
@@ -12,13 +17,15 @@
         <li class="col-3 col-md"><div class="text-center"><p class="text-info">Code postal</p><p>{{garage.postalCode}}</p></div></li>
         <li class="col-5 col-md"><div class="text-center"><p class="text-info">Ville</p><p>{{garage.city}}</p></div></li>
         <li class="col-4 col-md"><div class="text-center"><p class="text-info">Nombre d'annonces</p><p>{{garage.classifiedAds.length}}</p></div></li>
-        <li class="col col-md"><div class="text-center"><a [routerLink]="['/annoncesByGarage']" class="btn py-1">Voir les annonces</a></div></li>
+        <li class="col col-md"><div class="text-center"><a [routerLink]="['/annoncesByGarage']" class="btn btn-blue">Voir les annonces</a></div></li>
+        <li class="col col-md"><div class="text-center"><a (click)="delete(garage.id)" class="btn btn-red">Supprimer</a></div></li>
       </ul>
 
 
-  </section>
-  </div>
+    </section>
+
   <ng-template #garageBlock>
     <p class="text-center">Il semblerait que vous n'avez acutellement aucun garage enregistré</p>
   </ng-template>
 </div>
+

@@ -40,6 +40,13 @@ import { AnnonceByGarageComponent } from './connected-user/annonce-by-garage/ann
 import {NavbarComponentUser} from "./connected-user/navbar-user/navbar.component";
 import { EditAnnonceUserComponent } from './connected-user/edit-annonce-user/edit-annonce-user.component';
 import { EditGarageUserComponent } from './connected-user/edit-garage-user/edit-garage-user.component';
+import { BooleanPipe } from './shared/pipes/boolean.pipe';
+import { UploadComponent } from './upload/upload.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatIconModule} from "@angular/material/icon";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {FlexLayoutModule} from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
@@ -72,14 +79,15 @@ import { EditGarageUserComponent } from './connected-user/edit-garage-user/edit-
     CarousselConfigComponent,
     AnnonceByGarageComponent,
     EditAnnonceUserComponent,
-    EditGarageUserComponent
+    EditGarageUserComponent,
+    BooleanPipe,
+    UploadComponent,
+
   ],
     imports: [
-      BrowserModule,ReactiveFormsModule,
-      AppRoutingModule,
-      NgbModule, NgxSliderModule, FormsModule,
-      ReactiveFormsModule,
-      NgbModule, RouterModule.forRoot(routes), HttpClientModule,CommonModule
+      BrowserModule,ReactiveFormsModule,AppRoutingModule,NgbModule, NgxSliderModule, FormsModule,
+      RouterModule.forRoot(routes), HttpClientModule,CommonModule,BrowserAnimationsModule,FlexLayoutModule,HttpClientModule,
+      MatIconModule,MatProgressSpinnerModule
     ],
   providers: [MarqueService,RegionService,ModelService,NgbCarouselConfig,{ provide: LOCALE_ID, useValue: 'fr-FR' }, DatePipe,AuthService],
   bootstrap: [AppComponent]

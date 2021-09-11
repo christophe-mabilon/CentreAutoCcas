@@ -1,12 +1,14 @@
 <app-navbar-user></app-navbar-user>
 <div class="container-fluid bg-dark text-light p-0">
-  <div class="bg-img"></div>
-  <h2 class="text-center my-3">Ajouter une annonce</h2>
-  <p class="text-center mb-3">Merci de remplir tous les champs et de présciser le maximum d'information sur le
+  <div class="bg-img m-0">
+    <div class="align-items-center py-auto">
+  <h2 class="text-center pt-5 pb-3 fs-1">Ajouter une annonce</h2>
+  <p class="text-center pb-2">Merci de remplir tous les champs et de présciser le maximum d'information sur le
     véhicule</p>
-  <p class="text-center my-md-3">Toutes annonces doivent etre verifiées et confirmées par l'administrateur du site avant
+  <p class="text-center py-md-2">Toutes annonces doivent etre verifiées et confirmées par l'administrateur du site avant
     ajout</p>
-
+    </div>
+</div>
   <div class="container px-0">
     <form [formGroup]="addForm" (ngSubmit)="addAnnonce()" class="row form-group py-3">
 
@@ -34,7 +36,7 @@
       </div>
 
       <div class="col col-md-3 form-group">
-        <select id="type" formControlName="typeOfVehicule" class="form-select mb-3" name="type">
+        <select id="type" formControlName="typeOfVehicle" class="form-select mb-3" name="type">
           <option value="" disabled>Type de véhicule</option>
           <option *ngFor="let type of types" value="{{type.name}}">{{ type.name}}</option>
         </select>
@@ -48,7 +50,7 @@
       </div>
 
       <div class="col col-md-3 form-group mb-3">
-        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text"
+        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="number"
                class="form-control" name="kilometrage">
       </div>
 
@@ -75,26 +77,52 @@
       </div>
 
       <div class="col col-md-3 form-group">
-        <select id="portes" formControlName="doors" class="form-select mb-3" name="portes">
+        <select id="portes" formControlName="carDoors" class="form-select mb-3" name="portes">
           <option value="" disabled>Nombre de portes du véhicule</option>
-          <option value="3">3</option>
-          <option value="5">5</option>
+          <option value=3>3</option>
+          <option value=5>5</option>
         </select>
       </div>
 
       <div class="col col-md-3 form-group">
         <select id="places" formControlName="places" class="form-select mb-3" name="places">
-          <option value="" disabled>Nombre de place du véhicule</option>
-          <option *ngFor='let in of nbPlaces(8) ;let i = index'>{{i + 2}}</option>
+          <option disabled>Nombre de place du véhicule</option>
+          <option *ngFor='let in of nbPlaces(8) ;let i = index' value="{{i+2}}">{{i + 2}}</option>
         </select>
       </div>
 
       <div class="col col-md-3 form-group">
-        <select id="garage" formControlName="garageId" class="form-select mb-3" name="garage">
+        <select id="garage" formControlName="garage" class="form-select mb-3" name="garage">
           <option value="" disabled>Séléctionner votre Garage</option>
           <option *ngFor="let garage of garages" value="{{garage.id}}">{{garage.name}}</option>
         </select>
+      </div>
 
+      <div class="col col-md-6 form-group mb-3">
+        <input id="titre" type="text" formControlName="title" class="form-control" placeholder="Titre de l'annonce">
+      </div>
+
+      <div class="col col-md-3 flex-row form-group justify-content-around p-auto">
+        <label class="pe-2">PrimeEco
+          <input type="checkbox" formControlName="primeEco">
+        </label>
+        <label class="ps-2 pe-2">topOccas
+          <input type="checkbox" formControlName="topOcass">
+        </label>
+      </div>
+      <div class="col col-md-3 form-group mb-3">
+        <input id="prix" type="number" formControlName="price" class="form-control" placeholder="Prix ( en €)">
+      </div>
+
+
+
+      <div class="col col-md-6 form-group mb-3">
+        <input id="modelComplement" type="text" formControlName="modelComplement" class="form-control" placeholder="Déstails complémentaire du véhicule">
+      </div>
+
+      <div class="col col-md-6 form-group mb-3">
+        <input id="modelComplement2" type="text" formControlName="modelComplement2" class="form-control"
+               placeholder="Détails complémentaire du véhicule (suite)">
       </div>
 
       <div class="col-12 form-group mb-3">
@@ -103,28 +131,8 @@
       </div>
 
       <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo1">Ajouter une photo du véhicule</label>
-        <input formControlName="photo1" type="file" class="form-control" name="photo1" id="photo1">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo2">Ajouter une photo du véhicule</label>
-        <input formControlName="photo2" type="file" class="form-control" name="photo2" id="photo2">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo3">Ajouter une photo du véhicule</label>
-        <input formControlName="photo3" type="file" class="form-control" name="photo3" id="photo3">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo4">Ajouter une photo du véhicule</label>
-        <input formControlName="photo4" type="file" class="form-control" name="photo4" id="photo4">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo5">Ajouter une photo du véhicule</label>
-        <input formControlName="photo5" type="file" class="form-control" name="photo5" id="photo5">
+        <label class="input-group-text btn-blue">Ajouter une photo du véhicule</label>
+        <input formArrayName="photos" type="file" class="form-control" name="photo1" id="photo1">
       </div>
 
 

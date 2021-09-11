@@ -5,6 +5,7 @@ import {environment as env} from "../../../environments/environment";
 import {User} from "../interface/user.interface";
 import {Garage} from "../interface/garage.interface";
 import {UserService} from "./user.service";
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,14 @@ export class GarageService implements OnInit{
   constructor(private http : HttpClient,private userServ:UserService) { }
   //Ajout d'une annonce par le propietaire ou l'admin
 
-  add(userId:User): Observable<any>{
+  add(garage:Garage): Observable<any>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.post<any>(this.apiUrl+'/garage/add/' +  userId , {headers});
+    return this.http.post<Garage>(this.apiUrl+'garage/add/'+ garage.userId , garage, {headers});
   }
 
   delete(garageId: number): Observable<any>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.delete(this.apiUrl + '/'+ garageId,{headers});  }
+    return this.http.delete(this.apiUrl + 'garage/delete/' + garageId,{headers});  }
 
   update(garage: Garage): Observable<Garage>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
@@ -39,7 +40,7 @@ export class GarageService implements OnInit{
     return this.http.get<any[]>(this.apiUrl + 'garages/',{headers});
   }
 
-  findOne(id: number): Observable<Garage>{
+    findOne(id: (id: number) => any): Observable<Garage>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
     return this.http.get<Garage>(this.apiUrl + "garage/show/"+ id,{headers})
   }

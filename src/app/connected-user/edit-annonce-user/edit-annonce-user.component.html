@@ -8,64 +8,64 @@
     ajout</p>
 
   <div class="container px-0">
-    <form [formGroup]="editAnnonceForm" (ngSubmit)="submit()" class="row form-group py-3" *ngFor="let annonce of annonce">
+    <form [formGroup]="editAnnonceForm" (ngSubmit)="submit()" class="row form-group py-3">
       <div class="col col-md-3 form-group">
         <label for="region">Région</label>
-        <input id="region" type="text" formControlName="region" class="form-control mb-3" name="region" [(ngModel)]=annonce.region.name>
+        <input id="region" type="text" [formControlName]="region" class="form-control mb-3" name="region" >
       </div>
       <div class="col col-md-3 form-group">
         <label for="brand">Marque</label>
-        <input id="brand" type="text" formControlName="brand" class="form-control mb-3" name="brand" [(ngModel)]=annonce.brand.name>
+        <input id="brand" type="text" formControlName="brand" class="form-control mb-3" name="brand">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="model">Modele</label>
-        <input id="model" type="text" formControlName="model" class="form-control mb-3" name="model" [(ngModel)]=annonce.model.name>
+        <input id="model" type="text" formControlName="model" class="form-control mb-3" name="model">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="type">Type de véhicule</label>
-        <input id="type" type="text" formControlName="typeOfVehicule" class="form-control mb-3" name="type" [(ngModel)]=annonce.typeOfVehicle>
+        <input id="type" type="text" formControlName="typeOfVehicule" class="form-control mb-3" name="type">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="carburant">Carburant</label>
-        <input id="carburant" formControlName="fuel" class="form-control mb-3" name="carburant" [(ngModel)]=annonce.fuel >
+        <input id="carburant" formControlName="fuel" class="form-control mb-3" name="carburant">
       </div>
 
       <div class="col col-md-3 form-group mb-3">
         <label for="kilometre">Kilometre</label>
-        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text" class="form-control" name="kilometrage" [(ngModel)]=annonce.kilometre>
+        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text" class="form-control" name="kilometrage">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="annee">Année de mise en circulation</label>
-        <input id="annee" type="text" formControlName="year" class="form-control mb-3" name="annee"[(ngModel)]=annonce.year>
+        <input id="annee" type="text" formControlName="year" class="form-control mb-3" name="annee">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="puissance">Puissance fiscale</label>
-        <input id="puissance" type="text" formControlName="power" class="form-control mb-3" name="puissance"[(ngModel)]=annonce.power>
+        <input id="puissance" type="text" formControlName="power" class="form-control mb-3" name="puissance">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="boite">Boite de vitesse</label>
-        <input id="boite" type="text" formControlName="gearbox" class="form-control mb-3" name="boite"[(ngModel)]=annonce.gearbox>
+        <input id="boite" type="text" formControlName="gearbox" class="form-control mb-3" name="boite">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="portes">Nombre de portes</label>
-        <input id="portes"  type="number" formControlName="doors" class="form-control mb-3" name="portes" [(ngModel)]=annonce.carDoors>
+        <input id="portes"  type="number" formControlName="doors" class="form-control mb-3" name="portes">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="type">Type de véhicule</label>
-        <input id="places" type="number" formControlName="places" class="form-control mb-3" name="places" [(ngModel)]=annonce.places>
+        <input id="places" type="number" formControlName="places" class="form-control mb-3" name="places">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="garage">Garage</label>
-        <select  id="garage" formControlName="garageId" class="form-control mb-3 bg-white" name="garage" [(ngModel)]=annonce.garage.id>
+        <select  id="garage" formControlName="garageId" class="form-control mb-3 bg-white" name="garage">
           <option value="{{annonce.garage.id}}" disabled>{{annonce.garage.name}}</option>
         </select>
 
@@ -73,7 +73,7 @@
 {{annonce.garage.name}}
       <div class="col-12 form-group mb-3">
         <textarea formControlName="description" id=description class="form-control"
-                  placeholder="Déscription du véhicule" name="description"[(ngModel)]=annonce.description></textarea>
+                  placeholder="Déscription du véhicule" name="description"></textarea>
       </div>
 
       <div class="col col-md-3 form-group mb-3">
@@ -81,25 +81,6 @@
         <input formControlName="photo1" type="file" class="form-control" name="photo1" id="photo1">
       </div>
 
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo2">Ajouter une photo du véhicule</label>
-        <input formControlName="photo2" type="file" class="form-control" name="photo2" id="photo2">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo3">Ajouter une photo du véhicule</label>
-        <input formControlName="photo3" type="file" class="form-control" name="photo3" id="photo3">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo4">Ajouter une photo du véhicule</label>
-        <input formControlName="photo4" type="file" class="form-control" name="photo4" id="photo4">
-      </div>
-
-      <div class="col col-md-3 form-group mb-3">
-        <label  class="input-group-text btn-blue" for="photo5">Ajouter une photo du véhicule</label>
-        <input formControlName="photo5" type="file" class="form-control" name="photo5" id="photo5">
-      </div>
 
 
       <label class="form-check-label">

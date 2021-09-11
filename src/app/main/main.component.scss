@@ -26,9 +26,9 @@ main #presentation ul {
   color: white;
   background: linear-gradient(
       to bottom,
-      rgb(21, 76, 226, 1) 0%,
-      rgba(10, 155, 212, 1) 35%,
-      rgba(16, 153, 207, 0.3) 100%
+      rgb(33, 37, 41, 1) 0%,
+      rgba(33, 37, 41, 1) 35%,
+      rgba(33, 37, 41, 0.3) 100%
     ),
     url('../../assets/header/1jumelle.png');
   text-decoration: none;
@@ -54,9 +54,9 @@ main #presentation ul {
 
   background: linear-gradient(
       to bottom,
-      rgb(21, 76, 226, 1) 0%,
-      rgba(10, 155, 212, 1) 35%,
-      rgba(16, 153, 207, 0.3) 100%
+      rgb(33, 37, 41, 1) 0%,
+      rgba(33, 37, 41, 1) 35%,
+      rgba(33, 37, 41, 0.3) 100%
     ),
     url('../../assets/header/2.loupe.png');
   text-decoration: none;
@@ -82,9 +82,9 @@ main #presentation ul {
   padding: 10px 10px 50px 10px;
   background: linear-gradient(
       to bottom,
-      rgb(21, 76, 226, 1) 0%,
-      rgba(10, 155, 212, 1) 35%,
-      rgba(16, 153, 207, 0.3) 100%
+      rgb(33, 37, 41, 1) 0%,
+      rgba(33, 37, 41, 1) 35%,
+      rgba(33, 37, 41, 0.3) 100%
     ),
     url('../../assets/header/reseserve.png');
   text-decoration: none;
@@ -110,9 +110,9 @@ main #presentation ul {
   padding: 10px 10px 50px 10px;
   background: linear-gradient(
       to bottom,
-      rgb(21, 76, 226, 1) 0%,
-      rgba(10, 155, 212, 1) 35%,
-      rgba(16, 153, 207, 0.3) 100%
+      rgb(33, 37, 41, 1) 0%,
+      rgba(33, 37, 41, 1) 35%,
+      rgba(33, 37, 41, 0.3) 100%
     ),
     url('../../assets/header/road.jpg');
   text-decoration: none;
@@ -134,11 +134,12 @@ main #presentation ul {
 }
 .pub {
   background: linear-gradient(
-    to bottom,
-    rgba(72, 119, 248, 1) 0%,
-    rgba(0, 89, 190, 0.7) 60%,
-    rgba(0, 89, 190, 0.9) 100%
-  );
+    to top,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(33, 37, 41, 1) 60%,
+    rgb(30, 22, 89) 100% );
+
+
 }
 .titre_pub {
   font-family: 'Ubuntu', sans-serif;
@@ -164,7 +165,7 @@ h2 {
 }
 
 .purple {
-  color: rgb(2, 53, 95);
+  color: rgb(20, 34, 45);
 }
 .petit-logo {
   width: 5rem;

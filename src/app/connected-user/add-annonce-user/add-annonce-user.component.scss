@@ -4,13 +4,7 @@
 textarea{
   height: 150px;
 }
-/*select:hover{
-  background: green;
-}*/
-/*select:focus{
-  background-color: yellow;
-  color: black;
-}*/
+
 .btn-blue{
   background: linear-gradient(
       to bottom,
@@ -39,4 +33,10 @@ textarea{
   height: 250px;
   magin:0;
   padding:0;
+}
+h2 {
+  text-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+p{
+  text-shadow: 0 3px 5px rgba(0,0,0,0.5);
 }

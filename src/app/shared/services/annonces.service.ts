@@ -1,34 +1,40 @@
 import {Injectable, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment as env} from "../../../environments/environment";
 import {Annonce} from "../interface/annonce.inteface";
 import {UserService} from "./user.service";
-
+import {FormGroup} from "@angular/forms";
+import {catchError} from "rxjs/operators";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnnoncesService implements OnInit{
+export class AnnoncesService implements OnInit {
   private apiUrl = env.apiUrl;
- annoncesByUser!: Annonce[];
+  annoncesByUser!: Annonce[];
+  reference: any;
 
-  constructor(private userServ:UserService,private http:HttpClient){
+
+  constructor(private userServ: UserService, private http: HttpClient) {
 
   }
-  add(annonce: Annonce): Observable<Annonce>{
+
+  add(annonce: any): Observable<Annonce> {
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.post<Annonce>(this.apiUrl, annonce,{headers});
+    return this.http.post<Annonce>(this.apiUrl + 'classifiedAd/add/', annonce, {headers})
+
   }
 
-  delete(productId: number): Observable<any>{
+  delete(productId: number): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.delete(this.apiUrl +  productId,{headers});  }
+    return this.http.delete(this.apiUrl + productId, {headers});
+  }
 
-  update(annonce: Annonce): Observable<Annonce>{
+  update(annonce: Annonce): Observable<Annonce> {
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.put<Annonce>(this.apiUrl + '/' + annonce.id, annonce,{headers});
+    return this.http.put<Annonce>(this.apiUrl + '/' + annonce.id, annonce, {headers});
   }
 
   findAll(): Observable<Annonce[]> {
@@ -47,11 +53,12 @@ export class AnnoncesService implements OnInit{
 
   findOne(id: number): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.get<any>(this.apiUrl +'classifiedAd/'+ id);
+    return this.http.get<any>(this.apiUrl + 'classifiedAd/' + id);
   }
 
-  ngOnInit(): void {
 
+
+  ngOnInit(): void {
 
 
   }

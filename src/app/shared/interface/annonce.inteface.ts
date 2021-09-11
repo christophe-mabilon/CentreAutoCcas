@@ -18,5 +18,6 @@ export interface Annonce {
   price: number;
   photos: any;
   date: Date;
-  garage: number
+  garage: number;
+  user:number;
 }

@@ -68,16 +68,8 @@ export class EditAnnonceUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.annonceService.findOne(id).subscribe( data => {
-      this.annonce = data;
-    } );
-    this.marques = this.marqueServ.marques.value;
-    this.types = this.modelServ.types.value;
-    this.carburants = this.modelServ.carburants.value;
-    this.regions = this.regionServ.regions.value;
-    this.brandAndmodels = this.modelServ.brandAndModel.value;
-    this.currentUser = this.userServ.getCurentUser();
+    const id = Number(this.route.snapshot.params['id']);
+
 
     this.editAnnonceForm = this.fb.group({
       region: ["", Validators.required],
@@ -100,6 +92,8 @@ export class EditAnnonceUserComponent implements OnInit {
       photo5: ["", Validators.required],
       accept:["",Validators.required]
     });
+    this.annonceService.findOne(id).pipe(first())
+      .subscribe(x => this.editAnnonceForm.patchValue(x));
   }
 
   submit() {

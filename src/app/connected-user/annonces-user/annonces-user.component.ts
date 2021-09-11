@@ -11,11 +11,10 @@ export class AnnoncesUserComponent implements OnInit {
   annonces!: any[];
   constructor(private annonceServ: AnnoncesService,private router:Router,private activateRoute:ActivatedRoute) { }
 
-
-
-
-  editAnnonce(annonceId:number) {
-
+  delete(id:number){
+    this.annonceServ.delete(id).subscribe(() =>{
+      this.router.navigateByUrl("/annoncesUser");
+    })
   }
 
   ngOnInit(): void {

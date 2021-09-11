@@ -17,7 +17,7 @@ import {environment as env} from "../../environments/environment";
 export class ModalProComponent implements OnInit {
   userDetails! :any;
   err:number = 0;
-  showPassword = false;
+  showPassword=false;
   formLogin!:FormGroup;
   formLoginSubmitted = false;
   isAdmin!:boolean;
@@ -26,12 +26,7 @@ export class ModalProComponent implements OnInit {
   currentUser:any;
   constructor(private modalService: NgbModal,public activeModal: NgbActiveModal,private fb:FormBuilder,
               private http:HttpClient,private userServ:UserService,private router: Router) {
-
-
   };
-
-
-
   //affiche ou masque le le mdp
   changeTypePassword() {
     this.showPassword = !this.showPassword;
@@ -55,14 +50,9 @@ export class ModalProComponent implements OnInit {
 
 loginUser(){
   this.userServ.loginUser(this.formLogin);
-
   this.formLoginSubmitted = false;
   this.isLogged = this.userServ.getIsLogged();
   this.isAdmin = this.userServ.getIsAdmin();
-  /*this.userServ.getCurentUser().subscribe(data =>{
-    this.currentUser = Array.of(data);this.getUserDetails(this.currentUser);this.getUserDetails(this.currentUser);
-  });*/
-
   this.activeModal.close();
   this.formLogin.reset();
 }

@@ -1,8 +1,12 @@
 <app-navbar-user></app-navbar-user>
 <div class="container-fluid bg-dark text-white px-0">
-  <div class="bg-img"></div>
-  <h3 class="py3 text-center py-3">Vos annonces</h3>
-  <div *ngIf="annonces; else annoncesBlock">
+  <div class="bg-img m-0">
+    <div class="align-items-center py-auto">
+      <h2 class="text-center pt-5 pb-3 fs-1">Vos Annonces</h2>
+      <div *ngIf="annonces; else annoncesBlock"></div>
+    </div>
+  </div>
+
     <section *ngFor="let annonce of annonces;let i = index">
       <ul class="row px-0 mx-0 pb-2 text-md-center">
         <div class="row d-md-none ">
@@ -19,11 +23,11 @@
         <li class="col-4 col-md"><div><p class="text-info">Prix</p><p>{{annonce.price}}€</p></div></li>
         <li class="col col-md text-center"><div><a [routerLink]="['/annonce', annonce.id]" class="btn blue py-1">Voir</a></div></li>
         <li class="col mx-1 col-md text-center"><div><a [routerLink]="['/annonce/edit',annonce.id]" class="btn green mx-0 mx-md-2 py-1">Editer</a></div></li>
-        <li class="col col-md text-center"><div><a class="btn red py-1">Supprimer</a></div></li>
+        <li class="col col-md text-center"><div><a (click)="delete(annonce.id)" class="btn red py-1">Supprimer</a></div></li>
 
       </ul>
     </section>
-  </div>
+
   <ng-template #annoncesBlock>
     <p class="text-center">Il semblerait que vous n'avez acutellement aucune annonce enregistré</p>
   </ng-template>

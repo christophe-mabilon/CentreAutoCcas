@@ -11,20 +11,24 @@ import {FormGroup} from "@angular/forms";
 })
 export class UserService {
 
-  private apiUrl = env.apiUrl;
 
+
+  private apiUrl = env.apiUrl;
+  userId:any;
   private _isLogged: boolean = false;
   private _isAdmin!:boolean;
   private _userInfo: any = [];
   private _refreshToken: any;
   private _username!:string | null ;
 
+
+
   constructor(private http: HttpClient,private router:Router) {
   }
-  getCurentUser(): any {
+  getCurentUser(): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
-    console.log(this.http.get<any>(this.apiUrl + "user/currentUser", {headers}))
     return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
+
   }
 
   getUser(): Observable<any> {
@@ -55,33 +59,41 @@ export class UserService {
         this.setToken(data.token);
         sessionStorage.setItem("isLogged", "true");
         sessionStorage.setItem('username',token.username);
-
-
         this.setRoles(token);
         this.setIsLogged(true);
         this.getUsername();
         this.getIsLogged()
 
         if(this.getRoles() === "ROLE_ADMIN"){
-          /*sessionStorage.setItem("isAdmin","true");
-          this.getIsAdmin();
+         sessionStorage.setItem("isAdmin","true");
+         this.getIsAdmin();
+
           setTimeout(function(){
             window.location.reload(Boolean(1));
-          }, 200);*/
+          }, 200);
           this.router.navigate(['/connectedAdmin']);
         }
         else{
-          /*window.sessionStorage.setItem("isAdmin", "false");
+          window.sessionStorage.setItem("isAdmin", "false");
           setTimeout(function(){
             window.location.reload(Boolean(1));
-          }, 200);*/
+          }, 200);
           this.router.navigate(['/connectedUser']);
         }
       });
   }
 
+  /*******************************
+   GUETTEUR /SETER USER ID
+   *****************************/
+  getUserId(): Observable<any> {
+    this.userId = sessionStorage.getItem("userId");
+    return this.userId;
+  }
 
-
+  setUserId(value: any) {
+    this.userId = value;
+  }
 
   /*******************************
    GUETTEUR /SETER USERNAME
@@ -113,7 +125,7 @@ export class UserService {
   }
   getNewToken(): Observable<any> {
     let myJsonRefresh = JSON.stringify(this.getRefreshToken())
-    console.log(myJsonRefresh);
+
 
     return this.http.post<any>(this.apiUrl + "token/refresh", myJsonRefresh)
   }
@@ -167,4 +179,6 @@ export class UserService {
     sessionStorage.clear();
     this.router.navigate(['/home']);
   }
+
+
 }

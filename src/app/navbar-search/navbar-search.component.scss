@@ -159,8 +159,9 @@ button .precedant-button,
 .bg-blue-light {
   background: linear-gradient(
     to top,
-    rgba(76, 189, 243, 1) 60%,
-    rgba(86, 192, 253, 1) 100%
+      rgba(33, 37, 41, 1) 0%,
+      rgba(33, 37, 41, 1) 40%,
+      rgb(30, 22, 89) 100%
   );
 }
 
@@ -244,7 +245,7 @@ button .precedant-button,
   border-radius: 7px !important;
   margin-top: 30px;
   width:100%;
-  
+
 }
 
 .recherche:hover {

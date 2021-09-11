@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.isAdmin =false;
     this.isLogged = false;
-    sessionStorage.clear()
+    sessionStorage.clear();
     this.userServ.loggedout();
     this.router.navigate(['/home']);
   }

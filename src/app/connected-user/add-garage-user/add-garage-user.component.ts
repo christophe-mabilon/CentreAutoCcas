@@ -6,6 +6,8 @@ import {MarqueService} from "../../shared/services/marque.service";
 import {RegionService} from "../../shared/services/region.service";
 import {ModelService} from "../../shared/services/model.service";
 import {GarageService} from "../../shared/services/garage.service";
+import {Router} from "@angular/router";
+import {UserService} from "../../shared/services/user.service";
 
 @Component({
   selector: 'app-add-garage-user',
@@ -22,28 +24,31 @@ export class AddGarageUserComponent implements OnInit {
   addForm!: FormGroup;
   carburants!:any[];
   types!:any[];
+  private formSubmitted!: boolean;
+
 
   public addGarageForm:FormGroup= this.fb.group({
-    image:[""],
-    name: ['', Validators.required],
+    userId:[sessionStorage.getItem('userId'),Validators.required],
+    imageGarage:['["maphotos.jpg"]'],
+    name: ["", Validators.required],
     streetNumber:["",Validators.required],
     streetName:["",Validators.required],
-    adress:["",Validators.required],
+    address:["",Validators.required],
     postalCode:["",Validators.required],
     city:["",Validators.required],
     accept:["",Validators.required]
-
   });
+
   constructor(private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
-    , private garageServ: GarageService, private fb: FormBuilder) { }
+    , private garageServ: GarageService, private fb: FormBuilder,private router:Router,private userService:UserService) { }
   addGarageSubmit(){
-    console.log(this.addGarageForm.value)
-    //this.formSubmitted = true;
-    /*if (this.form.valid) {
-      this.garageServ.add(this.form.value).subscribe(v => this.router.navigate(['/products']));
-      this.form.reset();
+    this.formSubmitted = true;
+
+    if (this.addGarageForm.valid) {
+      this.garageServ.add(this.addGarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
+      this.addGarageForm.reset();
       this.formSubmitted = false;
-    }*/
+    }
   }
   ngOnInit(): void {
     this.marques = this.marqueServ.marques.value;
@@ -54,6 +59,7 @@ export class AddGarageUserComponent implements OnInit {
     this.garageServ.findAllByUser().subscribe((data: any) => {
       this.garages = data;
     });
+
   }
   }
 
