@@ -86,7 +86,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
   ],
     imports: [
       BrowserModule,ReactiveFormsModule,AppRoutingModule,NgbModule, NgxSliderModule, FormsModule,
-      RouterModule.forRoot(routes), HttpClientModule,CommonModule,BrowserAnimationsModule,FlexLayoutModule,HttpClientModule,
+      RouterModule.forRoot(routes), HttpClientModule,CommonModule,BrowserAnimationsModule,FlexLayoutModule,
       MatIconModule,MatProgressSpinnerModule
     ],
   providers: [MarqueService,RegionService,ModelService,NgbCarouselConfig,{ provide: LOCALE_ID, useValue: 'fr-FR' }, DatePipe,AuthService],

@@ -28,26 +28,26 @@ export class UserService {
   getCurentUser(): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
     return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
-
   }
 
-  getUser(): Observable<any> {
+  showUser(id: any): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
-    return this.http.get<any>(this.apiUrl + "user/show", {headers});
+    return this.http.get<any>(this.apiUrl + 'user/show/' + id,{headers});
   }
+
   newUser( userData: any): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
-    return this.http.patch<any>(this.apiUrl + "user/edit/", userData, {headers});
+    return this.http.patch<any>(this.apiUrl + "user/register", userData, {headers});
   }
 
-  updateUser(id: number, userData: any): Observable<any> {
+  updateUser(id: any, userData: any): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
     return this.http.patch<any>(this.apiUrl + "user/edit/" + id, userData, {headers});
   }
 
-  deleteUser(id: number, userData: any): Observable<any> {
+  deleteUser(id: any): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};
-    return this.http.delete<any>(this.apiUrl + "user/delete/" + id, {headers});
+    return this.http.delete<any>(this.apiUrl + 'user/delete/' + id,{headers});
   }
   /*******************************
    Connexion USER

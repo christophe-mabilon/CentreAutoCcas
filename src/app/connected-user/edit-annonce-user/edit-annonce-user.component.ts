@@ -32,19 +32,19 @@ export class EditAnnonceUserComponent implements OnInit {
   submitted = false;
   currentUser:any;
   editAnnonceForm!: FormGroup;
+  json: { test: { id: number; nom: string } }[];
 
   constructor(private route: ActivatedRoute, private annonceService: AnnoncesService, private fb: FormBuilder,
               private router: Router, private marqueServ: MarqueService, private regionServ: RegionService,
               private modelServ: ModelService, private garageServ: GarageService,private userServ:UserService) {
 
-
+    this.json = [{test:{
+        id:2,
+        nom:"aa"
+      }}]
   }
 
-
   public subscriptions = new Subscription();
-
-
-
   //Séléction de models en fonction de marques selectionées
   selectMarques(event: any) {
     this.selectedMarque = event.target.value;
@@ -65,14 +65,17 @@ export class EditAnnonceUserComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.editAnnonceForm.patchValue(this.annonce)
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.params['id']);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.annonceService.findOne(id).pipe(first()).subscribe(data => {
+      this.annonce = data;
 
-
+    });
     this.editAnnonceForm = this.fb.group({
-      region: ["", Validators.required],
+      //region: ["", Validators.required],
       brand: ["", Validators.required],
       model: ["", Validators.required],
       typeOfVehicule: ["", Validators.required],
@@ -83,7 +86,7 @@ export class EditAnnonceUserComponent implements OnInit {
       gearbox: ["", Validators.required],
       doors: ["", Validators.required],
       places: ["", Validators.required],
-      garageId: ["", Validators.required],
+      garage: ["",Validators.required],
       description: ["", Validators.required],
       photo1: ["", Validators.required],
       photo2: ["", Validators.required],
@@ -92,8 +95,8 @@ export class EditAnnonceUserComponent implements OnInit {
       photo5: ["", Validators.required],
       accept:["",Validators.required]
     });
-    this.annonceService.findOne(id).pipe(first())
-      .subscribe(x => this.editAnnonceForm.patchValue(x));
+
+
   }
 
   submit() {

@@ -9,28 +9,35 @@
 
   <div class="container px-0">
     <form [formGroup]="editAnnonceForm" (ngSubmit)="submit()" class="row form-group py-3">
+
+      <div class="col col-md-3 form-group">
+
+        <input formControlName="region" type="text"  class="form-control mb-3">
+      </div>
+
+
       <div class="col col-md-3 form-group">
         <label for="region">Région</label>
-        <input id="region" type="text" [formControlName]="region" class="form-control mb-3" name="region" >
+        <input id="region"  type="text"  class="form-control mb-3">
       </div>
       <div class="col col-md-3 form-group">
         <label for="brand">Marque</label>
-        <input id="brand" type="text" formControlName="brand" class="form-control mb-3" name="brand">
+        <input id="brand" type="text" formControlName="brand" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="model">Modele</label>
-        <input id="model" type="text" formControlName="model" class="form-control mb-3" name="model">
+        <input id="model" type="text" formControlName="model" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="type">Type de véhicule</label>
-        <input id="type" type="text" formControlName="typeOfVehicule" class="form-control mb-3" name="type">
+        <input id="type" type="text" formControlName="typeOfVehicule" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="carburant">Carburant</label>
-        <input id="carburant" formControlName="fuel" class="form-control mb-3" name="carburant">
+        <input id="carburant" formControlName="fuel" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group mb-3">
@@ -40,45 +47,44 @@
 
       <div class="col col-md-3 form-group">
         <label for="annee">Année de mise en circulation</label>
-        <input id="annee" type="text" formControlName="year" class="form-control mb-3" name="annee">
+        <input id="annee" type="text" formControlName="year" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="puissance">Puissance fiscale</label>
-        <input id="puissance" type="text" formControlName="power" class="form-control mb-3" name="puissance">
+        <input id="puissance" type="text" formControlName="power" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="boite">Boite de vitesse</label>
-        <input id="boite" type="text" formControlName="gearbox" class="form-control mb-3" name="boite">
+        <input id="boite" type="text" formControlName="gearbox" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="portes">Nombre de portes</label>
-        <input id="portes"  type="number" formControlName="doors" class="form-control mb-3" name="portes">
+        <input id="portes"  type="number" formControlName="doors" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
-        <label for="type">Type de véhicule</label>
-        <input id="places" type="number" formControlName="places" class="form-control mb-3" name="places">
+
+        <label for="places">Nombre de places</label><input id="places" type="number" formControlName="places" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="garage">Garage</label>
-        <select  id="garage" formControlName="garageId" class="form-control mb-3 bg-white" name="garage">
-          <option value="{{annonce.garage.id}}" disabled>{{annonce.garage.name}}</option>
-        </select>
+        <input  id="garage" class="form-control mb-3 bg-white">
+
 
       </div>
-{{annonce.garage.name}}
+
       <div class="col-12 form-group mb-3">
-        <textarea formControlName="description" id=description class="form-control"
-                  placeholder="Déscription du véhicule" name="description"></textarea>
+        <label for=description>description</label>
+        <textarea id="description" formControlName="description" class="form-control" placeholder="Déscription du véhicule"></textarea>
       </div>
 
       <div class="col col-md-3 form-group mb-3">
         <label class="input-group-text btn-blue" for="photo1">Ajouter une photo du véhicule</label>
-        <input formControlName="photo1" type="file" class="form-control" name="photo1" id="photo1">
+        <input formControlName="photo1" type="file" class="form-control" id="photo1">
       </div>
 
 
