@@ -49,6 +49,7 @@ export class UserService {
     const headers = {'Authorization': "Bearer " + this.getToken()};
     return this.http.delete<any>(this.apiUrl + 'user/delete/' + id,{headers});
   }
+
   /*******************************
    Connexion USER
    ******************************/
@@ -69,14 +70,14 @@ export class UserService {
          this.getIsAdmin();
 
           setTimeout(function(){
-            window.location.reload(Boolean(1));
+            window.location.reload();
           }, 200);
           this.router.navigate(['/connectedAdmin']);
         }
         else{
           window.sessionStorage.setItem("isAdmin", "false");
           setTimeout(function(){
-            window.location.reload(Boolean(1));
+            window.location.reload();
           }, 200);
           this.router.navigate(['/connectedUser']);
         }
