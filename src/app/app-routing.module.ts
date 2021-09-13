@@ -11,7 +11,6 @@ import {AnnoncesDetailsComponent} from './annonces-details/annonces-details.comp
 import {ConnectedUserComponent} from './connected-user/connected-user.component';
 import {ConnectedAdminComponent} from './connected-admin/connected-admin.component';
 import {AnnoncesComponent} from "./annonces/annonces.component";
-import {NavbarComponentUser} from "./connected-user/navbar-user/navbar.component";
 import {GaragesUserComponent} from "./connected-user/garages-user/garages-user.component";
 import {AnnoncesUserComponent} from "./connected-user/annonces-user/annonces-user.component";
 import {VehiculesUserComponent} from "./connected-user/vehicules-user/vehicules-user.component";
@@ -20,6 +19,11 @@ import {AddAnnonceUserComponent} from "./connected-user/add-annonce-user/add-ann
 import {AnnonceByGarageComponent} from "./connected-user/annonce-by-garage/annonce-by-garage.component";
 import {EditAnnonceUserComponent} from "./connected-user/edit-annonce-user/edit-annonce-user.component";
 import {EditGarageUserComponent} from "./connected-user/edit-garage-user/edit-garage-user.component";
+import { AddComponent } from './connected-admin/users/add/add.component';
+import { DeleteComponent } from './connected-admin/users/delete/delete.component';
+import { EditComponent } from './connected-admin/users/edit/edit.component';
+import {ListeUsersComponent} from "./connected-admin/users/liste/liste.component";
+import {DetailsComponent} from "./connected-admin/users/details/details.component";
 
 export const routes: Routes = [
 
@@ -34,6 +38,11 @@ export const routes: Routes = [
   {path: 'addGarageUser', component: AddGarageUserComponent},
   {path: 'addAnnonceUser', component: AddAnnonceUserComponent},
   {path: 'connectedAdmin', component: ConnectedAdminComponent},
+  {path: 'liste', component: ListeUsersComponent},
+  {path: 'addUser', component: AddComponent},
+  {path: 'deleteUser/:id', component: DeleteComponent},
+  {path: 'detailsUser/:id', component: DetailsComponent},
+  {path: 'editUser/:id', component: EditComponent},
   {path: "annonces", component: AnnoncesComponent},
   {path: ":annonce/:id", component: AnnoncesDetailsComponent},
   {path: ":annonce/edit/:id", component: EditAnnonceUserComponent},

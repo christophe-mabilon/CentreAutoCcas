@@ -131,7 +131,8 @@ button[aria-expanded='true'] .navbar-toggler-icon::after {
 }
 
 nav {
-  line-height: normal;
+  justify-items: center;
+  height:50px
 }
 
 nav li {
@@ -160,13 +161,26 @@ nav a {
   font-size: 1rem;
   padding: 10px;
 }
-
+a{
+  text-decoration: none;
+  color:white;
+  text-wrap: none;
+}
 nav a:not(#search_bar,#search_bar2):hover {
   padding-bottom: 3px;
   color: rgba(86, 192, 253, 1) !important;
   transition: 0.5s;
+  text-decoration: none;
 }
 
 #forget:hover {
   color: rgba(86, 192, 253, 1) !important;
+}
+.icon-connexion{
+  color: rgb(0, 252, 228);
+
+}
+.icon-deconection{
+  color: rgb(255, 0, 50);
+
 }

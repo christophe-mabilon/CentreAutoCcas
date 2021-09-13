@@ -2,7 +2,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NgbAlertModule, NgbCarouselConfig, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PolitiqueDeConfComponent } from './footer/politique-de-conf/politique-de-conf.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarSearchComponent } from './navbar-search/navbar-search.component';
@@ -43,10 +43,25 @@ import { EditGarageUserComponent } from './connected-user/edit-garage-user/edit-
 import { BooleanPipe } from './shared/pipes/boolean.pipe';
 import { UploadComponent } from './upload/upload.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon'
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FlexLayoutModule} from "@angular/flex-layout";
-
+import { AddComponent } from './connected-admin/users/add/add.component';
+import { DeleteComponent } from './connected-admin/users/delete/delete.component';
+import { EditComponent } from './connected-admin/users/edit/edit.component';
+import { DetailsComponent } from './connected-admin/users/details/details.component';
+import { NavbarAdminComponent } from './connected-admin/navbar-admin/navbar-admin.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { UserService } from './shared/services/user.service';
+import { GarageService } from './shared/services/garage.service';
+import { AnnoncesService } from './shared/services/annonces.service';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatListModule} from "@angular/material/list";
+import { ListeUsersComponent} from './connected-admin/users/liste/liste.component';
+import {IconsModule, TableModule} from "ng-uikit-pro-standard";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -82,14 +97,46 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     EditGarageUserComponent,
     BooleanPipe,
     UploadComponent,
+    AddComponent,
+    DeleteComponent,
+    EditComponent,
+    DetailsComponent,
+    NavbarAdminComponent,
+    ListeUsersComponent,
 
   ],
     imports: [
-      BrowserModule,ReactiveFormsModule,AppRoutingModule,NgbModule, NgxSliderModule, FormsModule,
-      RouterModule.forRoot(routes), HttpClientModule,CommonModule,BrowserAnimationsModule,FlexLayoutModule,
-      MatIconModule,MatProgressSpinnerModule
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgbModule,
+        NgxSliderModule,
+        FormsModule,
+        RouterModule.forRoot(routes),
+        HttpClientModule,
+        CommonModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatListModule,
+        TableModule,
+        IconsModule,
+        MatCheckboxModule,
+        MatCardModule,
     ],
-  providers: [MarqueService,RegionService,ModelService,NgbCarouselConfig,{ provide: LOCALE_ID, useValue: 'fr-FR' }, DatePipe,AuthService],
+  providers: [MarqueService,
+    RegionService,
+    ModelService,
+    UserService,
+    AnnoncesService,
+    GarageService,
+    NgbCarouselConfig,
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    DatePipe,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

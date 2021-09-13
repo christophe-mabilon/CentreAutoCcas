@@ -1,0 +1,53 @@
+section.container-fluid.navUser {
+  margin-top: -50px;
+  background:transparent;
+
+}
+a{
+  font-size:14px;
+}
+mat-icon{
+  margin: 0 5px 0 0;
+}
+.btn-blue{
+  background: linear-gradient(
+      to bottom,
+
+      rgb(81, 115, 134) 30%,
+      rgb(1, 7, 38) 100%
+  );
+  color:white;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+.btn-purple{
+    background: linear-gradient(
+        to top,
+        rgb(49, 29, 68) 0%,
+        rgb(86, 85, 138) 100%
+    );
+    color:white;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  }
+.btn-red{
+  background: linear-gradient(
+      to top,
+      rgb(84, 1, 1) 0%,
+      rgb(115, 27, 27) 100%
+  );
+  color:white;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+  .btn-green{
+    background: linear-gradient(
+        to bottom,
+        rgb(3, 148, 22) 30%,
+        rgb(8, 38, 1) 100%
+    );
+    color:white;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  }
+
+.nav-link{
+  border-radius:7px 7px 0 0;
+}
+

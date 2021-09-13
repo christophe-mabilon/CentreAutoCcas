@@ -29,6 +29,10 @@ export class UserService {
     const headers = {'Authorization': "Bearer " + this.getToken()};
     return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
   }
+  findAllUsers(){
+    const headers = {'Authorization': "Bearer " + this.getToken()};
+    return this.http.get(this.apiUrl + 'user/searchAll', {headers});
+  }
 
   showUser(id: any): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getToken()};

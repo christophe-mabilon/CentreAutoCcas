@@ -1,0 +1,23 @@
+<app-navbar-admin></app-navbar-admin>
+<mat-card class="example-card" *ngIf="showUser">
+  <mat-icon class="material-icons-outlined fs-1">
+person
+</mat-icon>
+  <mat-card-content>
+    <p>
+      Nom: {{showUser.title}} {{showUser.lastName}}
+    </p>
+    <p>
+      Prénom: {{showUser.firstName}}
+    </p>
+    <p>
+    Pseudonyme: {{showUser.username}}
+  </p>
+    <p>
+      Email: {{showUser.email}}
+    </p>
+
+  </mat-card-content>
+  <button class="btn btn-primary" [routerLink]="['/liste']">Retour a la liste des utilisateurs</button>
+</mat-card>
+

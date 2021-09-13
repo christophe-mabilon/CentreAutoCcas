@@ -1,0 +1,81 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="table-responsive px-0">
+  <div class="row my-2 mx-0">
+    <div class="col-md-8 mx-auto">
+      <div class="md-form">
+        <label for="search-input"><h2>Recherche un utilisateur</h2></label>
+        <input type="text" class="form-control search" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
+               mdbInput>
+      </div><p class="mt-1 mb-0 pb-0">Rechercher par :</p>
+      <div class="form-group d-flex align-items-center px-auto mt-1">
+          <div class="form-check mx-1">
+            <input id="id" type="checkbox" class=" form-check-input">
+            <label for="id" class="form-check-label">Numero</label>
+          </div>
+        <div class="form-check mx-1">
+          <input id="pseudo" type="checkbox" class=" form-check-input">
+          <label for="pseudo" class="form-check-label">Pseudo</label>
+        </div>
+            <div class="form-check mx-1">
+              <input id="nom" type="checkbox" class=" form-check-input">
+              <label for="nom" class="form-check-label">Nom</label>
+            </div>
+            <div class="form-check mx-1">
+              <input id="prenom" type="checkbox" class=" form-check-input">
+              <label for="prenom" class="form-check-label">Prénom</label>
+            </div>
+            <div class="form-check mx-1">
+              <input id="email" type="checkbox" class=" form-check-input">
+              <label for="email" class="form-check-label">Email</label>
+            </div>
+            <div class="form-check mx-1">
+              <input id="telephone" type="checkbox" class=" form-check-input">
+              <label for="telephone" class="form-check-label">Télélephone</label>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+      <thead>
+      <tr>
+        <th [mdbTableSort]="elements" sortBy="id">numéro<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th></th>
+        <th [mdbTableSort]="elements" sortBy="username">Pseudo<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="elements" sortBy="lastName">Nom<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="elements" sortBy="firstName">Prénom<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="elements" sortBy="email">Email<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="elements" sortBy="phoneNumber">Téléphone<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="elements" sortBy="phoneNumber">Inscrit le<mdb-icon fas icon="sort"></mdb-icon></th>
+        <th>Détails</th>
+        <th>Editer</th>
+        <th>Supprimer</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of listOfUsers; let i = index">
+        <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+            scope="row">{{i+1}}</th>
+        <th><mat-icon>person_outline</mat-icon></th>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.username}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.title}} {{ user.lastName}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.firstName}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.email}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.phoneNumber}}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{user.dateOfRegistration }}</td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"><a [routerLink]="['/detailsUser',user.id]"><mat-icon class="btn-primary">info</mat-icon></a></td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"><a [routerLink]="['/editUser',user.id]"><mat-icon class="btn-warning text-white">edit</mat-icon></a></td>
+        <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"><a [routerLink]="['/deleteUser',user.id]"><mat-icon class=" btn-danger">highlight_off</mat-icon></a></td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="4">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+</div>

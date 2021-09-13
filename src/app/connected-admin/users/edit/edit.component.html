@@ -1,0 +1,74 @@
+<app-navbar-admin></app-navbar-admin>
+
+<section class="container p-0">
+  <h2 class="m-2">Modifier un utilisateur</h2>
+    <form *ngIf="dataLoaded" [formGroup]="editUserForm" (submit) ="updateUser()" >
+
+        <article class="form-group mt-2">
+            <mat-form-field appearance="outline" class="col-1 mb-2 px-2">
+                <mat-label>Titre</mat-label>
+                <input matInput placeholder="Votre titre" formControlName="title">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-5 mb-2 px-2">
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Votre nom" formControlName="lastName">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-6 mb-2 px-2">
+                <mat-label>Prénom</mat-label>
+                <input matInput placeholder="Votre prénom" formControlName="firstName">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+        </article>
+
+<article class="form-group mt-2">
+    <mat-form-field appearance="outline" class="col-6 mb-2 px-2">
+        <mat-label>Pseudo</mat-label>
+        <input matInput placeholder="Votre pseudonyme" formControlName="username">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6 mb-2 px-2">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Votre Email" formControlName="email">
+        <mat-icon matSuffix>mark_email_read</mat-icon>
+    </mat-form-field>
+</article>
+
+        <article class="form-group mt-2">
+    <mat-form-field appearance="outline" class="col-6 mb-2 px-2">
+        <mat-label>Téléphone</mat-label>
+        <input matInput placeholder="Votre téléphone" formControlName="phoneNumber">
+        <mat-icon matSuffix>call</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6 mb-2 px-2">
+        <mat-label>Siret</mat-label>
+        <input matInput placeholder="Votre numéro de siret" formControlName="siret">
+        <mat-icon matSuffix>info</mat-icon>
+    </mat-form-field>
+</article>
+<div class="px-2">
+    <h3>Modifier votre mot de passe</h3>
+  <small>Laissez les champs vides pour ne pas modifier votre mot de passe</small>
+  </div>
+<article class="form-group mt-2">
+
+    <mat-form-field appearance="outline" class="col-6 mb-3 px-2">
+        <mat-label>Nouveau mot de passe</mat-label>
+        <input matInput placeholder="Votre mot de passe" type="text" formControlName="password">
+        <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-6 mb-3 px-2">
+        <mat-label>Confimation de mot de passe</mat-label>
+        <input matInput placeholder="Confirmez votre mot de passe" type="text" formControlName="passwordConfirm">
+        <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+</article>
+        <button type="submit" class="btn btn-primary mx-2 mb-3">Modifier mes informations</button>
+</form>
+</section>
