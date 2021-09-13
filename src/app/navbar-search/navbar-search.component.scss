@@ -157,12 +157,13 @@ button .precedant-button,
 }
 
 .bg-blue-light {
-  background: linear-gradient(
-    to top,
-      rgba(33, 37, 41, 1) 0%,
+  background:rgba(33, 37, 41, 1);
+  /*background: linear-gradient(
+      to top,
+      rgba(5, 89, 138, 1) 0%,
       rgba(33, 37, 41, 1) 40%,
-      rgb(30, 22, 89) 100%
-  );
+      rgb(255, 255, 255) 100%
+  );*/
 }
 
 #barreRecherche {
@@ -269,14 +270,17 @@ button .precedant-button,
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
   .custom-slider .ngx-slider .ngx-slider-bar {
+
+    color:white;
     background: #ffffff;
     height: 10px;
   }
-  .custom-slider .ngx-slider .ngx-slider-selection {
+  .custom-slider .ngx-slider .ngx-slider-selection {color:white;
     background: linear-gradient(rgb(0, 132, 162) 3%, rgb(0, 132, 162) 87%);
   }
 
   .custom-slider .ngx-slider .ngx-slider-pointer {
+    color:white;
     width: 16px;
     height: 16px;
     top: auto; /* to remove the default positioning */
@@ -355,7 +359,11 @@ button .precedant-button,
   position: relative;
   top: 10px;
 }
-@media only screen and (max-width: 485px) {
+.ngx-slider .ngx-slider-bubble {
+color:#ffffff;
+}
+
+  @media only screen and (max-width: 485px) {
     .stick {
         position: sticky;
         top: 84px;
