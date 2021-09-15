@@ -130,13 +130,12 @@
                   placeholder="Déscription du véhicule" name="description"></textarea>
       </div>
 
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue">Ajouter une photo du véhicule</label>
-        <input formArrayName="photos" type="file" class="form-control" name="photo1" id="photo1">
-      </div>
+        <div class="container-fluid align-items-center">
+      <h2>Envoi tes photos (5 photos maxi par annonce)</h2>
+      <app-upload></app-upload>
+  </div>
 
-
-      <label class="form-check-label">
+      <label class="form-check-label mt-md-2">
         <input type="checkbox" formControlName="accept" class="form-check-input">
         J'accepte les conditions
       </label>

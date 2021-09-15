@@ -11,13 +11,13 @@
 
     <section *ngFor="let annonce of annonces;let i = index">
       <ul class="row mx-0 px-0 pb-2 text-center">
-        <li class="col-4 col-md-1"><div><p class="text-info">Marque</p><p>{{annonce.brand.name}}</p></div></li>
-        <li class="col-4 col-md-1"><div><p class="text-info">Modele</p><p>{{annonce.model.name}}</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Marque</p><p>{{annonce.brand.name}}</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Modele</p><p>{{annonce.model.name}}</p></div></li>
         <li class="col-4 col-md-2"><div><p class="text-info">Nom</p><p>{{annonce.garage.name}}</p></div></li>
-        <li class="col-4 col-md-1"><div><p class="text-info">Référence</p><p>{{annonce.reference}}</p></div></li>
-        <li class="col-4 col-md-1"><div><p class="text-info">Région</p><p class="text-truncate">{{annonce.region.name}}</p></div></li>
-        <li class="col-4 col-md-1"><div><p class="text-info">Kilometre</p><p>{{annonce.kilometre}} Km</p></div></li>
-        <li class="col-4 col-md-1"><div><p class="text-info">Carburant</p><p>{{annonce.fuel}}</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Référence</p><p>{{annonce.reference}}</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Région</p><p class="text-truncate">{{annonce.region.name}}</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Kilometre</p><p>{{annonce.kilometre}} Km</p></div></li>
+        <li class="col-4 col-md"><div><p class="text-info">Carburant</p><p>{{annonce.fuel}}</p></div></li>
         <li class="col-4 col-md"><div><p class="text-info">Boite</p><p>{{annonce.gearbox}}</p></div></li>
         <li class="col-4 col-md"><div><p class="text-info">Prix</p><p>{{annonce.price}}€</p></div></li>
         <li class="col col-md"><div><a [routerLink]="['/annonce', annonce.id]" class="btn blue py-1">Voir</a></div></li>

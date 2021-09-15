@@ -59,9 +59,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import { ListeUsersComponent} from './connected-admin/users/liste/liste.component';
-import {IconsModule, TableModule} from "ng-uikit-pro-standard";
+import {IconsModule, InputsModule, TableModule} from "ng-uikit-pro-standard";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
+import {NgxDropzoneModule} from "ngx-dropzone";
 
 @NgModule({
   declarations: [
@@ -102,7 +103,7 @@ import {MatCardModule} from "@angular/material/card";
     EditComponent,
     DetailsComponent,
     NavbarAdminComponent,
-    ListeUsersComponent,
+    ListeUsersComponent
 
   ],
     imports: [
@@ -127,6 +128,8 @@ import {MatCardModule} from "@angular/material/card";
         IconsModule,
         MatCheckboxModule,
         MatCardModule,
+        InputsModule,
+      NgxDropzoneModule
     ],
   providers: [MarqueService,
     RegionService,

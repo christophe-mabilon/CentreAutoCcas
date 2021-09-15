@@ -2,10 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {MarqueService} from "../shared/services/marque.service";
 import {RegionService} from "../shared/services/region.service";
 import {Region} from "../shared/interface/region.interface";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {Marque} from "../shared/interface/marque.interface";
 import {UserService} from "../shared/services/user.service";
-import {User} from "../shared/interface/user.interface";
 import {AnnoncesService} from "../shared/services/annonces.service";
 import {GarageService} from "../shared/services/garage.service";
 
@@ -26,6 +25,10 @@ export class ConnectedUserComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.userServ.getCurentUser().subscribe(data=>{
+      this.userDetails = Array.of(data);
+      console.log(this.userDetails)
+    })
     if (sessionStorage.getItem('isLogged')){
       this.regions = this.regionserv.regions;
       this.marques = this.marqueServ.marques;
@@ -44,7 +47,7 @@ export class ConnectedUserComponent implements OnInit {
         j++;
 
       }
-      });console.log(this.tabAnnoncetemp)
+      });
     }
   }
 }

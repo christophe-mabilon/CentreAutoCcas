@@ -1,8 +1,8 @@
 import { FileService } from '../shared/services/fileService';
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs';
-// @ts-ignore
-import * as events from "events";
+import { Component} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {UserService} from "../shared/services/user.service";
+
 
 @Component({
   selector: 'app-upload',
@@ -10,32 +10,38 @@ import * as events from "events";
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
-  public filesHolder$: Observable<
-    { file: File; progress$: Observable<number> }[]
-    > = this.fileService.filesHolder$.asObservable();
-  @ViewChild('fileinput', { static: true }) inputRef!: ElementRef;
-  over!: boolean;
+  title = 'dropzone';
 
-  constructor(private fileService: FileService) {}
+  files: File[] = [];
 
-  openFile() {
-    this.inputRef.nativeElement.click();
-  }
+  constructor(private http: HttpClient ,private userServ:UserService) { }
 
-  addFiles($event: Event) {
-    // @ts-ignore
-    const files = $event.target.files;
-    this.fileService.addFiles(files);
-  }
+  onSelect(event: { addedFiles: any; }) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
 
-  removeFile(index: number) {
-    this.fileService.removeFile(index);
-  }
+    const formData = new FormData();
 
-  dropFile($event: DragEvent) {
-    if ($event.dataTransfer) {
-      const files = $event.dataTransfer.files;
-      this.fileService.addFiles(files);
+    for (var i = 0; i < this.files.length; i++) {
+      formData.append("image", this.files[i],this.files[i].name);
+      const headers = {'Authorization':  this.userServ.getToken()};
+      this.http.post('http://localhost:8000/api/photos', formData,{headers})
+        .subscribe((res: any) => {
+          console.log(res);
+        })
     }
+    if( i == 0 ) {
+      alert("echec de l'envoi de photos");
+    }else if( i === 1 ){
+        alert("la photo a bien eté envoyée!");
+      }else if( i > 1 ){
+      alert("les " + i + " photos ont bien étés envoyé !");
+    }
+
+  }
+
+  onRemove(event: File) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }

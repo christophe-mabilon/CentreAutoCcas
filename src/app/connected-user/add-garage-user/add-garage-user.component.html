@@ -10,16 +10,6 @@
         </div>
       </div>
 
-
-
-
-
-    <!--<div class="align-items-center py-auto">
-  <h2 class="text-center my-3">Ajouter un garage</h2>
-  <p class="text-center mb-3">Merci de remplir tous les champs et de présciser le maximum d'information sur le
-    garage</p>
-    </div>-->
-
   <div class="container row justify-content-center mx-auto">
     <form [formGroup]="addGarageForm" (ngSubmit)="addGarageSubmit()" class=" mx-0">
       <div class="form-group py-2">
@@ -52,8 +42,11 @@
         <input formControlName="city" class="form-control" type="text" id="ville" name="city">
       </div>
         </div>
+      <div class="container-fluid align-items-center">
+      <h2>Ajouter une photo du garage</h2>
+        <app-upload></app-upload>
+      </div>
 
-      <app-upload></app-upload>
       <div class="form-check my-2">
         <label class="form-check-label">
           <input type="checkbox" formControlName="accept" class="form-check-input">

@@ -92,6 +92,7 @@ export class AddAnnonceUserComponent implements OnInit {
   /**********************************************
       ENVOI DU FORMULAIRE D'AJOUT D'UNE ANNONCE
    *********************************************/
+  //photos a rajouter
   addAnnonce(){
 console.log(this.addForm.value)
     this.formSubmitted = true;
@@ -136,7 +137,6 @@ console.log(this.addForm.value)
     primeEco: [false],
     topOcass: [false],
     accept: [""],
-    photos:this.fb.array(["../../assets/audi-a4.png"])
 
   });
 }
