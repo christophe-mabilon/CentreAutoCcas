@@ -41,9 +41,9 @@ export class AddGarageUserComponent implements OnInit {
 
   constructor(private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
     , private garageServ: GarageService, private fb: FormBuilder,private router:Router,private userService:UserService) { }
+
   addGarageSubmit(){
     this.formSubmitted = true;
-
     if (this.addGarageForm.valid) {
       this.garageServ.add(this.addGarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
       this.addGarageForm.reset();

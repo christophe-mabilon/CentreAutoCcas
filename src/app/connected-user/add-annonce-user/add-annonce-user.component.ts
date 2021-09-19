@@ -31,7 +31,7 @@ export class AddAnnonceUserComponent implements OnInit {
   private formSubmitted!: boolean;
   valueToOccas!: 0;
   currentUser:any;
-  reference:string | null = sessionStorage.getItem('userId');
+  reference!:string;
   possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   lengthOfCode = 10;
   private selectedFile!: File;
@@ -97,7 +97,7 @@ export class AddAnnonceUserComponent implements OnInit {
 console.log(this.addForm.value)
     this.formSubmitted = true;
     if (this.addForm.valid) {
-      this.annonceServ.add(this.addForm.value).subscribe(v => this.router.navigate(['/annoncesUser']));console.log(this.addForm.value)
+      this.annonceServ.add(this.addForm.value).subscribe(v => this.router.navigate(['/annoncesUser']));
       this.addForm.reset();
       this.formSubmitted = false;
     }

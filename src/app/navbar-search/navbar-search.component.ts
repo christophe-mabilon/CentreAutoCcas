@@ -1,4 +1,4 @@
-import {LabelType, Options} from '@angular-slider/ngx-slider'
+import {ChangeContext, LabelType, Options, PointerType} from '@angular-slider/ngx-slider'
 import {Component, OnInit, ViewChild} from '@angular/core'
 import {NgbCarousel, NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap'
 import {Marque} from '../shared/interface/marque.interface'
@@ -7,6 +7,12 @@ import {ModelService} from "../shared/services/model.service";
 import {BrandAndModel} from "../shared/interface/brand-and-model.interface";
 import {RegionService} from "../shared/services/region.service";
 import {convertUpdateArguments} from "@angular/compiler/src/compiler_util/expression_converter";
+import {FormArray, FormBuilder, FormControl, FormGroup, NgForm} from "@angular/forms";
+import {AnnoncesService} from "../shared/services/annonces.service";
+import {Router} from "@angular/router";
+import {Annonce} from "../shared/interface/annonce.inteface";
+import {BehaviorSubject} from "rxjs";
+import {Region} from "../shared/interface/region.interface";
 
 @Component({
   selector: 'app-navbar-search',
@@ -18,7 +24,7 @@ export class NavbarSearchComponent implements OnInit {
   brandAndmodels!: BrandAndModel[];
   brands!: Marque[];
   brand!: any[];
-  regions!: any[];
+  regions: any;
   selectedMarques: any[] = [];
   selectedModels: any[] = [];
   display = true;
@@ -28,8 +34,11 @@ export class NavbarSearchComponent implements OnInit {
   angle!: number;
   number!: number;
   translate!: string;
+  formSubmitted = false;
+  searchForm!: FormGroup;
 
-  constructor(private marqueServ: MarqueService, private modelServ: ModelService, private regionServ: RegionService, private config: NgbCarouselConfig) {
+  constructor(private marqueServ: MarqueService, private modelServ: ModelService, private regionServ: RegionService,
+              private config: NgbCarouselConfig, private fb: FormBuilder,private annonceServ:AnnoncesService,private router:Router) {
     // customize default values of carousels used by this component tree
     activeId: true
     config.interval = 0
@@ -37,7 +46,29 @@ export class NavbarSearchComponent implements OnInit {
     config.keyboard = false
     config.pauseOnHover = false
     config.showNavigationArrows = false
-    config.showNavigationIndicators
+    config.showNavigationIndicators;
+    this.searchForm = this.fb.group({
+      kilometrage: new FormControl([5000, 30000]),
+      years: new FormControl([2005, 2017]),
+      prices: new FormControl([500, 30000]),
+      powers: new FormControl([7, 15]),
+      minKilometre:new FormControl(""),
+      maxKilometre:new FormControl(""),
+      minYear:new FormControl(""),
+      maxYear:new FormControl(""),
+      minPrice:new FormControl(""),
+      maxPrice:new FormControl(""),
+      minPower:new FormControl(""),
+      maxPower:new FormControl(""),
+      regions: [""],
+      brands:new FormControl(""),
+      models: [""],
+      fuel: [""],
+      typeOfVehicle: [""],
+      gearbox: [""],
+      carDoors: [""],
+      places: [""],
+    })
   }
 
 
@@ -50,9 +81,7 @@ export class NavbarSearchComponent implements OnInit {
   }
 
   //slider année
-  minAnnee: number = 2003
-  maxAnnee: number = 2018
-  optionsAnnee: Options = {
+  optionsYear: Options = {
     floor: 2000,
     ceil: 2021,
     translate: (value: number, label: LabelType): string => {
@@ -67,8 +96,6 @@ export class NavbarSearchComponent implements OnInit {
     },
   }
   //kilometrage
-  minKilo: number = 9000
-  maxKilo: number = 40000
   optionsKilo: Options = {
     floor: 3000,
     ceil: 50000,
@@ -84,9 +111,7 @@ export class NavbarSearchComponent implements OnInit {
     },
   }
   //slider Prix
-  minPrix: number = 9000
-  maxPrix: number = 35000
-  optionsPrix: Options = {
+  optionsPrice: Options = {
     floor: 3000,
     ceil: 45000,
     translate: (value: number, label: LabelType): string => {
@@ -102,22 +127,23 @@ export class NavbarSearchComponent implements OnInit {
   }
 
   //slider Puissance
-  minPuissance: number = 9000
-  maxPuissance: number = 35000
-  optionsPuissance: Options = {
-    floor: 3000,
-    ceil: 45000,
+  optionsPower:
+    Options = {
+    floor: 4,
+    ceil: 20,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return value + '€'
+          return value + 'chx'
         case LabelType.High:
-          return value + '€'
+          return value + 'chx'
         default:
-          return value + '€'
+          return value + 'chx'
       }
     },
   }
+
+
 
   /****************************************
    CARROUSEL MARQUES VOITURES
@@ -141,15 +167,17 @@ export class NavbarSearchComponent implements OnInit {
     for (let item of this.brandAndmodels) {
       for (let selectedMarque of this.selectedMarques) {
         if (selectedMarque == item.brand) {
-          this.selectedModels.push({'brand': selectedMarque, 'model': item.model});
+          this.selectedModels.push({'brandId':item.brandId,'brand': item.brand,'modelId':item.modelId, 'model': item.model});
         }
       }
     }
     return this.selectedModels;
+
   }
 
 
   //Rotation du carousel
+
   clickMoreLess(number: number) {
     if (number === 1) {
       this.selectedIndex--
@@ -163,10 +191,32 @@ export class NavbarSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.regions = this.regionServ.regionsName;
+    this.regions = this.regionServ.regions.value;
     this.brand = this.marqueServ.marque;
     this.brandAndmodels = this.modelServ.brandAndModel.value;
     this.brands = this.marqueServ.marques.value;
-    this.marqueServ.emitterr.subscribe(() => (this.display = !this.display))
+    this.marqueServ.emitterr.subscribe(() => (this.display = !this.display));
+  }
+
+  envoi() {
+    this.searchForm.patchValue({
+      regions:this.searchForm.value.regions,
+      models:this.searchForm.value.models.model,
+      brands:this.searchForm.value.models.brand,
+      fuel:this.searchForm.value.fuel,
+      typeOfVehicle:this.searchForm.value.typeOfVehicle,
+      gearbox: this.searchForm.value.gearbox,
+      carDoors: this.searchForm.value.carDoors,
+      places:this.searchForm.value.places,
+      minKilometre:this.searchForm.value.kilometrage[0],
+      maxKilometre:this.searchForm.value.kilometrage[1],
+      minYear:this.searchForm.value.years[0],
+      maxYear:this.searchForm.value.years[1],
+      minPrice:this.searchForm.value.prices[0],
+      maxPrice:this.searchForm.value.prices[1],
+      minPower:this.searchForm.value.powers[0],
+      maxPower:this.searchForm.value.powers[1]
+    });
+    console.log((this.searchForm.value))
   }
 }

@@ -6,8 +6,18 @@ export interface Annonce {
   model: any;
   modelComplement: string;
   modelComplement2: string;
-  year: number;
-  kilometre: number;
+  year?: number;
+  yearMin?: number;
+  yearMax?: number;
+  kilometre?: number;
+  kilometreMin?: number;
+  kilometreMax?: number;
+  price?:number;
+  priceMin?: number;
+  priceMax?:number;
+  power?:number;
+  powerMin?:number;
+  powerMax?:number;
   fuel: string;
   places:number;
   typeOfVehicle:string;
@@ -15,7 +25,7 @@ export interface Annonce {
   carDoors: number;
   description: string;
   region: string;
-  price: number;
+
   photos: any;
   date: Date;
   garage: number;

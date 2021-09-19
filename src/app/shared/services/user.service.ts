@@ -26,8 +26,12 @@ export class UserService {
   constructor(private http: HttpClient,private router:Router) {
   }
   getCurentUser(): Observable<any> {
-    const headers = {'Authorization': "Bearer " + this.getToken()};
+    const headers = {'Authorization': "Bearer " +this.getToken()};
     return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
+  }
+  RefreshToken(): Observable<any> {
+    const headers = {'Authorization': "Bearer " + this.getRefreshToken()};
+    return this.http.post<any>(this.apiUrl + "/token/refresh", {headers});
   }
   findAllUsers(){
     const headers = {'Authorization': "Bearer " + this.getToken()};
@@ -62,6 +66,9 @@ export class UserService {
       (data: any) => {
         const token: any = jwt_decode(data.token);this.setUsername(token.username);this.setRefreshToken(data.refresh_token);
         this.setToken(data.token);
+        this.setRefreshToken(data.refresh_token)
+        console.log('token'+ data.token);
+        console.log('tokenrefresh : ' + data.refresh_token)
         sessionStorage.setItem("isLogged", "true");
         sessionStorage.setItem('username',token.username);
         this.setRoles(token);

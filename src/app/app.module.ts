@@ -41,7 +41,7 @@ import {NavbarComponentUser} from "./connected-user/navbar-user/navbar.component
 import { EditAnnonceUserComponent } from './connected-user/edit-annonce-user/edit-annonce-user.component';
 import { EditGarageUserComponent } from './connected-user/edit-garage-user/edit-garage-user.component';
 import { BooleanPipe } from './shared/pipes/boolean.pipe';
-import { UploadComponent } from './upload/upload.component';
+import { UploadAnnoncesComponent } from './connected-user/add-annonce-user/upload-annonces/upload-Annonces.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from '@angular/material/icon'
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -63,6 +63,11 @@ import {IconsModule, InputsModule, TableModule} from "ng-uikit-pro-standard";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
 import {NgxDropzoneModule} from "ngx-dropzone";
+import {UploadGarageComponent} from "./connected-user/add-garage-user/upload-garage/upload-garage.component";
+import { TestComponent } from '../test/test.component';
+import { NewnavbarComponent } from './newnavbar/newnavbar.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -97,40 +102,45 @@ import {NgxDropzoneModule} from "ngx-dropzone";
     EditAnnonceUserComponent,
     EditGarageUserComponent,
     BooleanPipe,
-    UploadComponent,
+    UploadAnnoncesComponent,
     AddComponent,
     DeleteComponent,
     EditComponent,
     DetailsComponent,
     NavbarAdminComponent,
-    ListeUsersComponent
+    ListeUsersComponent,
+    UploadGarageComponent,
+    TestComponent,
+    NewnavbarComponent
 
   ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        NgbModule,
-        NgxSliderModule,
-        FormsModule,
-        RouterModule.forRoot(routes),
-        HttpClientModule,
-        CommonModule,
-        BrowserAnimationsModule,
-        FlexLayoutModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatListModule,
-        TableModule,
-        IconsModule,
-        MatCheckboxModule,
-        MatCardModule,
-        InputsModule,
-      NgxDropzoneModule
-    ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbModule,
+    NgxSliderModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatListModule,
+    TableModule,
+    IconsModule,
+    MatCheckboxModule,
+    MatCardModule,
+    InputsModule,
+    NgxDropzoneModule,
+    MatSelectModule,
+    MatOptionModule
+  ],
   providers: [MarqueService,
     RegionService,
     ModelService,

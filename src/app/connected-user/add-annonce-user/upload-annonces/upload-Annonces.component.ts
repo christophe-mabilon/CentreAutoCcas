@@ -1,8 +1,8 @@
-import { FileService } from '../shared/services/fileService';
+import { FileService } from '../../../shared/services/fileService';
 import { Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../shared/services/user.service";
-import {environment as env} from "../../environments/environment";
+import {UserService} from "../../../shared/services/user.service";
+import {environment as env} from "../../../../environments/environment";
 import {error} from "@angular/compiler/src/util";
 
 
@@ -22,9 +22,6 @@ export class UploadAnnoncesComponent {
   constructor(private http: HttpClient ,private userServ:UserService) { }
 
   onSelect(event: { addedFiles: any; }):any {
-if(this.files.length<6){
-  alert("Vous avez atteint le nombre maximum de 5 photos!");
-}else{
   this.files.push(...event.addedFiles);
       const formData = new FormData();
       for (var i = 0; i < this.files.length; i++) {
@@ -43,7 +40,7 @@ if(this.files.length<6){
       }else if( i > 1 ){
         alert("les " + i + " photos ont bien étés envoyé !");
       }
-    }
+
 
 
   }
