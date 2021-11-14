@@ -26,9 +26,9 @@ export class GarageService implements OnInit{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
     return this.http.delete(this.apiUrl + 'garage/delete/' + garageId,{headers});  }
 
-  update(garage: Garage): Observable<Garage>{
+  update(garage: Garage, garageId: number): Observable<Garage>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
-    return this.http.put<Garage>(this.apiUrl + '/' + garage.id, garage,{headers});
+    return this.http.patch<Garage>(this.apiUrl +'garage/update/'+ garageId, garage,{headers});
   }
 
   findAll(): Observable<any[]> {
@@ -40,7 +40,7 @@ export class GarageService implements OnInit{
     return this.http.get<any[]>(this.apiUrl + 'garages/',{headers});
   }
 
-    findOne(id: (id: number) => any): Observable<Garage>{
+    findOne(id: number): Observable<Garage>{
     const headers = {'Authorization': "Bearer " + this.userServ.getToken()};
     return this.http.get<Garage>(this.apiUrl + "garage/show/"+ id,{headers})
   }

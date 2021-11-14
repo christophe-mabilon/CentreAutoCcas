@@ -20,7 +20,6 @@ export class DetailsComponent implements OnInit {
     });
     this.userServ.showUser(this.userId).subscribe(data => {
       this.showUser = data;
-      console.log('user'+data);
     });
 
 

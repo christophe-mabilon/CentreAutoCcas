@@ -1,8 +1,9 @@
-  <div (click)="status=!status"
+  <div class="bg-dark" (click)="status=!status"
   [ngClass]="status ? 'selected-marques' : ''" class="row align-items-center h-100 p-0 m-0 " id="{{marques.name}}">
-    <a class=""><img class="img-fluid m-0 p-0" src="{{marques.img}}" alt="{{marques.description}}"/></a>
-    <input id="text-{{marques.name}}" type="hidden" name="{{marques.name}}">
+    <a >
+      <img class="img-fluid m-0 p-0" src="{{marques.img}}" alt="{{marques.description}}"/></a>
+    <input id="text-{{marques.name}}" class="bg-dark" type="hidden" name="{{marques.name}}">
   </div>
-  <div class="text-white font-weight-light text-uppercase text-center text-shadow">{{marques.name}}</div>
-  <div class="nbrVehicules mt-0"><small class="text-shadow">15</small></div>
+  <div class="bg-dark mx-0 text-white font-weight-light text-uppercase text-center text-shadow">{{marques.name}}</div>
+  <div class="nbrVehicules mt-0 bg-dark"><small *ngIf="marques.countBrandAnnounce" class="text-shadow bg-dark">{{marques.countBrandAnnounce}}</small></div>
 

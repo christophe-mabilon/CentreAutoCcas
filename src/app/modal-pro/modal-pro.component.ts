@@ -20,10 +20,8 @@ export class ModalProComponent implements OnInit {
   showPassword=false;
   formLogin!:FormGroup;
   formLoginSubmitted = false;
-  isAdmin!:boolean;
-  isLogged!:boolean;
-  isUser!:boolean;
-  currentUser:any;
+
+  currentUser:any;public error!: string;
   constructor(private modalService: NgbModal,public activeModal: NgbActiveModal,private fb:FormBuilder,
               private http:HttpClient,private userServ:UserService,private router: Router) {
   };
@@ -49,26 +47,12 @@ export class ModalProComponent implements OnInit {
 
 
 loginUser(){
-  this.userServ.loginUser(this.formLogin);
-  this.formLoginSubmitted = false;
-  this.isLogged = this.userServ.getIsLogged();
-  this.isAdmin = this.userServ.getIsAdmin();
-  this.activeModal.close();
+this.formLoginSubmitted = true;
+  this.userServ.connected(this.formLogin);
+this.activeModal.close();
   this.formLogin.reset();
+
 }
-  getUserDetails(currentUser: any){
-    sessionStorage.setItem('userId',this.currentUser[0].id);
-    for (let garage of this.currentUser[0].garages ){
-      let i = 1;
-      sessionStorage.setItem('garageId'+ i,garage.id);
-      i++;
-    }
-    for (let ClassifiedAd of this.currentUser[0].ClassifiedAd ){
-      let i = 1;
-      sessionStorage.setItem('ClassifiedAd'+ i,ClassifiedAd.id);
-      i++;
-    }console.log(sessionStorage)
-  }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({

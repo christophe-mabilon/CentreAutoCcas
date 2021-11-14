@@ -1,10 +1,10 @@
-<div class="container-fluid row">
-<app-carrousel class="col"[annonce]="annonce" ></app-carrousel>
-  <div class="col-6" *ngFor="let item of annonce">
+<div class="container-fluid row justify-content-center">
+  <app-carrousel class="col align-items-center my-auto"[annonce]="annonce" ></app-carrousel>
+  <div class="col-xl-6 h-100 ps-md-5 pt-md-1" *ngFor="let item of annonce">
     <h4 class="align-annonces-start text-uppercase flex-wrap">
-    <b class="text-start marque">{{item.brand.name}}</b>
-    <b class="ms-1 modele">{{item.model.name}}</b>
-  </h4>
+      <h2 class="text-start marque fs-2">{{item.brand.name}}</h2>
+      <h3 class="ms-1 modele fs-3">{{item.model.name}}</h3>
+    </h4>
     <div id="description_courte" class=" text-start text-black">
       <p class="modele_complement flex-wrap">{{item.modelComplement}}</p>
       <p *ngIf="item.modelComplement2" class="modele_complement flex-wrap">{{item.modelComplement2}}</p>
@@ -12,8 +12,16 @@
       <p class="kilometres">kilometres: {{item.kilometre}} Km</p>
       <p class="carburant">Carburant: {{item.fuel}}</p>
       <p class="boite">Boite: {{item.gearbox}}</p>
+      <p class="boite">Boite: {{item.description}}</p>
     </div>
-
-      <b class="btn btn-info plusInfos prix col-6 align-annonces-center p-auto">{{item.price}}€</b>
-    </div>
+<div class="row">
+    <a class="btn btn-info plusInfos prix col-6 align-annonces-center p-auto">{{item.price}}€</a>
+    <a [routerLink]="['/contact']" class="col-4 btn plusInfos-blue text-white">Plus d'infos</a>
+</div>
+    <div class="row">
+    <a *ngIf="item.user.id === userId || isAdmin" [routerLink]="['/contact']" class="col-4 mx-0 px-1 btn plusInfos-yellow text-white">Editer</a>
+    <a *ngIf="item.user.id === userId || isAdmin" [routerLink]="['/contact']" class="col-4 mx-0 px-1 btn plusInfos-red text-white">Supprimer</a>
+    <a [routerLink]="['/home']" class="col-4 mx-0 px-1 btn plusInfos-blue text-white">Retour a l'acceuil</a></div>
+  </div>
+  <span class="d-none col-xl-3 triangle align-self-center position-relative"></span>
 </div>

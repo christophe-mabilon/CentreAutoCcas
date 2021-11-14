@@ -41,7 +41,6 @@ export class ListeUsersComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.userService.findAllUsers().subscribe(data => {
       this.listOfUsers = data;
-      console.log('list' + this.listOfUsers);
     });
     for (let i = 1; i <= 15; i++) {
       this.elements.push({

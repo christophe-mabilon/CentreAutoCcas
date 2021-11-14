@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../../../shared/services/user.service";
-import {environment as env} from "../../../../environments/environment";
-import {error} from "@angular/compiler/src/util";
+import {UserService} from "../../../../shared/services/user.service";
+import {environment as env} from "../../../../../environments/environment";
 
 
 @Component({
@@ -36,6 +35,7 @@ export class UploadAnnoncesComponent {
     const formData = new FormData();
     this.photos = [];
     for (let i = 0; i < this.files.length; i++) {
+formData.set("image", this.files[i], this.files[i].name);
       formData.append("image", this.files[i], this.files[i].name);
       const headers = {'Authorization': this.userServ.getToken()};
       this.http.post(this.apiUrl + 'photos', formData, {headers}).subscribe({
@@ -52,7 +52,6 @@ export class UploadAnnoncesComponent {
     this.photosEventEmitter.emit(picture);
   }
   onRemove(event: File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 }

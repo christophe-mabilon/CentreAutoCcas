@@ -1,6 +1,7 @@
+import { User } from './../interface/user.interface';
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, Observer} from "rxjs";
+import {Observable} from "rxjs";
 import {environment as env} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import jwt_decode from "jwt-decode";
@@ -10,24 +11,21 @@ import {FormGroup} from "@angular/forms";
   providedIn: 'root'
 })
 export class UserService {
-
-
-
   private apiUrl = env.apiUrl;
+  currentUser = new Observable<User>();
   userId:any;
   private _isLogged: boolean = false;
-  private _isAdmin!:boolean;
-  private _userInfo: any = [];
+  private _isAdmin:boolean | undefined ;
   private _refreshToken: any;
-  private _username!:string | null ;
+  private _username!:string ;
 
 
 
   constructor(private http: HttpClient,private router:Router) {
+
   }
   getCurentUser(): Observable<any> {
-    const headers = {'Authorization': "Bearer " +this.getToken()};
-    return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
+    return this.http.get<any>(this.apiUrl + "user/currentUser");
   }
   RefreshToken(): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getRefreshToken()};
@@ -61,45 +59,47 @@ export class UserService {
   /*******************************
    Connexion USER
    ******************************/
-  loginUser(formLogin:FormGroup) {
-    this.http.post(this.apiUrl + "login_check", formLogin.value).subscribe(
-      (data: any) => {
-        const token: any = jwt_decode(data.token);this.setUsername(token.username);this.setRefreshToken(data.refresh_token);
+
+connected(formLogin: FormGroup){
+  this.loginUser(formLogin).subscribe(
+    (data: any) => {
+      const token: any = jwt_decode(data.token);
+      this.setUsername(token.username);
+      this.setRefreshToken(data.refresh_token);
         this.setToken(data.token);
-        this.setRefreshToken(data.refresh_token)
-        console.log('token'+ data.token);
-        console.log('tokenrefresh : ' + data.refresh_token)
-        sessionStorage.setItem("isLogged", "true");
-        sessionStorage.setItem('username',token.username);
-        this.setRoles(token);
-        this.setIsLogged(true);
-        this.getUsername();
-        this.getIsLogged()
+      this.setRefreshToken(data.refresh_token)
+      this.getCurentUser().subscribe(user=>{
+        this.currentUser = user;
+        localStorage.setItem('userId',user.id);
+        localStorage.setItem('role',token.roles[0]);
+        localStorage.setItem('username',token.username);
+        localStorage.setItem('isLogged','true');
+        this._isLogged = true;
+        window.sessionStorage.setItem("isAdmin", "false");
+      if(token.roles[0] === "ROLE_ADMIN"){
+        this._isAdmin = this.setIsAdmin(true);
+        this.router.navigate(['/connectedAdmin']);
+      }
+      else{
+        this._isAdmin = false;
+       localStorage.setItem("isAdmin", "false");
 
-        if(this.getRoles() === "ROLE_ADMIN"){
-         sessionStorage.setItem("isAdmin","true");
-         this.getIsAdmin();
+        this.router.navigate(['/connectedUser']);
+      }
+    })
+} )
+}
 
-          setTimeout(function(){
-            window.location.reload();
-          }, 200);
-          this.router.navigate(['/connectedAdmin']);
-        }
-        else{
-          window.sessionStorage.setItem("isAdmin", "false");
-          setTimeout(function(){
-            window.location.reload();
-          }, 200);
-          this.router.navigate(['/connectedUser']);
-        }
-      });
+loginUser(formLogin:FormGroup): Observable<any> {
+    return this.http.post(this.apiUrl + "login_check", formLogin.value);
   }
+
 
   /*******************************
    GUETTEUR /SETER USER ID
    *****************************/
   getUserId(): Observable<any> {
-    this.userId = sessionStorage.getItem("userId");
+    this.userId = localStorage.getItem("userId");
     return this.userId;
   }
 
@@ -111,8 +111,7 @@ export class UserService {
    GUETTEUR /SETER USERNAME
    *****************************/
   getUsername(): string {
-    this._username = sessionStorage.getItem('username');
-    return <string>this._username;
+    return this._username;
   }
   setUsername(value: string) {
     this._username = value;
@@ -130,38 +129,31 @@ export class UserService {
    GUETTEUR /SETER TOKEN
    *****************************/
   setToken(data: any) {
-    sessionStorage.setItem("token", data);
+    localStorage.setItem("token", data);
   }
   getToken(): any {
-    return sessionStorage.getItem("token");
+    return localStorage.getItem("token");
   }
   getNewToken(): Observable<any> {
-    let myJsonRefresh = JSON.stringify(this.getRefreshToken())
-
-
+    let myJsonRefresh = JSON.stringify(this.getRefreshToken());
     return this.http.post<any>(this.apiUrl + "token/refresh", myJsonRefresh)
   }
   /*******************************
    GUETTEUR /SETER ROLES
    *****************************/
-  setRoles(data: any) {
-    this._userInfo = data;
+  setRoles(roles: any) {
+    return roles;
   }
-  getRoles() {
-    return this._userInfo.roles[0];
+  getRoles(roles:any) {
+    return roles;
   }
   /*******************************
    GUETTEUR /SETER ADMIN
    *****************************/
-  setIsAdmin(value: any) {
-    this._isAdmin = value;
+  setIsAdmin(value: boolean):boolean{
+    return this._isAdmin = value;
   }
   getIsAdmin(){
-    if(sessionStorage.getItem("isAdmin") ==="true"){
-      this._isAdmin = true;
-    }else{
-      this._isAdmin =false;
-    }
     return this._isAdmin
   }
   /*******************************
@@ -171,11 +163,6 @@ export class UserService {
     this._isLogged = !this._isLogged;
   }
   getIsLogged() {
-    if (sessionStorage.getItem("isLogged") === "true") {
-      this._isLogged = true;
-    } else {
-      this._isLogged = false;
-    }
     return this._isLogged;
   }
   /*******************************
@@ -188,7 +175,8 @@ export class UserService {
     this.setToken("");
     this.setRefreshToken("");
     this.setUsername("");
-    sessionStorage.clear();
+    localStorage.clear();
+    sessionStorage.clear()
     this.router.navigate(['/home']);
   }
 

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {environment as env} from "../../../../environments/environment";
+import {environment as env} from "../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../../../shared/services/user.service";
+import {UserService} from "../../../../shared/services/user.service";
 
 @Component({
   selector: 'app-upload-garage',
@@ -9,20 +9,20 @@ import {UserService} from "../../../shared/services/user.service";
   styleUrls: ['./upload-garage.component.scss']
 })
 export class UploadGarageComponent {
-  private apiUrl = env.apiUrl.slice(0,22);;
-  @Output() photosEventEmitter:EventEmitter<any[]> = new EventEmitter<any[]>();
-  private apiPhotos = this.apiUrl + "uploads/images/garages/";
-  photos!:any[];
+  private apiUrl = env.apiUrl;
+  private apiPhotos = this.apiUrl + "uploads/images/vehicules/";
   title = 'dropzone';
   files: File[] = [];
-  messageError: string = "";
+  photos!:any[];
+  @Output() photosEventEmitter:EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() loadingPhotoComplete:EventEmitter<Boolean> = new EventEmitter<Boolean>();
   limitPhotos = 1;
-  constructor(private http: HttpClient, private userServ: UserService) {
+
+  constructor(private http: HttpClient ,private userServ:UserService) { }
+
+  photosComplete(){
+    this.loadingPhotoComplete.emit(true);
   }
-photosComplete(){
-  this.loadingPhotoComplete.emit(true);
-}
   onSelect(event: { addedFiles: any; }):any {
     if(this.files.length <= this.limitPhotos){
       this.files.push(...event.addedFiles);
@@ -41,7 +41,6 @@ photosComplete(){
         error: (error: { toString: () => any; }) => alert(console.error(error.toString())),
         complete: () => {
           this.photosComplete();
-
         }
       });
     }
@@ -51,9 +50,6 @@ photosComplete(){
     this.photosEventEmitter.emit(picture);
   }
   onRemove(event: File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
-
 }

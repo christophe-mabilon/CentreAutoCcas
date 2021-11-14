@@ -1,32 +1,67 @@
-<h1 class="text-center mt-2">les meilleurs offres du moment</h1>
-<ul class="row d-flex justify-content-around list-unstyled mt-2">
-  <li  *ngFor="let annonce of annonces;" class=" col-12 col-md-6 col-lg-3 text-center mb-3 pb-md-0 p-md-2">
-    <article class="col-12 p-2 h-100 justify-self-stretch annonce m-0">
-      <div class="slogan"><img src="{{annonce.photos[0]}}" class="w-100" alt="véhicule d'ocasion">
-        <div *ngIf="annonce.primeEco" class="d-flex prime">
-          <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+<div class="container-fluid">
+  <ul *ngIf="searchAnnonce" class="row d-flex justify-content-around list-unstyled mt-2 mx-0 px-0 gx-0">
+    <h1 class="text-center mt-2">il y à {{searchAnnonce.length}} annonces correspondant à vos critéres</h1>
+    <li *ngFor="let annonce of searchAnnonce;"
+      class=" col-12 col-md-6 col-lg-3 text-center mb-3 pb-md-0 p-md-2 mx-0 px-0">
+      <article class="col-12 p-2 h-100 justify-self-stretch annonce m-0">
+        <div class="slogan"><img src="{{annonce.photos[0]}}" class="w-100" alt="véhicule d'ocasion">
+          <div *ngIf="annonce.primeEco" class="d-flex prime">
+            <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+          </div>
+          <div *ngIf="annonce.topOcass" class="d-flex topOccas">
+            <p>Top</p>
+            <p>Ocas</p>
+          </div>
         </div>
-        <div *ngIf="annonce.topOcass" class="d-flex topOccas">
-          <p>Top</p>
-          <p>Ocas</p>
+        <h4 class="align-items-start text-uppercase flex-wrap">
+          <b class="text-start marque me-1">{{annonce.brand.name}}</b>
+          <b class="ms-1 modele">{{annonce.model.name}}</b>
+        </h4>
+        <div id="description_courte" class="mt-3 text-start text-black">
+          <p class="modele_complement flex-wrap">{{annonce.modelComplement}}</p>
+          <p *ngIf="annonce.modelComplement2" class="modele_complement flex-wrap">{{annonce.modelComplement2}}</p>
+          <p class="annee">Année : {{annonce.year}}</p>
+          <p class="kilometres">kilometres: {{annonce.kilometre}} Km</p>
+          <p class="carburant">Carburant: {{annonce.fuel}}</p>
+          <p class="boite">Boite: {{annonce.gearbox}}</p>
         </div>
-      </div>
-      <h4 class="align-items-start text-uppercase flex-wrap">
-        <b class="text-start marque me-1">{{annonce.brand.name}}</b>
-        <b class="ms-1 modele">{{annonce.model.name}}</b>
-      </h4>
-      <div id="description_courte" class="mt-3 text-start text-black">
-        <p class="modele_complement flex-wrap">{{annonce.modelComplement}}</p>
-        <p *ngIf="annonce.modelComplement2" class="modele_complement flex-wrap">{{annonce.modelComplement2}}</p>
-        <p class="annee">Année : {{annonce.year}}</p>
-        <p class="kilometres">kilometres: {{annonce.kilometre}} Km</p>
-        <p class="carburant">Carburant: {{annonce.fuel}}</p>
-        <p class="boite">Boite: {{annonce.gearbox}}</p>
-      </div>
-      <div class="row justify-content-around text-center px-auto m-0">
-        <a [routerLink]="['/annonce', annonce.id]" class="col-4 btn btn-info plusInfos">Plus d'infos</a>
+        <div class="row justify-content-around text-center px-auto m-0">
+          <a [routerLink]="['/annonce', annonce.id]" class="col-4 btn btn-info plusInfos">Plus d'infos</a>
           <b class="prix col-6 align-annonces-center p-auto">{{annonce.price}}€</b>
-      </div>
-    </article>
-  </li>
-</ul>
+        </div>
+      </article>
+    </li>
+  </ul>
+  <ul class="row d-flex justify-content-around list-unstyled mt-2">
+    <h1 class="text-center mt-2">les meilleurs offres du moment</h1>
+    <li *ngFor="let annonce of annonces;" class=" col-12 col-md-6 col-lg-3 text-center mb-3 pb-md-0 p-md-2 mx-0 px-0">
+      <article class="col-12 p-2 h-100 justify-self-stretch annonce m-0">
+        <div class="slogan"><img src="{{annonce.photos[0]}}" class="w-100" alt="véhicule d'ocasion">
+          <div *ngIf="annonce.primeEco" class="d-flex prime">
+            <p> <i class="fas fa-leaf me-1"></i> Prime écologique</p>
+          </div>
+          <div *ngIf="annonce.topOcass" class="d-flex topOccas">
+            <p>Top</p>
+            <p>Ocas</p>
+          </div>
+        </div>
+        <h4 class="align-items-start text-uppercase flex-wrap">
+          <b class="text-start marque me-1">{{annonce.brand.name}}</b>
+          <b class="ms-1 modele">{{annonce.model.name}}</b>
+        </h4>
+        <div id="description_courte" class="mt-3 text-start text-black">
+          <p class="modele_complement flex-wrap">{{annonce.modelComplement}}</p>
+          <p *ngIf="annonce.modelComplement2" class="modele_complement flex-wrap">{{annonce.modelComplement2}}</p>
+          <p class="annee">Année : {{annonce.year}}</p>
+          <p class="kilometres">kilometres: {{annonce.kilometre}} Km</p>
+          <p class="carburant">Carburant: {{annonce.fuel}}</p>
+          <p class="boite">Boite: {{annonce.gearbox}}</p>
+        </div>
+        <div class="row justify-content-around text-center px-auto m-0">
+          <a [routerLink]="['/annonce', annonce.id]" class="col-4 btn btn-info plusInfos">Plus d'infos</a>
+          <b class="prix col-6 align-annonces-center p-auto">{{annonce.price}}€</b>
+        </div>
+      </article>
+    </li>
+  </ul>
+</div>

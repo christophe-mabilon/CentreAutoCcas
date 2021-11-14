@@ -1,12 +1,12 @@
 <app-navbar-admin></app-navbar-admin>
-<div class="container">
-  <h2 class="mx-2 my-3 fs-3">Ajouter un utilisateur</h2>
+<div class="container-fluid">
+  <h2 class="px-2 mb-3 fs-3">Ajouter un utilisateur</h2>
 <section class="container-fluid p-0">
   <form [formGroup]="addUserForm" (submit)="addUser()">
     <article class="form-group mt-2">
       <mat-form-field appearance="outline" class="col-4 col-md-1 mb-2 px-2">
         <mat-label>Titre</mat-label>
-        <input class="text-white" matInput placeholder="Votre titre" formControlName="title" />
+        <input class="text-danger" matInput placeholder="Votre titre" formControlName="title" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-8 col-md-5 mb-2 px-2">

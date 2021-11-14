@@ -17,14 +17,15 @@ import {FormBuilder} from "@angular/forms";
 })
 export class FileService {
   photos!: File;
+  private apiUrl = env.apiUrl;
 
   constructor(private http: HttpClient, private userServ: UserService) {
   }
 
 
-  sendPhotos(photos: any) {
-    console.log('photos' + this.photos)
+  sendPhotos(photos: any): Observable<any> {
     const headers = {'Authorization':  this.userServ.getToken()};
-    this.http.post<string>('http://localhost:8000/api/photos', photos, {headers});
+    return this.http.post<File>(this.apiUrl + 'photos', photos, {headers});
+
   }
 }

@@ -1,46 +1,58 @@
-<!--navbar-user-->
-<nav class="navbar navbar-expand-lg top mx-0 px-0 align-item-center my-auto">
-  <section class="container-fluid justify-content-between align-items-center py-auto m-0">
-    <!--marque visible smartphone-tablette-->
-    <a class="d-block d-xs-flex navbar-brand d-lg-none" href="#">Centre’Auto’Ccas</a>
-    <!--menu de recherche-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mx-0">
+  <div class="container-fluid">
+    <!--marque visible smartphone-tablette
+    <a class="navbar-brand d-block d-xs-flex d-lg-none" href="#">Centre’Auto’Ccas</a>
+    <!--menu de recherche-->-->
     <button *ngIf="searchButton; else elseSearch" (click)="clickEvent()"
-            class="navbar-brand justify-content-left fw-lighter text-nowrap recherche-btn btn_search_bar"
-            id="search_bar"><i class="fas fa-search me-1"></i>Rechercher mon véhicule
+      class="navbar-brand recherche-btn btn_search_bar" id="search_bar"><i class="fas fa-search me-1"></i>Rechercher mon
+      véhicule
     </button>
     <ng-template #elseSearch>
-      <button (click)="clickEvent()"
-              class="navbar-brand justify-content-left fw-lighter text-nowrap recherche-btn btn_search_bar"
-              id="search_bar2"><i class="far fa-times-circle me-1"></i>Fermer la barre de recherche
+      <button (click)="clickEvent()" class="navbar-brand recherche-btn btn_search_bar" id="search_bar2"><i
+          class="far fa-times-circle me-1"></i>Fermer la barre de recherche
       </button>
     </ng-template>
+
     <!---icon burger--->
-    <button [attr.aria-expanded]="expression" class="navbar-toggler my-2" type="button" (click)="toggleNavbar()"
-            data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon my-2"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
     <!--liens-->
-    <div [ngClass]="{ 'show': navbarOpen }" class="navbar-collapse" id="navbarNavAltMarkup"></div>
-    <div class="navbar-nav justify-content-lg-right">
-      <a class="me-2" aria-current="page" [routerLink]="['/home']">Acceuil</a>
-      <a class="me-2" [routerLink]="['/contact']">Contact</a>
-      <div *ngIf="isAdmin">
-        <a class="me-2">Bienvenue Admin</a>
-        <a class="mx-2" (click)="pageAdmin()">Mon compte</a>
-        <mat-icon class="icon-deconection">power_settings_new</mat-icon>
-        <a class="ms-1" (click)="logout()">Se deconnecter</a>
-      </div>
-      <div *ngIf="!isAdmin && isLogged" class="d-flex">
-        <a class="me-2">Bienvenue {{username}}</a>
-        <a class="mx-2" (click)="pageUser()">Mon compte</a>
-        <mat-icon class="icon-deconection">power_settings_new</mat-icon>
-        <a class="ms-1 text-decoration-none my-auto" (click)="logout()">Se deconnecter</a>
-      </div>
-      <div *ngIf="!isLogged" class="d-flex">
-        <mat-icon class="icon-connexion py-auto">power_settings_new</mat-icon>
-        <a class="pro" (click)="open()">Accès professionnels</a>
-      </div>
+    <div class="collapse navbar-collapse justify-content-md-end align-items-center ms-auto my-auto ps-auto w-100"
+      id="navbarNavDropdown">
+      <ul class="navbar-nav mt-3 mt-md-0">
+
+        <li class="d-md-flex">
+          <a class="nav-link" aria-current="page" [routerLink]="['/home']">Acceuil</a>
+          <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+          <!-- if admin -->
+          <div *ngIf="isAdmin" class="d-md-flex">
+            <a class="nav-link">Bienvenue Admin</a>
+            <a class="nav-link" (click)="pageAdmin()">Mon compte</a>
+            <a class="nav-link">
+              <span class="d-hidden d-md-flex icon-deconnexion align-text-bottom"></span>
+            </a>
+            <a class="nav-link" (click)="logout()">Se deconnecter</a>
+          </div>
+          <!-- if user -->
+          <div *ngIf="!isAdmin && isLogged" class="d-md-flex">
+            <a class="nav-link text-capitalize">Bienvenue {{username}}</a>
+            <a class="nav-link" (click)="pageUser()">Mon compte</a>
+            <a class="nav-link">
+              <span class="d-hidden d-md-flex icon-deconnexion align-text-bottom"></span>
+            </a>
+            <a class="nav-link" (click)="logout()">Se deconnecter</a>
+          </div>
+          <!-- if not logged -->
+          <div *ngIf="!isLogged" class="d-md-flex">
+            <a class="nav-link">
+              <span class="d-hidden d-md-flex icon-connexion align-text-bottom"></span>
+            </a>
+            <a class="nav-link pro" (click)="open()">Accès professionnels</a>
+          </div>
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
 </nav>

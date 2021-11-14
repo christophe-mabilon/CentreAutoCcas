@@ -24,11 +24,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule, DatePipe} from "@angular/common";
-import { AddAnnonceUserComponent } from './connected-user/add-annonce-user/add-annonce-user.component';
-import { AddGarageUserComponent } from './connected-user/add-garage-user/add-garage-user.component';
-import { GaragesUserComponent } from './connected-user/garages-user/garages-user.component';
-import { VehiculesUserComponent } from './connected-user/vehicules-user/vehicules-user.component';
-import { AnnoncesUserComponent } from './connected-user/annonces-user/annonces-user.component';
+import { AddAnnonceUserComponent } from './connected-user/Annonces/add-annonce-user/add-annonce-user.component';
+import { AddGarageUserComponent } from './connected-user/Garages/add-garage-user/add-garage-user.component';
+import { GaragesUserComponent } from './connected-user/Garages/garages-user/garages-user.component';
+import { AnnoncesUserComponent } from './connected-user/Annonces/annonces-user/annonces-user.component';
 import { MarqueService } from './shared/services/marque.service';
 import { AuthService } from './shared/services/auth.service';
 import { AnnoncesDetailsComponent } from './annonces-details/annonces-details.component';
@@ -36,12 +35,11 @@ import {ModelService} from "./shared/services/model.service";
 import {RegionService} from "./shared/services/region.service";
 import {routes} from "./app-routing.module";
 import{CarousselConfigComponent} from './annonces-details/caroussel-config/caroussel-config.component';
-import { AnnonceByGarageComponent } from './connected-user/annonce-by-garage/annonce-by-garage.component';
 import {NavbarComponentUser} from "./connected-user/navbar-user/navbar.component";
-import { EditAnnonceUserComponent } from './connected-user/edit-annonce-user/edit-annonce-user.component';
-import { EditGarageUserComponent } from './connected-user/edit-garage-user/edit-garage-user.component';
+import { EditAnnonceUserComponent } from './connected-user/Annonces/annonces-user/edit-annonce-user/edit-annonce-user.component';
+import { EditGarageUserComponent } from './connected-user/Garages/edit-garage-user/edit-garage-user.component';
 import { BooleanPipe } from './shared/pipes/boolean.pipe';
-import { UploadAnnoncesComponent } from './connected-user/add-annonce-user/upload-annonces/upload-Annonces.component';
+import { UploadAnnoncesComponent } from './connected-user/Annonces/add-annonce-user/upload-annonces/upload-Annonces.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from '@angular/material/icon'
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -63,11 +61,13 @@ import {IconsModule, InputsModule, TableModule} from "ng-uikit-pro-standard";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatCardModule} from "@angular/material/card";
 import {NgxDropzoneModule} from "ngx-dropzone";
-import {UploadGarageComponent} from "./connected-user/add-garage-user/upload-garage/upload-garage.component";
-import { TestComponent } from '../test/test.component';
-import { NewnavbarComponent } from './newnavbar/newnavbar.component';
+import {UploadGarageComponent} from "./connected-user/Garages/add-garage-user/upload-garage/upload-garage.component";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
+import { UploadEditAnnonceUserComponent } from './connected-user/Annonces/annonces-user/edit-annonce-user/upload-edit-annonce-user/upload-edit-annonce-user.component';
+import { EditUserComponent } from './connected-user/User/edit-user/edit-user.component';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { UserGuard } from './shared/guards/user.guard';
 
 @NgModule({
   declarations: [
@@ -94,11 +94,9 @@ import {MatOptionModule} from "@angular/material/core";
     AddAnnonceUserComponent,
     AddGarageUserComponent,
     GaragesUserComponent,
-    VehiculesUserComponent,
     AnnoncesUserComponent,
     NavbarComponentUser,
     CarousselConfigComponent,
-    AnnonceByGarageComponent,
     EditAnnonceUserComponent,
     EditGarageUserComponent,
     BooleanPipe,
@@ -110,8 +108,8 @@ import {MatOptionModule} from "@angular/material/core";
     NavbarAdminComponent,
     ListeUsersComponent,
     UploadGarageComponent,
-    TestComponent,
-    NewnavbarComponent
+    UploadEditAnnonceUserComponent,
+    EditUserComponent
 
   ],
   imports: [
@@ -148,6 +146,8 @@ import {MatOptionModule} from "@angular/material/core";
     AnnoncesService,
     GarageService,
     NgbCarouselConfig,
+    AdminGuard,
+    UserGuard,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     DatePipe,AuthService],
   bootstrap: [AppComponent]

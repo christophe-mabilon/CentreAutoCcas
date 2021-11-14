@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AnnoncesService} from "../../shared/services/annonces.service";
+import {AnnoncesService} from "../../../shared/services/annonces.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

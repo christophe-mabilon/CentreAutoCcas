@@ -4,7 +4,7 @@ export interface Garage {
   name:string;
   streetNumber:number;
   streetName:string;
-  adresss:string;
+  address:string;
   postalCode:number;
   city:string;
   createdAt:Date;

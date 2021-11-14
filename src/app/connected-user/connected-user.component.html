@@ -1,51 +1,49 @@
 <app-navbar-user></app-navbar-user>
 
-<div class="container-fluid bg-dark p-auto mx-0 px-0">
+<section *ngFor="let user of userDetails;let index = index" class="container-fluid text-center mx-auto px-2">
+  <article class="row align-items-stetch justify-content-center h-100">
 
-  <section *ngFor="let user of userDetails;let index = index" class="container text-center mx-auto px-2">
-    <h2 class="text-white text-center fs-3 py-3">Bienvenue sur votre espace personel</h2>
-    <div class="row  justify-content-center mx-auto px-2">
-      <article class=" col-12 col-md-6 px-md-5 py-3">
-        <div class="card align-self-strech py-auto h-100" style="width: 32rem;">
-          <div class="text-center"><img class="card-img-top img-fluid shadow-5" src="../../assets/garage.jpg" alt="logo"
-                                        style="width: 18rem;"></div>
-          <div class="card-body">
-            <h3 class="card-title fs-4 mb-3">Le detail de votre compte:</h3>
-            <p class="card-text"><b>Nom Utilisateur : </b>{{user.username}}</p>
-            <p class="card-text"><b>Nom du représantant légale : </b>{{user.firstName}}</p>
-            <p class="card-text"><b>Prénom du représantant légale : </b>{{user.lastName}}</p>
-            <p class="card-text"><b>Adresse du garage principal
-              : </b>{{user.garages[0].name}} {{user.garages[0].streetNumber}} {{user.garages[0].streetName}} {{user.garages[0].address}}
-            </p>
-            <p class="card-text"><b>code postal du siege sociale
-              : </b>{{user.garages[0].postalCode}} {{user.garages[0].city}}</p>
-            <p class="card-text"><b>Email : </b>{{user.email}}</p>
-            <p class="card-text"><b>Numero de siret : </b>{{user.siret}}</p>
-            <div class="text-center">
-              <button href="#" class="recherche-btn my-1">Modifier mes informations</button>
-            </div>
+    <button class="col-12 btn btn-info py-4 details">Récapitulatif de vos informations</button>
+    <h2 class="text-center fs-3 py-3">Bienvenue sur votre espace personel {{user.lastName}}</h2>
+    <h3>Afin de garder des donées à jour la base de donées,et de garantir un service apres vente de qualitée</h3>
+    <h4>Merci de remplir et mettre a jour votre profil</h4>
+    <div class="col-5 card m-2">
+      <div class="d-flex justify-content-center">
+        <div class="text-start py-3">
+          <h5 class="card-title fs-4 mb-4"><span class="icon-user-xs me-2 my-2"></span>Le detail de votre compte:</h5>
 
+          <p class="card-text"><b>Nom Utilisateur : </b>{{user.username}}</p>
+          <p class="card-text"><b>Nom du représantant légale : </b>{{user.firstName}}</p>
+          <p class="card-text"><b>Prénom du représantant légale : </b>{{user.lastName}}</p>
+          <p class="card-text"><b>Adresse du garage principal
+              : </b>{{user.adresse}}
+          </p>
+          <p class="card-text"><b>code postal du siege sociale
+              : </b>{{user.postalCode}} {{user.ville}}</p>
+          <p class="card-text"><b>Email : </b>{{user.email}}</p>
+          <p class="card-text"><b>Numero de siret : </b>{{user.siret}}</p>
+          <div class="text-center">
+            <button [routerLink]="['/edit/user',user.id]" class="recherche-btn my-3">Modifier mes informations</button>
           </div>
         </div>
-      </article>
-      <article class="col-12 col-md-6 p-3">
-        <div class="card align-self-strech py-auto h-100 " style="width: 32rem;">
-          <div class="text-center"><img class="card-img-top img-fluid shadow-5" src="../../assets/index.svg" alt="logo"
-                                        style="width: 15rem;"></div>
-          <div class="card-body">
-            <h3 class="card-title fs-4 mb-3">Résumé de votre compte:</h3>
-            <p class="card-text"><b>Vous avez inscrit : </b>X garages</p>
-            <p class="card-text"><b>Vous avez actuellement : </b>X annonces sur notre site</p>
-            <p class="card-text"><b>Ce qui fait en tout : </b>X véhicules</p>
-            <p class="card-text"><b>Vous avez deposer : </b>X annonces le mois dernier</p>
-            <p class="card-text"><b>Vous avez vendu : </b>X véhicules le mois dernier</p>
-            <p class="card-text"><b>Statistiques de vente pour le mois dernier : </b>X %</p>
-            <div class="text-center">
-              <button href="#" class="recherche-btn my-1">Contacter l'administrateur du site</button>
-            </div>
-          </div>
-        </div>
-      </article>
+      </div>
     </div>
-  </section>
-</div>
+    <div class="col-5 card m-2">
+      <div class="d-flex justify-content-center">
+        <div class="py-3 text-start">
+          <h5 class="card-title text-start fs-4 mb-4"><span class="icon-info my-2"></span>Résumé de votre compte:
+          </h5>
+          <p class="card-text"><b>Vous avez inscrit : </b>{{user.garages.length}} garages</p>
+          <p class="card-text"><b>Vous avez actuellement : </b>{{user.ClassifiedAd.length}} annonces sur notre site</p>
+          <p class="card-text"><b>Ce qui fait en tout : </b>{{user.ClassifiedAd.length}} véhicules</p>
+          <p class="card-text"><b>Vous avez deposer : </b>X annonces le mois dernier</p>
+          <p class="card-text"><b>Vous avez vendu : </b>X véhicules le mois dernier</p>
+          <p class="card-text"><b>Statistiques de vente pour le mois dernier : </b>X %</p>
+          <div class="text-center">
+            <button [routerLink]="['/contact']" class="recherche-btn my-3">Contacter l'administrateur du site</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

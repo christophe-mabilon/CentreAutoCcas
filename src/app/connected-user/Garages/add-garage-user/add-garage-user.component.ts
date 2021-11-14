@@ -1,13 +1,9 @@
-import {Component, OnInit, Output} from '@angular/core';
+import { Garage } from './../../../shared/interface/garage.interface';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Marque} from "../../shared/interface/marque.interface";
-import {Region} from "../../shared/interface/region.interface";
-import {MarqueService} from "../../shared/services/marque.service";
-import {RegionService} from "../../shared/services/region.service";
-import {ModelService} from "../../shared/services/model.service";
-import {GarageService} from "../../shared/services/garage.service";
-import {Router} from "@angular/router";
-import {UserService} from "../../shared/services/user.service";
+import {GarageService} from "../../../shared/services/garage.service";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-add-garage-user',
@@ -15,61 +11,91 @@ import {UserService} from "../../shared/services/user.service";
   styleUrls: ['./add-garage-user.component.scss']
 })
 export class AddGarageUserComponent implements OnInit {
-  marques!: Marque[];
-  regions!: Region[];
-  selectedModels!: any[];
-  brandAndmodels: any;
-  selectedMarque!: string;
-  garages!: any[];
-  addForm!: FormGroup;
-  carburants!:any[];
-  types!:any[];
+  currentGarage!:Garage;
   private formSubmitted!: boolean;
-  loadingFinished!:Boolean;
+  loadingFinished:Boolean=false;
+  addGarage = false;
+  editGarage= false;
+  GarageForm!: FormGroup;
+  photosReceived:any;
+  constructor(private garageServ: GarageService, private fb: FormBuilder,private router:Router,private route:ActivatedRoute) {
 
-
-
-
-  constructor(private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
-    , private garageServ: GarageService, private fb: FormBuilder,private router:Router,private userService:UserService) { }
-
-    public addGarageForm:FormGroup= this.fb.group({
-    userId:['',Validators.required],
-    imageGarage:[""],
-    name: ["", Validators.required],
-    streetNumber:["",Validators.required],
-    streetName:["",Validators.required],
-    address:["",Validators.required],
-    postalCode:["",Validators.required],
-    city:["",Validators.required],
-    accept:["",Validators.required]
-  });
-  addPhotos(photos:any) {
-    this.addGarageForm.controls['imageGarage'].patchValue([photos]);
   }
 
-  addGarageSubmit(){
-    if(this.loadingFinished && this.addGarageForm.valid){
-    this.addGarageForm.patchValue({
-      userId:localStorage.getItem('userId'),
-          });
-    this.formSubmitted = true;
-      console.log(this.addGarageForm.value)
-      this.garageServ.add(this.addGarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
-      this.addGarageForm.reset();
-      this.formSubmitted = false;
-      }
+  patchValues(currentGarage:Garage){
+    if(this.editGarage){
+    this.GarageForm.patchValue({
+    userId:localStorage.getItem('userId'),
+    imageGarage:"",
+    name: currentGarage.name,
+    streetNumber:currentGarage.streetNumber,
+    streetName:currentGarage.streetName,
+    address:currentGarage.address,
+    postalCode:currentGarage.postalCode,
+    city:currentGarage.city,
+    accept:""
+  });
     }
+  }
+
+
+  addPhotos(photos:any) {
+    this.photosReceived = photos
+
+  }
+
+  GarageSubmit(){
+    this.GarageForm.controls['imageGarage'].patchValue( [this.photosReceived] );
+
+    if(this.editGarage){
+      this.formSubmitted = true;
+    if(this.loadingFinished && this.GarageForm.valid){
+      this.garageServ.update(this.GarageForm.value,this.currentGarage.id).subscribe(() => this.router.navigateByUrl('/garagesUser'));
+      this.GarageForm.reset();
+      this.formSubmitted = false;
+    }
+    }else if(this.addGarage){
+      this.formSubmitted = true;
+      if(this.loadingFinished && this.GarageForm.valid){
+        this.garageServ.add(this.GarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
+        this.GarageForm.reset();
+        this.formSubmitted = false;
+    }
+    else{
+      const erreurs = "une erreur est survenue";
+    }
+
+  }
+}
+
+
   ngOnInit(): void {
-    this.marques = this.marqueServ.marques.value;
-    this.types = this.modelServ.types.value;
-    this.carburants = this.modelServ.carburants.value;
-    this.regions = this.regionServ.regions.value;
-    this.brandAndmodels = this.modelServ.brandAndModel.value;
-    this.garageServ.findAllByUser().subscribe((data: any) => {
-      this.garages = data;
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if(id > 0) {
+      this.garageServ.findOne(id).subscribe(garage => {
+        this.currentGarage = garage
+        this.addGarage = false;
+      this.editGarage = true;
+    this.patchValues(this.currentGarage);
+      });
+
+    }else{
+      this.editGarage = false
+      this.addGarage = true;
+    }
+    this.GarageForm= this.fb.group({
+      userId:[ localStorage.getItem('userId')],
+      imageGarage:[""],
+      name: ["", Validators.required],
+      streetNumber:["",Validators.required],
+      streetName:["",Validators.required],
+      address:["",Validators.required],
+      postalCode:["",Validators.required],
+      city:["",Validators.required],
+      accept:["",Validators.required]
     });
 
   }
-  }
 
+}

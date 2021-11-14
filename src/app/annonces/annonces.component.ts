@@ -1,10 +1,9 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import {Component, OnInit} from '@angular/core';
 import {AnnoncesService} from "../shared/services/annonces.service";
 import {Annonce} from "../shared/interface/annonce.inteface";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../shared/services/user.service";
-
+import {BehaviorSubject, Observer} from "rxjs";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-annonces',
@@ -12,17 +11,27 @@ import {UserService} from "../shared/services/user.service";
   styleUrls: ['./annonces.component.scss']
 })
 export class AnnoncesComponent implements OnInit {
+  adReceived:any;
+  searchAnnonce: any;
   annonces!: Annonce[] ;
+  constructor(private annoncesService:AnnoncesService,private fb:FormBuilder) {
 
-  constructor(private service:AnnoncesService) {
   }
+
+
 
   ngOnInit(): void {
-    this.service.findAll().subscribe(r => this.annonces = r);
+    this.annoncesService.getsearchForm().subscribe(adReceived=>{
+      this.adReceived = adReceived;
+      if(this.adReceived.valid)this.annoncesService.searchAnnonces(this.adReceived.value).subscribe(
+      data=>{this.searchAnnonce = data;
+    })
+    })
 
+
+
+    this.annoncesService.findAll().subscribe(r => this.annonces = r);
   }
-
-
 }
 
 

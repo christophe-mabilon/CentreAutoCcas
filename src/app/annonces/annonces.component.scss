@@ -1,12 +1,14 @@
 /**************Annonces*********************/
-
+* {
+  color: ghostwhite;
+}
 .annonce {
   box-sizing: border-box;
   color: white;
   padding: 10px;
   background: linear-gradient(
-    to top,
-    rgb(33, 37, 41, 1) 0%,
+    to bottom,
+    rgb(104, 145, 171) 0%,
     rgba(33, 37, 41, 1) 70%,
     rgba(33, 37, 41, 1) 100%
   );
@@ -20,7 +22,8 @@
 }
 
 .annonce img {
-  min-height: 125px;
+  max-height: 220px;
+  width: auto;
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.6);
   z-index: 0 !important;
@@ -95,7 +98,7 @@
 }
 .annonce .prix {
   font-weight: 700;
-  font-family: 'roboto';
+  font-family: "roboto";
   font-size: 1.8rem;
   padding: 5px 5px;
   color: rgb(7, 9, 46);

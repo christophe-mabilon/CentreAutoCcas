@@ -24,3 +24,5 @@ export class CarousselConfigComponent implements OnInit{
   }
 }
 
+export class NgbdCarouselConfig {
+}

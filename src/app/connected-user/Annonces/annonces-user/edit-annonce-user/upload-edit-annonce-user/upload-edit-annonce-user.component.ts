@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {environment as env} from "../../../../environments/environment";
+import {environment as env} from "../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../../../shared/services/user.service";
+import {UserService} from "../../../../../shared/services/user.service";
 
 
 @Component({
@@ -55,7 +55,6 @@ photosComplete(){
     this.photosEventEmitter.emit(pictures);
   }
   onRemove(event: File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 

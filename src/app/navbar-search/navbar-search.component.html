@@ -1,51 +1,46 @@
 <article [ngClass]="display ? 'd-none' : 'd-block'"
-         class="stick d-block container-fluid align-items-center justify-content-center m-0 p-0">
-  <form [formGroup]="searchForm" (ngSubmit)="envoi()">
+  class=" d-block container-fluid align-items-center justify-content-center m-0 p-0">
+  <form [formGroup]="searchForm" (ngSubmit)="submit()">
     <ngb-carousel #carousel class="carousel-size bg-blue-light pt-3">
       <ng-template ngbSlide>
 
-        <article
-          class="container-fluid justify-content-center mx-auto text-center align-items-center px-auto scene">
+        <article class="container-fluid justify-content-center mx-auto text-center align-items-center px-auto scene">
           <div class="bg-light-body">
-            <div [style.transform]="translate"
-                 class="col-12 col-md carousel align-items-center justify-content-center">
+            <div [style.transform]="translate" class="col-12 col-md carousel align-items-center justify-content-center">
               <div app-marque [marques]="item" (click)="selectionMarques(index)"
-                   *ngFor="let item of brands; let index=index"
-                   class="carousel__cell select-marque rounded"></div>
+                *ngFor="let item of brands; let index = index" class="carousel__cell select-marque rounded"></div>
             </div>
           </div>
         </article>
         <div class="text-center">
-          <button class="mr-1 btn btn-select btn-sm px-5 py-2 precedant-button select-marque text-dark"
-                  (click)="clickMoreLess(1)">Précedant
-          </button>
-          <button class="ml-1 btn btn-select btn-sm px-5 py-2 suivant-button select-marque"
-                  (click)="clickMoreLess(-1)">Suivant
-          </button>
+          <a class="mr-1 btn btn-select btn-sm px-5 py-2 precedant-button select-marque text-dark"
+            (click)="clickMoreLess(1)">Précedant
+          </a>
+          <a class="ml-1 btn btn-select btn-sm px-5 py-2 suivant-button select-marque"
+            (click)="clickMoreLess(-1)">Suivant
+          </a>
           <p class="text-white text-center">Cliquez pour sélectionnez votre ou vos marque(s)</p>
         </div>
         <div class="d-flex">
           <div class="col d-inline">
             <div class="d-none btn btn-sm retour px-3" (click)="prev()">
-              <svg
-                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+                  d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z" />
               </svg>
               Retour
             </div>
           </div>
           <span class="d-none d-md-inline text-white">Rechercher mon véhicule</span><small
-          class="text-end text-white text-md-center ms-md-1">( Filtres 1/3 )</small>
+            class="text-end text-white text-md-center ms-md-1">( Filtres 1/3 )</small>
           <div class="col d-inline">
-            <div class="float-end btn btn-sm page_suivante text-white border-white filtre-suivant m-0"
-                 (click)="next()">
+            <div class="float-end btn btn-sm page_suivante text-white border-white filtre-suivant m-0" (click)="next()">
               Suivant
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                  d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z" />
               </svg>
             </div>
           </div>
@@ -58,7 +53,7 @@
               <li class="row regions w-100">
                 <mat-form-field appearance="fill">
                   <mat-label>Régions</mat-label>
-                  <mat-select formControlName="regions">
+                  <mat-select formControlName="region">
                     <mat-option *ngFor="let region of regions" [value]="region.id">
                       {{ region.name }}
                     </mat-option>
@@ -69,10 +64,10 @@
                 <!--models-->
                 <mat-form-field appearance="fill">
                   <mat-label>Modèles</mat-label>
-                  <mat-select formControlName="models">
+                  <mat-select formControlName="model">
                     <mat-option value="all">Tous</mat-option>
                     <mat-option *ngFor="let model of selectedModels"
-                                [value]="{ model:model.modelId,brand:model.brandId }">{{model.brand}}
+                      [value]="{ model:model.modelId,brand:model.brandId }">{{model.brand}}
                       - {{model.model}}
                     </mat-option>
                   </mat-select>
@@ -125,7 +120,7 @@
                 <div class="custom-slider kilometre px-1">
                   <mat-label for="kilometrage">Kilometrage</mat-label>
                   <ngx-slider id="kilometrage" class="custom-slider" formControlName="kilometrage"
-                              [options]="optionsKilo">
+                    [options]="optionsKilo">
                   </ngx-slider>
 
                 </div>
@@ -134,8 +129,8 @@
                 <!--Année Js-->
                 <div class="custom-slider annee px-1">
                   <mat-label for="annee">Année :</mat-label>
-                  <ngx-slider id="annee" class="custom-slider" formControlName="years"
-                              [options]="optionsYear"></ngx-slider>
+                  <ngx-slider id="annee" class="custom-slider" formControlName="years" [options]="optionsYear">
+                  </ngx-slider>
                 </div>
               </li>
             </ul>
@@ -146,25 +141,23 @@
         <div class="d-block d-md-flex m-0 p-0">
           <div class="col d-inline">
             <div class="btn btn-sm retour px-3" (click)="prev()">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left"
-                   viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-                      d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+                  d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z" />
               </svg>
               Retour
             </div>
           </div>
           <span class="d-none d-md-inline text-white">Rechercher mon véhicule</span><small
-          class="text-end text-white text-md-center ms-md-1">( Filtres 2/3 )</small>
+            class="text-end text-white text-md-center ms-md-1">( Filtres 2/3 )</small>
           <div class="col d-inline">
-            <div class="float-end btn btn-sm page_suivante text-white border-white filtre-suivant m-0"
-                 (click)="next()">
+            <div class="float-end btn btn-sm page_suivante text-white border-white filtre-suivant m-0" (click)="next()">
               Suivant
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
-                      d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                  d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z" />
               </svg>
             </div>
           </div>
@@ -256,11 +249,11 @@
               <li class="row type w-100">
 
                 <button type="submit" value="rechercher"
-                        class="d-block btn btn-lg btn-outline-light d-inline p-2 recherche">
+                  class="d-block btn btn-lg btn-outline-light d-inline p-2 recherche">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                       class="bi bi-search d-none d-sm-inline" viewBox="0 0 16 16">
+                    class="bi bi-search d-none d-sm-inline" viewBox="0 0 16 16">
                     <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                   </svg>
                   Lancer la recherche
                 </button>
@@ -273,9 +266,9 @@
             <div class="col d-inline">
               <div class="btn btn-sm retour px-3" (click)="prev()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                  class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
                   <path fill-rule="evenodd"
-                        d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+                    d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z" />
                 </svg>
                 Retour
               </div>
@@ -286,11 +279,11 @@
             </div>
             <div class="col d-inline">
               <div class="d-none float-end btn btn-sm page_suivante text-white border-white filtre-suivant m-0"
-                   (click)="next()">Suivant
+                (click)="next()">Suivant
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                  class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd"
-                        d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+                    d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z" />
                 </svg>
               </div>
             </div>
@@ -300,4 +293,3 @@
     </ngb-carousel>
   </form>
 </article>
-

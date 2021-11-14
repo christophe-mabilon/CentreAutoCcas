@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {MarqueService} from "../../shared/services/marque.service";
-import {RegionService} from "../../shared/services/region.service";
-import {Marque} from "../../shared/interface/marque.interface";
-import {Region} from "../../shared/interface/region.interface";
-import {ModelService} from "../../shared/services/model.service";
-import {GarageService} from "../../shared/services/garage.service";
+import {MarqueService} from "../../../shared/services/marque.service";
+import {RegionService} from "../../../shared/services/region.service";
+import {Marque} from "../../../shared/interface/marque.interface";
+import {Region} from "../../../shared/interface/region.interface";
+import {ModelService} from "../../../shared/services/model.service";
+import {GarageService} from "../../../shared/services/garage.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AnnoncesService} from "../../shared/services/annonces.service";
-import {UserService} from "../../shared/services/user.service";
-import {environment as env} from "../../../environments/environment";
-import {FileService} from "../../shared/services/fileService";
+import {AnnoncesService} from "../../../shared/services/annonces.service";
+import {UserService} from "../../../shared/services/user.service";
+import {environment as env} from "../../../../environments/environment";
+import {FileService} from "../../../shared/services/fileService";
 
 
 
@@ -70,7 +70,6 @@ export class AddAnnonceUserComponent implements OnInit {
     this.selectedMarque = event.target.value;
     this.selectedModels = [];
     for (let item of this.brandAndmodels) {
-      console.log(this.selectedMarque)
       if (this.selectedMarque == item.brandId) {
         this.selectedModels.push({
           "brandId": item.brandId,

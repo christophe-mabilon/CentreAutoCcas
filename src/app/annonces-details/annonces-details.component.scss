@@ -110,3 +110,102 @@
   padding: 6px;
   transition: 0.4s ease-out;
 }
+.plusInfos-blue {
+  padding: 5px 5px;
+  margin: 10px;
+  color: white;
+  background: linear-gradient(
+      to top,
+      rgb(2, 74, 87,1) 0%,
+      rgb(2, 56, 65) 70%,
+      rgb(1, 31, 37) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos-blue:hover {
+  background: linear-gradient(
+      to top,
+      rgb(52, 174, 87,1) 0%,
+      rgb(52, 156, 65) 70%,
+      rgb(51, 131, 37) 100%
+  );
+  transition: 0.4s ease-out;
+}
+.plusInfos-green {
+  padding: 5px 5px;
+  margin: 10px;
+  color: white;
+  background: linear-gradient(
+      to top,
+      rgb(92, 184, 187,1) 0%,
+      rgb(92, 186, 165) 70%,
+      rgb(91, 181, 137) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos-green:hover {
+  background: linear-gradient(
+      to top,
+      rgb(52, 174, 87,1) 0%,
+      rgb(52, 156, 65) 70%,
+      rgb(51, 131, 37) 100%
+  );
+  transition: 0.4s ease-out;
+}
+.triangle{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 150px 175px 150px 0;
+  border-color: transparent #185375 transparent transparent;background: linear-gradient(
+    to top,
+    rgb(51, 2, 87) 0%,
+    rgba(51, 2, 87, 0.7) 70%,
+    rgb(51, 2, 87) 100%
+);
+  left:25px;
+}
+.plusInfos-red {
+  padding: 5px 5px;
+  margin: 10px;
+  color: white;
+  background: linear-gradient(
+      to top,
+      rgb(87, 2, 2) 0%,
+      rgb(65, 2, 2) 70%,
+      rgb(31, 1, 3) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos-red:hover {
+  background: linear-gradient(
+      to top,
+      rgb(52, 174, 87, 1) 0%,
+      rgb(52, 156, 65) 70%,
+      rgb(51, 131, 37) 100%
+  );
+}
+.plusInfos-yellow {
+  padding: 5px 5px;
+  margin: 10px;
+  color: white;
+  background: linear-gradient(
+      to top,
+      rgb(220, 196, 1) 0%,
+      rgb(153, 155, 4) 70%,
+      rgb(138, 161, 4) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos-yellow:hover {
+  background: linear-gradient(
+      to top,
+      rgb(52, 174, 87, 1) 0%,
+      rgb(52, 156, 65) 70%,
+      rgb(51, 131, 37) 100%
+  );
+}

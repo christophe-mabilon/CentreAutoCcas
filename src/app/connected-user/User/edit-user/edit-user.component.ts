@@ -1,6 +1,6 @@
 import { error } from '@angular/compiler/src/util';
 import { Observer } from 'rxjs';
-import { UserService } from './../../shared/services/user.service';
+import { UserService } from '../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/interface/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -57,7 +57,7 @@ patchValues(currentUser:User){
 
   editUser(){
     this.submitted = true;
-    if(this.editCurrentUser.valid){console.log(this.editCurrentUser.value)
+    if(this.editCurrentUser.valid){
       this.userserv.updateUser(this.currentUser.id,this.editCurrentUser.value).subscribe(()=>{
         if(this.currentUser.roles.toString() === "ROLE_ADMIN"){
 

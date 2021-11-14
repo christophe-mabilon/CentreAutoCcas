@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MarqueService } from '../shared/services/marque.service';
 import {UserService} from "../shared/services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { User } from '../shared/interface/user.interface';
 
 
 @Component({
@@ -12,26 +13,20 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit{
+  currentUser!:any;
   searchButton = true;
   navbarOpen = false;
   expression = false;
   showPassword:boolean = false;
-  username: string= this.userServ.getUsername()
-  isLogged:boolean = this.userServ.getIsLogged();
-  isAdmin:boolean = this.userServ.getIsAdmin();
+  username = "";
+  isLogged = false
+  isAdmin=false;
 
-  constructor(private marqueService: MarqueService,private userServ:UserService, private modalService: NgbModal,
-              private router:Router,private _activatedRoute: ActivatedRoute) {
-    this._activatedRoute.paramMap.subscribe(params => {
-      this.ngOnInit();
-    });
-    this.isLogged = this.userServ.getIsLogged();
-    this.isAdmin = this.userServ.getIsAdmin();
-    this.username = this.userServ.getUsername();
-  }
+  constructor(private marqueService: MarqueService,private userServ:UserService, private modalService: NgbModal,private router:Router,) {
+      }
 
-  /************************************
+ /************************************
    OUVRE OU FERME LA BARRE DE RECHERCHE
    ***********************************/
   toggleNavbar() {
@@ -51,7 +46,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.isAdmin =false;
     this.isLogged = false;
-    sessionStorage.clear();
+    localStorage.clear();
     this.userServ.loggedout();
     this.router.navigate(['/home']);
   }
@@ -90,16 +85,15 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  getData() {
-    this.isLogged = this.userServ.getIsLogged();
-    this.isAdmin = this.userServ.getIsAdmin();
-    this.username = this.userServ.getUsername();
-  }
   ngOnInit(): void {
-    this.getData();
+    this.userServ.getCurentUser().subscribe(currentUser=>{{
+if(currentUser){
+      this.isLogged = true;
+         if(currentUser.roles[0] ==="ROLE_ADMIN"){this.isAdmin = true };
+        this.username = currentUser.username;
+        this.ngOnInit();
+    }
+    }});
+
   }
-
 }
-
-
-

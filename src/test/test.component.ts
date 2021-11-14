@@ -20,7 +20,6 @@ export class TestComponent implements OnInit {
     this.sliderPriceForm.reset({sliderControl: [20, 80]});
   }
 submit(){
-  console.log(this.sliderPriceForm.value)
 }
   ngOnInit(): void {
   }

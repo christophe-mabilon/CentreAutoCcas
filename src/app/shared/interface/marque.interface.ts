@@ -3,4 +3,5 @@ export interface Marque {
   name: string;
   img: string;
   description: string;
+  countBrandAnnounce:number;
 }

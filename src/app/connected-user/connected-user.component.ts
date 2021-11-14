@@ -27,23 +27,22 @@ export class ConnectedUserComponent implements OnInit {
   ngOnInit(): void {
     this.userServ.getCurentUser().subscribe(data=>{
       this.userDetails = Array.of(data);
-      console.log(this.userDetails)
     })
-    if (sessionStorage.getItem('isLogged')){
+    if (localStorage.getItem('isLogged')){
       this.regions = this.regionserv.regions;
       this.marques = this.marqueServ.marques;
       this.userServ.getCurentUser().subscribe(data => {
-        sessionStorage.setItem("userId", data.id);
+        localStorage.setItem("userId", data.id);
         let i = 1
         for (let garage of data.garages) {
             this.tabGaragetemp[i] = {"garage": garage.id};
-          sessionStorage.setItem("garage",JSON.stringify(this.tabGaragetemp));
+          localStorage.setItem("garage",JSON.stringify(this.tabGaragetemp));
           i=i+1;
         }
         let j = 0;
         for (let annonce of data.ClassifiedAd) {
           this.tabAnnoncetemp[j] = {"id": annonce.id,"annonceRef":annonce.reference};
-        sessionStorage.setItem("annonces", JSON.stringify(this.tabAnnoncetemp));
+        localStorage.setItem("annonces", JSON.stringify(this.tabAnnoncetemp));
         j++;
 
       }

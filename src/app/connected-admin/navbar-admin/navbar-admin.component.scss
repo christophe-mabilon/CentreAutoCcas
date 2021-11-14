@@ -1,23 +1,17 @@
-section.container-fluid.navUser {
-  margin-top: -50px;
-  background:transparent;
 
-}
-a{
-  font-size:14px;
-}
-mat-icon{
-  margin: 0 5px 0 0;
-}
+
+
 .btn-blue{
   background: linear-gradient(
       to bottom,
-
       rgb(81, 115, 134) 30%,
       rgb(1, 7, 38) 100%
   );
   color:white;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+  border-radius:5px;
+  margin:5px 5px;
+  font-size:15px;
 }
 .btn-purple{
     background: linear-gradient(
@@ -26,7 +20,10 @@ mat-icon{
         rgb(86, 85, 138) 100%
     );
     color:white;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+  margin:5px 5px;
+  border-radius:5px;
+  font-size:15px;
   }
 .btn-red{
   background: linear-gradient(
@@ -35,7 +32,10 @@ mat-icon{
       rgb(115, 27, 27) 100%
   );
   color:white;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+  margin:5px 5px;
+  border-radius:5px;
+  font-size:15px;
 }
   .btn-green{
     background: linear-gradient(
@@ -44,10 +44,11 @@ mat-icon{
         rgb(8, 38, 1) 100%
     );
     color:white;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+    border-radius:5px;
+    margin:5px 5px;
+    font-size:15px;
   }
 
-.nav-link{
-  border-radius:7px 7px 0 0;
-}
+
 

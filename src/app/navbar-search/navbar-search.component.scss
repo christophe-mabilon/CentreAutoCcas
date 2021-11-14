@@ -15,8 +15,9 @@ ng-template:nth-child(3) {
   height: 150px;
   margin: 0;
   padding: 0;
-  perspective: 1000px;
+  perspective: 3000px;
 }
+
 
 .carousel {
   width: 100%;
@@ -281,7 +282,11 @@ Mat-select
 .mat-form-field,mat-label,mat-select, {
   color:white !important;
 }
-
+mat-form-field{
+  border:solid 1px rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgb(111, 119, 148);
+}
 :host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none;
   padding:0;
@@ -289,8 +294,12 @@ Mat-select
 :host ::ng-deep .mat-select-arrow{
   color: #ffffff !important;
 }
+:host ::ng-deep .mat-select-arrow-wrapper{
+  background-color: rgba(0, 162, 255, 0.66);
+  border-radius:5px;
+}
 :host ::ng-deep .mat-select-value-text {
-  color: #0084a2 !important;
+  color: #03c6f3 !important;
 }
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
@@ -342,7 +351,11 @@ Mat-select
     color: white;
   }
 }
-
+ngb-carousel {
+  position: sticky;
+  top: 37px;
+  z-index: 800;
+}
 
 @media only screen and (max-width: 485px) {
   .stick {
@@ -351,11 +364,7 @@ Mat-select
     z-index: 500;
   }
 }
-.stick {
-  position: sticky;
-  top: 37px;
-  z-index: 500;
-}
+
 
 ng-template:nth-child(2),
 ng-template:nth-child(3) {

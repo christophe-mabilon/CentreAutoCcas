@@ -2,29 +2,27 @@
   <article class="col-12 col-md-6">
     <ul class="nav nav-tabs justify-content-start me-auto border-0">
       <li class="nav-item">
-        <button [routerLink]="['/connectedUser']" class="btn btn-blue m-1">Menu principal</button>
+        <button [routerLink]="['/connectedUser']" class="col btn btn-blue m-1">Menu principal</button>
       </li>
       <li class="nav-item">
-        <button [routerLink]="['/vehiculesUser']" class="btn btn-blue m-1">Véhicules</button>
+        <button [routerLink]="['/edit/user/',userId]" class="col btn btn-blue m-1">Gérer mon compte</button>
       </li>
       <li class="nav-item">
-        <button [routerLink]="['/garagesUser']" class="btn btn-blue m-1">Garages</button>
+        <button [routerLink]="['/garagesUser']" class="col btn btn-blue m-1">Gérer mes Garages</button>
       </li>
       <li class="nav-item">
-        <button [routerLink]="['/annoncesUser']" class="btn btn-blue m-1">Annonces</button>
+        <button [routerLink]="['/annoncesUser']" class="col btn btn-blue m-1">Gérer mes Annonces</button>
       </li>
-      <li class="nav-item">
-        <button [routerLink]="['/annoncesByGarage']" class="btn btn-blue m-1">Annonces par garage</button>
-      </li>
+
     </ul>
   </article>
   <article class="col-12 col-md-6 mx-0 px-0 ">
     <ul class="nav nav-tabs justify-content-end ms-auto border-0">
       <li class="nav-item">
-        <button [routerLink]="['/addGarageUser']" class="btn btn-green m-1">Ajouter un garage</button>
+        <button [routerLink]="['/addGarageUser']" class="col btn btn-green m-1">Ajouter un garage</button>
       </li>
       <li class="nav-item">
-        <button [routerLink]="['/addAnnonceUser']" class="btn btn-green m-1">Ajouter une annonce</button>
+        <button [routerLink]="['/addAnnonceUser']" class="col btn btn-green m-1">Ajouter une annonce</button>
       </li>
 
     </ul>

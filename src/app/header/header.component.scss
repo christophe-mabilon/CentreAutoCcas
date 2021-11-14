@@ -1,28 +1,27 @@
 .head {
   margin-top: 150px;
 }
-
-
-
 .titre_pub {
   font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: rgba(4, 5, 71, 0.7);
   text-shadow: 1px 4px 5px rgba(187, 187, 187, 0.8);
 }
 
 h3.titre {
   font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: white;
   text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.6);
 }
 
-h2.titre {
+h1 {
   font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: white;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  font-size: 90px;
+  padding-bottom: 15px;
 }
 
 .slogan1 {
@@ -34,4 +33,17 @@ h2.titre {
 .slogan2 {
   color: rgba(255, 255, 255, 1);
   text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.6);
+}
+.logo {
+  width: 250px;
+}
+@media (min-width: 500px) and (max-width: 767px) {
+  h1 {
+    font-size: 54px;
+  }
+}
+@media (min-width: 1px) and (max-width: 499px) {
+  h1 {
+    font-size: 30px;
+  }
 }

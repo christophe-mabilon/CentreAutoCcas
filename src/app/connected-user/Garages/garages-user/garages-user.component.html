@@ -8,24 +8,58 @@
 
   </div>
 
-    <section *ngFor="let garage of garages;let i =index">
+  <section *ngFor="let garage of garages;let i =index">
 
-      <ul  class="row px-0 pb-2 mb-md-0">
-        <li class="col-3 col-md"><div class="text-center"><p class="text-info">Numero de garage</p><p>{{i+1}}</p></div></li>
-        <li class="col-5 col-md"><div class="text-center"><p class="text-info">Nom</p><p>{{garage.name}}</p></div></li>
-        <li class="col-4 col-md"><div class="text-center"><p class="text-info">Adresse</p><p>{{garage.streetNumber}} {{garage.streetName}} {{garage.address}}</p></div></li>
-        <li class="col-3 col-md"><div class="text-center"><p class="text-info">Code postal</p><p>{{garage.postalCode}}</p></div></li>
-        <li class="col-5 col-md"><div class="text-center"><p class="text-info">Ville</p><p>{{garage.city}}</p></div></li>
-        <li class="col-4 col-md"><div class="text-center"><p class="text-info">Nombre d'annonces</p><p>{{garage.classifiedAds.length}}</p></div></li>
-        <li class="col col-md"><div class="text-center"><a [routerLink]="['/annoncesByGarage']" class="btn btn-blue">Voir les annonces</a></div></li>
-        <li class="col col-md"><div class="text-center"><a (click)="delete(garage.id)" class="btn btn-red">Supprimer</a></div></li>
-      </ul>
+    <ul class="row px-0 pb-2 mb-md-0">
+      <li class="col-3 col-md">
+        <div class="text-center">
+          <p class="text-info">Numero de garage</p>
+          <p>{{i+1}}</p>
+        </div>
+      </li>
+      <li class="col-5 col-md">
+        <div class="text-center">
+          <p class="text-info">Nom</p>
+          <p>{{garage.name}}</p>
+        </div>
+      </li>
+      <li class="col-4 col-md">
+        <div class="text-center">
+          <p class="text-info">Adresse</p>
+          <p>{{garage.streetNumber}} {{garage.streetName}} {{garage.address}}</p>
+        </div>
+      </li>
+      <li class="col-3 col-md">
+        <div class="text-center">
+          <p class="text-info">Code postal</p>
+          <p>{{garage.postalCode}}</p>
+        </div>
+      </li>
+      <li class="col-5 col-md">
+        <div class="text-center">
+          <p class="text-info">Ville</p>
+          <p>{{garage.city}}</p>
+        </div>
+      </li>
+      <li class="col-4 col-md">
+        <div class="text-center">
+          <p class="text-info">Nombre d'annonces</p>
+          <p>{{garage.classifiedAds.length}}</p>
+        </div>
+      </li>
+      <li class="col col-md">
+        <div class="text-center"><a [routerLink]="['/garage/edit/',garage.id]" class="btn btn-blue">Editer le garage</a>
+        </div>
+      </li>
+      <li class="col col-md">
+        <div class="text-center"><a (click)="delete(garage.id)" class="btn btn-red">Supprimer</a></div>
+      </li>
+    </ul>
 
 
-    </section>
+  </section>
 
   <ng-template #garageBlock>
     <p class="text-center">Il semblerait que vous n'avez acutellement aucun garage enregistré</p>
   </ng-template>
 </div>
-

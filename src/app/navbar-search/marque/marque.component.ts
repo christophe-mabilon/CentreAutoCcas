@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Marque} from '../../shared/interface/marque.interface';
+import {MarqueService} from "../../shared/services/marque.service";
 
 
 @Component({
@@ -9,14 +10,14 @@ import {Marque} from '../../shared/interface/marque.interface';
   styleUrls: ['./marque.component.scss']
 })
 export class MarqueComponent implements OnInit {
-  @Input() marques! :any;
-  selectedMarques: any;
+  @Input() marques! :Marque;
   nom!: any;
 
-  constructor() {
+  constructor(private marqueServ:MarqueService) {
   }
 
   ngOnInit(): void {
+
   }
 
   status: boolean = false;

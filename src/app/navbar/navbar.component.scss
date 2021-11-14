@@ -1,12 +1,14 @@
+.nav-link {
+  color: white !important;
+  padding: 4px !important;
+}
 .navbar,
 nav {
   z-index: 1000;
   position: fixed;
   top: 0;
   width: 100%;
-  top: 0px;
-  padding: 0;
-  margin: 0;
+  align-items: center;
   background: linear-gradient(
       to bottom,
       rgba(33, 37, 41, 0.6) 0%,
@@ -26,28 +28,16 @@ nav {
   opacity: 0;
   z-index: 1500;
 }
-
-#search_bar,#search_bar2 {
-  display: block;
-  padding: 10px;
-}
-
-nav a:not(#search_bar,#search_bar2):hover {
-  padding-bottom: 3px;
-  color: rgba(86, 192, 253, 1) !important;
-  transition: 0.5s;
-}
 .recherche-btn {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: -30px;
-  padding: 15px 15px;
+  padding: 15px 5px;
   border: 1px solid grey;
   background: linear-gradient(
     to bottom,
-      rgba(78, 0, 114, 0.7) 0%,
-      rgba(78, 0, 114, 0.9) 50%,
-      rgba(34, 32, 139, 1) 100%
-
+    rgba(78, 0, 114, 0.7) 0%,
+    rgba(78, 0, 114, 0.9) 50%,
+    rgba(34, 32, 139, 1) 100%
   );
   color: white !important;
   text-shadow: 0px 1.2px 0.5px rgba(0, 0, 0, 1);
@@ -56,7 +46,6 @@ nav a:not(#search_bar,#search_bar2):hover {
   box-shadow: 1px 1px 4px rgba(255, 255, 255, 0.3);
   z-index: 1500;
 }
-
 .recherche-btn:hover {
   padding: 17px 15px;
   background: linear-gradient(
@@ -71,27 +60,27 @@ nav a:not(#search_bar,#search_bar2):hover {
   transition: 0.4s;
 }
 /**************** style pour changer l'icon burger du component navbar-user + gestion menu ouvert ****************/
-.navbar-toggler {
+/*.navbar-toggler {
   color: rgba(255, 255, 255, 0);
   border: none;
 }
 
 .navbar-toggler-icon {
   background-image: none;
-}
+}*/
 
-.navbar-toggler-icon {
-  transition: all 0.3s ease;
-  /* espace de travail pour les ::before et ::after */
-  position: relative;
-  /* style de la barre du milieu */
-  width: 30px;
-  height: 2.5px;
-  background: rgba(86, 192, 253, 1);
-}
+/*.navbar-toggler-icon {
+  transition: all 0.3s ease;*/
+/* espace de travail pour les ::before et ::after */
+/*position: relative;
+/* style de la barre du milieu */
+/* width: 30px;
+ height: 2.5px;
+ background: rgba(86, 192, 253, 1);
+}*/
 
 /* Style pour les barres du haut et du bas */
-.navbar-toggler-icon::before,
+/*.navbar-toggler-icon::before,
 .navbar-toggler-icon::after {
   transition: all 0.3s ease;
   content: '';
@@ -100,23 +89,23 @@ nav a:not(#search_bar,#search_bar2):hover {
   height: 2.5px;
   background: rgba(86, 192, 253, 1);
   left: 0;
-}
+}*/
 
 /* on remonte pour que le before soit au dessus = barre du haut */
-.navbar-toggler-icon::before {
+/*.navbar-toggler-icon::before {
   top: -10px;
-}
+}*/
 
 /* on remonte pour que le after soit en dessous = barre du bas */
-.navbar-toggler-icon::after {
+/*.navbar-toggler-icon::after {
   top: 10px;
-}
+}*/
 
 /* Quand le menu est ouvert, on veut remplacer le burger par une croix = on cache la barre du milieu et on rotationne (oui, même par écrit je le dis) le pseudo éléments
 
 on se sert du data-attribut aria-expanded à true pour savoir que le menu est ouvert
 */
-button[aria-expanded='true'] .navbar-toggler-icon {
+/*button[aria-expanded='true'] .navbar-toggler-icon {
   background: transparent;
 }
 
@@ -129,24 +118,7 @@ button[aria-expanded='true'] .navbar-toggler-icon::after {
   top: 0;
   transform: rotate(-45deg);
 }
-
-nav {
-  justify-items: center;
-  height:50px
-}
-
-nav li {
-  list-style: none;
-}
-
-.navbar-collapse {
-  flex-grow: unset;
-}
-
-nav a {
-  color: white;
-}
-
+*/
 .search_bar {
   display: none;
   opacity: 0;
@@ -154,19 +126,14 @@ nav a {
   position: sticky;
   z-index: 800;
 }
-
-#search_bar,#search_bar2 {
+#search_bar,
+#search_bar2 {
   display: block;
   z-index: 2500;
   font-size: 1rem;
   padding: 10px;
 }
-a{
-  text-decoration: none;
-  color:white;
-  text-wrap: none;
-}
-nav a:not(#search_bar,#search_bar2):hover {
+nav a:not(#search_bar, #search_bar2):hover {
   padding-bottom: 3px;
   color: rgba(86, 192, 253, 1) !important;
   transition: 0.5s;
@@ -176,11 +143,21 @@ nav a:not(#search_bar,#search_bar2):hover {
 #forget:hover {
   color: rgba(86, 192, 253, 1) !important;
 }
-.icon-connexion{
+.icon-deconnexion:before {
+  content: "\e912";
   color: rgb(0, 252, 228);
-
+  font-size: 14px;
+  display: inline-flex !important;
+  margin-top: 3px;
 }
-.icon-deconection{
+
+.icon-connexion:before {
+  content: "\e912";
   color: rgb(255, 0, 50);
-
+  font-size: 14px;
+  display: inline-flex !important;
+  margin-top: 3px;
 }
+/*******************
+    Media Query
+*******************/

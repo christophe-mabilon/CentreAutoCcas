@@ -1,18 +1,18 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AnnoncesService} from "../../shared/services/annonces.service";
+import {AnnoncesService} from "../../../../shared/services/annonces.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MarqueService} from "../../shared/services/marque.service";
-import {RegionService} from "../../shared/services/region.service";
-import {ModelService} from "../../shared/services/model.service";
-import {GarageService} from "../../shared/services/garage.service";
-import {Marque} from "../../shared/interface/marque.interface";
-import {Region} from "../../shared/interface/region.interface";
+import {MarqueService} from "../../../../shared/services/marque.service";
+import {RegionService} from "../../../../shared/services/region.service";
+import {ModelService} from "../../../../shared/services/model.service";
+import {GarageService} from "../../../../shared/services/garage.service";
+import {Marque} from "../../../../shared/interface/marque.interface";
+import {Region} from "../../../../shared/interface/region.interface";
 import {Subscription} from "rxjs";
-import {UserService} from "../../shared/services/user.service";
+import {UserService} from "../../../../shared/services/user.service";
 import {first} from "rxjs/operators";
 import {error} from "@angular/compiler/src/util";
-import {Annonce} from "../../shared/interface/annonce.inteface";
+import {Annonce} from "../../../../shared/interface/annonce.inteface";
 
 @Component({
   selector: 'app-edit-annonce-user',
@@ -59,7 +59,6 @@ export class EditAnnonceUserComponent implements OnInit {
     this.selectedMarque = event.target.value;
     this.selectedModels = [];
     for (let item of this.brandAndmodels) {
-      console.log(this.selectedMarque)
       if (this.selectedMarque == item.brandId) {
         this.selectedModels.push({
           "brandId": item.brandId,
@@ -73,7 +72,6 @@ export class EditAnnonceUserComponent implements OnInit {
   }
 
   addPhotos(photos:any) {
-    console.log(photos)
     this.editAnnonceForm.patchValue({
       photos:[photos]
     })
@@ -111,7 +109,6 @@ this.editAnnonceForm.patchValue({
     }
 
   submit() {
-console.log(this.editAnnonceForm.value)
   }
 
 
