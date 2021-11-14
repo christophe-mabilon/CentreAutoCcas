@@ -8,17 +8,12 @@
     ajout</p>
 
   <div class="container px-0">
-    <form [formGroup]="editAnnonceForm" (ngSubmit)="submit()" class="row form-group py-3">
-
-      <div class="col col-md-3 form-group">
-
-        <input formControlName="region" type="text"  class="form-control mb-3">
-      </div>
-
-
+    <form [formGroup]="editAnnonceForm" (ngSubmit)="submit()" *ngFor="let detailUser of currentUser"
+      class="row form-group py-3">
+      Le nom de votre sociétee
       <div class="col col-md-3 form-group">
         <label for="region">Région</label>
-        <input id="region"  type="text"  class="form-control mb-3">
+        <input id="region" formControlName="region" type="text" class="form-control mb-3">
       </div>
       <div class="col col-md-3 form-group">
         <label for="brand">Marque</label>
@@ -42,7 +37,8 @@
 
       <div class="col col-md-3 form-group mb-3">
         <label for="kilometre">Kilometre</label>
-        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text" class="form-control" name="kilometrage">
+        <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="text"
+          class="form-control" name="kilometrage">
       </div>
 
       <div class="col col-md-3 form-group">
@@ -62,31 +58,32 @@
 
       <div class="col col-md-3 form-group">
         <label for="portes">Nombre de portes</label>
-        <input id="portes"  type="number" formControlName="doors" class="form-control mb-3">
+        <input id="portes" type="number" formControlName="carDoors" class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
 
-        <label for="places">Nombre de places</label><input id="places" type="number" formControlName="places" class="form-control mb-3">
+        <label for="places">Nombre de places</label><input id="places" type="number" formControlName="places"
+          class="form-control mb-3">
       </div>
 
       <div class="col col-md-3 form-group">
         <label for="garage">Garage</label>
-        <input  id="garage" class="form-control mb-3 bg-white">
-
-
+        <input id="garage" formControlName="garage" class="form-control mb-3 bg-white">
       </div>
+
+
 
       <div class="col-12 form-group mb-3">
         <label for=description>description</label>
-        <textarea id="description" formControlName="description" class="form-control" placeholder="Déscription du véhicule"></textarea>
+        <textarea id="description" formControlName="description" class="form-control"
+          placeholder="Déscription du véhicule"></textarea>
       </div>
 
-      <div class="col col-md-3 form-group mb-3">
-        <label class="input-group-text btn-blue" for="photo1">Ajouter une photo du véhicule</label>
-        <input formControlName="photo1" type="file" class="form-control" id="photo1">
-      </div>
-
+      <app-upload-edit-annonce-user>(photosEventEmitter)="addPhotos($event)"
+        (loadingPhotoComplete)="loadingFinished=true"
+        [importPhotos]="importPhotos"
+      </app-upload-edit-annonce-user>
 
 
       <label class="form-check-label">

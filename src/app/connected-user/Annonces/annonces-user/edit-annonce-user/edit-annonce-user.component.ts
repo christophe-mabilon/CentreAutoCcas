@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AnnoncesService} from "../../shared/services/annonces.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -20,6 +20,7 @@ import {Annonce} from "../../shared/interface/annonce.inteface";
   styleUrls: ['./edit-annonce-user.component.scss']
 })
 export class EditAnnonceUserComponent implements OnInit {
+  importPhotos:any;
   annonce!: any;
   marques!: Marque[];
   regions!: Region[];
@@ -32,19 +33,27 @@ export class EditAnnonceUserComponent implements OnInit {
   submitted = false;
   currentUser:any;
   editAnnonceForm!: FormGroup;
-  json: { test: { id: number; nom: string } }[];
-
   constructor(private route: ActivatedRoute, private annonceService: AnnoncesService, private fb: FormBuilder,
               private router: Router, private marqueServ: MarqueService, private regionServ: RegionService,
               private modelServ: ModelService, private garageServ: GarageService,private userServ:UserService) {
-
-    this.json = [{test:{
-        id:2,
-        nom:"aa"
-      }}]
-  }
-
-  public subscriptions = new Subscription();
+              this.editAnnonceForm = this.fb.group({
+                region: ["", Validators.required],
+                brand: ["", Validators.required],
+                model: ["", Validators.required],
+                typeOfVehicule: ["", Validators.required],
+                fuel: ["", Validators.required],
+                kilometre: ["", Validators.required],
+                year: ["", Validators.required],
+                power: ["", Validators.required],
+                gearbox: ["", Validators.required],
+                carDoors: ["", Validators.required],
+                places: ["", Validators.required],
+                garage: ["", Validators.required],
+                description: ["", Validators.required],
+                photos: ["", Validators.required],
+                accept:["",Validators.required]
+              });
+}
   //Séléction de models en fonction de marques selectionées
   selectMarques(event: any) {
     this.selectedMarque = event.target.value;
@@ -63,49 +72,49 @@ export class EditAnnonceUserComponent implements OnInit {
     return this.selectedModels;
   }
 
-  onSubmit() {
-    this.submitted = true;
-    this.editAnnonceForm.patchValue(this.annonce)
+  addPhotos(photos:any) {
+    console.log(photos)
+    this.editAnnonceForm.patchValue({
+      photos:[photos]
+    })
   }
+patchValue(value:any){
+  this.importPhotos=value[0].photos[0];
+this.editAnnonceForm.patchValue({
+  id:value[0].id,
+  region: [value[0].region.name],
+  brand: [value[0].brand.name],
+  model: [value[0].model.name],
+  typeOfVehicule: [value[0].typeOfVehicle],
+  fuel: [value[0].fuel],
+  kilometre: [value[0].kilometre],
+  year: [value[0].year],
+  power: [value[0].power],
+  gearbox: [value[0].gearbox],
+  carDoors: [value[0].carDoors],
+  places: [value[0].places],
+  garage: [value[0].garage.name],
+  description: [value[0].description],
+              });
+}
+
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.annonceService.findOne(id).pipe(first()).subscribe(data => {
-      this.annonce = data;
-
+    if(id){
+      this.annonceService.findOne(id).subscribe((data:any) => {
+    this.patchValue(data);
+    this.annonce = data;
     });
-    this.editAnnonceForm = this.fb.group({
-      //region: ["", Validators.required],
-      brand: ["", Validators.required],
-      model: ["", Validators.required],
-      typeOfVehicule: ["", Validators.required],
-      fuel: ["", Validators.required],
-      kilometre: ["", Validators.required],
-      year: ["", Validators.required],
-      power: ["", Validators.required],
-      gearbox: ["", Validators.required],
-      doors: ["", Validators.required],
-      places: ["", Validators.required],
-      garage: ["",Validators.required],
-      description: ["", Validators.required],
-      photo1: ["", Validators.required],
-      photo2: ["", Validators.required],
-      photo3: ["", Validators.required],
-      photo4: ["", Validators.required],
-      photo5: ["", Validators.required],
-      accept:["",Validators.required]
-    });
+    }
 
-
-  }
+    }
 
   submit() {
-console.log(this.editAnnonceForm)
+console.log(this.editAnnonceForm.value)
   }
 
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
+
 
 }
 

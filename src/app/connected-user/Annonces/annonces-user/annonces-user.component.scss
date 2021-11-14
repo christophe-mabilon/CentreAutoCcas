@@ -1,0 +1,159 @@
+* {
+  color: rgba(255, 255, 255, 0.8);
+  font: 200 14px sans-serif;
+}
+.bg-img {
+  background: linear-gradient(
+      to top,
+      rgba(200, 12, 151, 0.7) 0%,
+      rgba(86, 192, 253, 0.8) 100%
+    ),
+    url("../../../assets/garage/add_garage.jpg");
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgb(2, 2, 2, 0.4);
+  height: 250px;
+  magin: 0;
+  padding: 0;
+}
+h2 {
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+p {
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+/**************Annonces*********************/
+
+.annonce {
+  box-sizing: border-box;
+  color: white;
+  padding: 10px;
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 1, 16, 0.3) 0%,
+    rgb(10, 14, 68) 100%
+  );
+
+  text-decoration: none;
+  background-size: cover;
+  background-position: bottom;
+  border: 1px solid rgba(13, 18, 80, 0.4);
+  border-radius: 5px;
+  box-shadow: 1px 3px 7px rgba(0, 0, 0, 1);
+}
+
+.annonce img {
+  max-height: 225px;
+  min-height: 225px;
+  width: auto;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  z-index: 0 !important;
+  border-radius: 0 30% 0% 30%;
+}
+.slogan {
+  position: relative;
+}
+.prime {
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-top: 100px solid rgb(2, 187, 2);
+  border-right: 100px solid transparent;
+  color: white;
+  top: 0px;
+  position: absolute;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.prime p {
+  line-height: 1rem;
+  transform: rotate(-45deg);
+  position: absolute;
+  bottom: 31px;
+  text-align: center;
+  padding-bottom: 5px;
+  padding-right: 2px;
+  flex-wrap: wrap;
+}
+.topOccas {
+  height: 0;
+  width: 0;
+  border-bottom: 75px solid rgb(123, 5, 208);
+  border-left: 75px solid transparent;
+  color: white;
+  z-index: 7;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.topOccas p:nth-child(1) {
+  transform: rotate(0deg);
+  position: absolute;
+  top: 36px;
+  right: 5px;
+  text-align: center;
+  z-index: 7;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}
+.topOccas p:nth-child(2) {
+  transform: rotate(0deg);
+  position: absolute;
+  top: 50px;
+  right: 5px;
+  text-align: center;
+  z-index: 7;
+  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+}
+.annonce h4 {
+  margin-top: 20px;
+  text-align: left !important;
+  display: flex-inline;
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.9);
+}
+
+.annonce p {
+  line-height: 0.5rem;
+  flex-wrap: wrap;
+}
+.annonce .prix {
+  font-weight: 700;
+  font-family: "roboto";
+  font-size: 1.8rem;
+  padding: 5px 5px;
+  color: rgb(7, 9, 46);
+  background-color: white;
+  border: 1px solid rgba(13, 18, 80, 0.4);
+  border-radius: 5px;
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos {
+  padding: 5px 5px;
+  margin: 10px 0;
+  color: white;
+  background: linear-gradient(
+    to top,
+    rgb(91, 2, 155) 0%,
+    rgba(175, 3, 98, 0.1) 70%,
+    rgb(91, 2, 155) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.6);
+}
+.plusInfos:hover {
+  background: linear-gradient(
+    to top,
+    rgb(55, 2, 94) 0%,
+    rgba(199, 1, 110, 0.1) 70%,
+    rgb(63, 1, 107) 100%
+  );
+  transition: 0.4s ease-out;
+}
+h1 {
+  text-shadow: 0.7px 0 1.2px rgba(0, 0, 0, 1);
+  color: rgba(2, 11, 192, 0.7);
+}

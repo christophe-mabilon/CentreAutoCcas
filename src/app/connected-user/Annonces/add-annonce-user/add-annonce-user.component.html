@@ -2,13 +2,14 @@
 <div class="container-fluid bg-dark text-light p-0">
   <div class="bg-img m-0">
     <div class="align-items-center py-auto">
-  <h2 class="text-center pt-5 pb-3 fs-1">Ajouter une annonce</h2>
-  <p class="text-center pb-2">Merci de remplir tous les champs et de présciser le maximum d'information sur le
-    véhicule</p>
-  <p class="text-center py-md-2">Toutes annonces doivent etre verifiées et confirmées par l'administrateur du site avant
-    ajout</p>
+      <h2 class="text-center pt-5 pb-3 fs-1">Ajouter une annonce</h2>
+      <p class="text-center pb-2">Merci de remplir tous les champs et de présciser le maximum d'information sur le
+        véhicule</p>
+      <p class="text-center py-md-2">Toutes annonces doivent etre verifiées et confirmées par l'administrateur du site
+        avant
+        ajout</p>
     </div>
-</div>
+  </div>
   <div class="container px-0">
     <form [formGroup]="addForm" (ngSubmit)="addAnnonce()" class="row form-group py-3">
 
@@ -21,7 +22,7 @@
 
       <div class="col col-md-3 form-group">
         <select id="marque" formControlName="brand" (change)="selectMarques($event)" class="form-select mb-3"
-                name="brand">
+          name="brand">
           <option value="" disabled>Marque du véhicule</option>
           <option *ngFor="let marque of marques" value="{{marque.id}}">{{ marque.name}}</option>
         </select>
@@ -30,8 +31,8 @@
       <div class="col col-md-3 form-group">
         <select id="model" formControlName="model" class="form-select mb-3" name="model">
           <option value="" disabled>Modèle du véhicule</option>
-          <option *ngFor="let selectedModel of selectedModels" value="{{selectedModel.modelId}}"
-                  selected>{{selectedModel.brand}} - {{selectedModel.model}}</option>
+          <option *ngFor="let selectedModel of selectedModels" value="{{selectedModel.modelId}}" selected>
+            {{selectedModel.brand}} - {{selectedModel.model}}</option>
         </select>
       </div>
 
@@ -51,7 +52,7 @@
 
       <div class="col col-md-3 form-group mb-3">
         <input id="kilometre" formControlName="kilometre" placeholder="Nombre de kilometre (en chiffres)" type="number"
-               class="form-control" name="kilometrage">
+          class="form-control" name="kilometrage">
       </div>
 
       <div class="col col-md-3 form-group">
@@ -79,8 +80,8 @@
       <div class="col col-md-3 form-group">
         <select id="portes" formControlName="carDoors" class="form-select mb-3" name="portes">
           <option value="" disabled>Nombre de portes du véhicule</option>
-          <option value=3>3</option>
-          <option value=5>5</option>
+          <option value="3">3</option>
+          <option value="5">5</option>
         </select>
       </div>
 
@@ -117,30 +118,32 @@
 
 
       <div class="col col-md-6 form-group mb-3">
-        <input id="modelComplement" type="text" formControlName="modelComplement" class="form-control" placeholder="Déstails complémentaire du véhicule">
+        <input id="modelComplement" type="text" formControlName="modelComplement" class="form-control"
+          placeholder="Déstails complémentaire du véhicule">
       </div>
 
       <div class="col col-md-6 form-group mb-3">
         <input id="modelComplement2" type="text" formControlName="modelComplement2" class="form-control"
-               placeholder="Détails complémentaire du véhicule (suite)">
+          placeholder="Détails complémentaire du véhicule (suite)">
       </div>
 
       <div class="col-12 form-group mb-3">
         <textarea formControlName="description" id=description class="form-control"
-                  placeholder="Déscription du véhicule" name="description"></textarea>
+          placeholder="Déscription du véhicule" name="description"></textarea>
       </div>
 
-        <div class="container-fluid align-items-center">
-      <h2>Envoi tes photos (5 photos maxi par annonce)</h2>
-      <app-upload-annonces></app-upload-annonces>
-  </div>
-
+      <div class="container-fluid align-items-center">
+        <h2>Envoi tes photos (5 photos maxi par annonce)</h2>
+        <app-upload-annonces (photosEventEmitter)="addPhotos($event)" (loadingPhotoComplete)="loadingFinished=true">
+        </app-upload-annonces>
+      </div>
+      <div *ngIf="loadingFinished" class="">Le chargement des photos est terminé</div>
       <label class="form-check-label mt-md-2">
         <input type="checkbox" formControlName="accept" class="form-check-input">
         J'accepte les conditions
       </label>
       <div class="form-group">
-        <button type="submit" class="btn btn-green mt-3">Ajouter l'annonce</button>
+        <button [disabled]="!loadingFinished" type="submit" class="btn btn-green mt-3">Ajouter l'annonce</button>
       </div>
     </form>
 

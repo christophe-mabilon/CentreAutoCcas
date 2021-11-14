@@ -5,12 +5,12 @@ import {Marque} from "../../shared/interface/marque.interface";
 import {Region} from "../../shared/interface/region.interface";
 import {ModelService} from "../../shared/services/model.service";
 import {GarageService} from "../../shared/services/garage.service";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AnnoncesService} from "../../shared/services/annonces.service";
-import {reference} from "@popperjs/core";
-import {BehaviorSubject, observable} from "rxjs";
 import {UserService} from "../../shared/services/user.service";
+import {environment as env} from "../../../environments/environment";
+import {FileService} from "../../shared/services/fileService";
 
 
 
@@ -20,6 +20,7 @@ import {UserService} from "../../shared/services/user.service";
   styleUrls: ['./add-annonce-user.component.scss']
 })
 export class AddAnnonceUserComponent implements OnInit {
+  private apiUrl = env.apiUrl;
   marques!: Marque[];
   regions!: Region[];
   selectedModels!: any[];
@@ -32,26 +33,19 @@ export class AddAnnonceUserComponent implements OnInit {
   valueToOccas!: 0;
   currentUser:any;
   reference!:string;
-  possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-  lengthOfCode = 10;
+  brand:number =0;
+  model:number=0;
+  loadingFinished!:Boolean;
   private selectedFile!: File;
   constructor(private userServ:UserService,private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
-    , private garageServ: GarageService, private fb: FormBuilder, private router: Router, private annonceServ: AnnoncesService) {
+    , private garageServ: GarageService, private fb: FormBuilder, private router: Router, private annonceServ: AnnoncesService,private fileServ:FileService) {
   }
 
   //construction de la reference annonce unique
-  makeRandomReference(lengthOfCode:number,possible:string) {
-    for (let i = 0; i < lengthOfCode; i++) {
-      this.reference += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
+  makeRandomReference() {
+    this.reference = Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return this.reference;
   }
-
-
-
-  /*********************
-   *  photos
-   ************************/
 
 
 //for of pour l'année
@@ -88,13 +82,14 @@ export class AddAnnonceUserComponent implements OnInit {
     }
     return this.selectedModels;
   }
+  addPhotos(photos:any) {
+    this.addForm.controls['photos'].patchValue([photos]);
 
+  }
   /**********************************************
       ENVOI DU FORMULAIRE D'AJOUT D'UNE ANNONCE
    *********************************************/
-  //photos a rajouter
   addAnnonce(){
-console.log(this.addForm.value)
     this.formSubmitted = true;
     if (this.addForm.valid) {
       this.annonceServ.add(this.addForm.value).subscribe(v => this.router.navigate(['/annoncesUser']));
@@ -114,9 +109,11 @@ console.log(this.addForm.value)
 
 
   }
+
   public addForm: FormGroup = this.fb.group({
-    user: [sessionStorage.getItem('userId')],
-    reference:[this.makeRandomReference(this.lengthOfCode,this.possible)],
+    photos : [""],
+    user: localStorage.getItem('userId'),
+    reference:[this.makeRandomReference()],
     region: ["", Validators.required],
     brand: ["", Validators.required],
     model: ["", Validators.required],

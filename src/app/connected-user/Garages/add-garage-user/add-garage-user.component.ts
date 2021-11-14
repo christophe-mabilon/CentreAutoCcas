@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Marque} from "../../shared/interface/marque.interface";
 import {Region} from "../../shared/interface/region.interface";
@@ -25,11 +25,17 @@ export class AddGarageUserComponent implements OnInit {
   carburants!:any[];
   types!:any[];
   private formSubmitted!: boolean;
+  loadingFinished!:Boolean;
 
 
-  public addGarageForm:FormGroup= this.fb.group({
-    userId:[sessionStorage.getItem('userId'),Validators.required],
-    imageGarage:['["maphotos.jpg"]'],
+
+
+  constructor(private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
+    , private garageServ: GarageService, private fb: FormBuilder,private router:Router,private userService:UserService) { }
+
+    public addGarageForm:FormGroup= this.fb.group({
+    userId:['',Validators.required],
+    imageGarage:[""],
     name: ["", Validators.required],
     streetNumber:["",Validators.required],
     streetName:["",Validators.required],
@@ -38,18 +44,22 @@ export class AddGarageUserComponent implements OnInit {
     city:["",Validators.required],
     accept:["",Validators.required]
   });
-
-  constructor(private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
-    , private garageServ: GarageService, private fb: FormBuilder,private router:Router,private userService:UserService) { }
+  addPhotos(photos:any) {
+    this.addGarageForm.controls['imageGarage'].patchValue([photos]);
+  }
 
   addGarageSubmit(){
+    if(this.loadingFinished && this.addGarageForm.valid){
+    this.addGarageForm.patchValue({
+      userId:localStorage.getItem('userId'),
+          });
     this.formSubmitted = true;
-    if (this.addGarageForm.valid) {
+      console.log(this.addGarageForm.value)
       this.garageServ.add(this.addGarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
       this.addGarageForm.reset();
       this.formSubmitted = false;
+      }
     }
-  }
   ngOnInit(): void {
     this.marques = this.marqueServ.marques.value;
     this.types = this.modelServ.types.value;

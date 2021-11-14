@@ -1,0 +1,67 @@
+<app-navbar-user></app-navbar-user>
+<div class="container-fluid bg-dark text-light p-0">
+  <div class="bg-img m-0 mb-3">
+    <div class="align-items-center py-auto">
+      <h2 class="text-center pt-5 pb-3 fs-1">Ajouter un garage</h2>
+      <p class="text-center pb-2">Merci de remplir tous les champs et de présciser le maximum d'information sur le
+        garage</p>
+      <p class="text-center py-md-2">Touts les ajouts de garages doivent etre verifiées et confirmées par
+        l'administrateur du site avant
+        ajout</p>
+    </div>
+  </div>
+
+  <div class="container row justify-content-center mx-auto">
+    <form [formGroup]="addGarageForm" (ngSubmit)="addGarageSubmit()" class=" mx-0">
+
+      <div class="form-group py-2">
+        <label for="name">Nom du garage</label>
+        <input formControlName="name" class="form-control" type="text" id="name" name="name">
+      </div>
+      <div class="col-12 d-flex py-2">
+        <div class="col-1 form-group pe-2">
+          <label for="number">Numero</label>
+          <input formControlName="streetNumber" class="form-control" type="number" id="number" name="streetNumber">
+        </div>
+
+        <div class="col-2 form-group pe-2">
+          <label for="streetName">Type de voie</label>
+          <input formControlName="streetName" class="form-control" type="text" id="streetName" name="streetName">
+        </div>
+
+        <div class="col-3 form-group pe-2">
+          <label for="adresse">Adresse</label>
+          <input formControlName="address" class="form-control" type="text" id="adresse" name="adress">
+        </div>
+
+        <div class="col-2 form-group pe-2">
+          <label for="postalCode">Code postal</label>
+          <input formControlName="postalCode" class="form-control" type="number" id="postalCode" name="adress">
+        </div>
+
+        <div class="col-4 form-group">
+          <label for="ville">Ville</label>
+          <input formControlName="city" class="form-control" type="text" id="ville" name="city">
+        </div>
+      </div>
+      <div class="container-fluid align-items-center">
+        <h2>Ajouter une photo du garage</h2>
+        <app-upload-garage (photosEventEmitter)="addPhotos($event)" (loadingPhotoComplete)="loadingFinished=true">
+        </app-upload-garage>
+      </div>
+      <div *ngIf="loadingFinished" class="">Le chargement des photos est terminé</div>
+      <div class="form-check my-2">
+        <label class="form-check-label">
+          <input type="checkbox" formControlName="accept" class="form-check-input">
+          J'accepte les conditions
+        </label>
+      </div>
+      <div class="form-group mb-3">
+        <button [disabled]="!loadingFinished" type="submit" class="btn btn-blue btn-envoi">Ajouter le
+          garage</button>
+      </div>
+    </form>
+
+
+  </div>
+</div>

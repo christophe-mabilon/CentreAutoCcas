@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../shared/services/user.service";
-import {GarageService} from "../../shared/services/garage.service";
+import {UserService} from "../../../../shared/services/user.service";
+import {GarageService} from "../../../../shared/services/garage.service";
 import normalize from 'normalize-json-api-response';
 import {Router} from "@angular/router";
 @Component({
