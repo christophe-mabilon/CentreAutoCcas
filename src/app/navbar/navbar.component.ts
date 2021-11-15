@@ -1,11 +1,14 @@
+import { Subscription } from 'rxjs';
+import { User } from './../shared/interface/user.interface';
 import { MdpOublieComponent } from '../mdp-oublie/mdp-oublie.component';
 import { Component, OnInit } from '@angular/core';
 import { ModalProComponent } from '../modal-pro/modal-pro.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MarqueService } from '../shared/services/marque.service';
 import {UserService} from "../shared/services/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import { User } from '../shared/interface/user.interface';
+import {Router} from "@angular/router";
+import { Observable } from 'rxjs';
+import jwtDecode from 'jwt-decode';
 
 
 @Component({
@@ -14,7 +17,8 @@ import { User } from '../shared/interface/user.interface';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
-  currentUser!:any;
+  public currentUser:User | undefined;
+
   searchButton = true;
   navbarOpen = false;
   expression = false;
@@ -24,7 +28,9 @@ export class NavbarComponent implements OnInit{
   isAdmin=false;
 
   constructor(private marqueService: MarqueService,private userServ:UserService, private modalService: NgbModal,private router:Router,) {
-      }
+
+    }
+
 
  /************************************
    OUVRE OU FERME LA BARRE DE RECHERCHE
@@ -84,16 +90,19 @@ export class NavbarComponent implements OnInit{
       size: 'sm'
     });
   }
-
-  ngOnInit(): void {
-    this.userServ.getCurentUser().subscribe(currentUser=>{{
-if(currentUser){
-      this.isLogged = true;
-         if(currentUser.roles[0] ==="ROLE_ADMIN"){this.isAdmin = true };
-        this.username = currentUser.username;
-        this.ngOnInit();
-    }
-    }});
+  myFunction(res:any)
+  {console.log(res)
+    this.username = res.username;
+    this.isLogged = res.isLogged;
+    this.isAdmin = res.isAdmin ;
 
   }
+  ngOnInit(): void {
+    this.userServ.customObservable.subscribe((res) => {
+      this.myFunction(res)
+    }
+  );
 }
+
+  }
+

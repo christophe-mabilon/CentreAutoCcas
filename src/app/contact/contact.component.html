@@ -1,1 +1,211 @@
-<p>contact works!</p>
+<div class="container-fluid background">
+
+  <form class="justify-content-center mx-auto well form-horizontal border formulaire" [formGroup]="contactForm"
+    (ngSubmit)="submitContactForm()">
+
+    <div class="justify-content-center mx-auto">
+      <h2 class="fs-1 mb-4 text-white font-weight-bold">Formulaire de contact</h2>
+    </div>
+
+
+    <!-- select -->
+    <div class="form-group">
+      <label for="genre" class="col-md-3 control-label px-0">Vous etes ?:</label>
+      <div class="col-md-8 selectContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['genre']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span
+              class="bi bi-gender-ambiguous fs-2"></span></span>
+          <select formControlName="genre" class="form-select selectpicker" (change)="changeValue($event,'genre')">
+            <option> -- Séléctionner votre genre -- </option>
+            <option *ngFor="let genre of genres">{{genre}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!--fin select -->
+
+    <!-- select -->
+
+    <div class="form-group">
+      <label for="type" class="col-md-3 control-label px-0">Vous etes un ?:</label>
+      <div class="col-md-8 selectContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['type']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span class="bi bi-activity fs-2"></span></span>
+          <select formControlName="type" class="form-select selectpicker" (change)="changeValue($event,'type')">
+            <option> -- Séléctionner votre type -- </option>
+            <option *ngFor="let type of types">{{type}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--fin select -->
+
+    <!-- select -->
+    <div class="form-group">
+      <label for="dejaInsrcit" class="col-md-3 control-label px-0">Etes vous déja inscrit sur notre site ?:</label>
+      <div class="col-md-8 selectContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['dejaInsrcit']?.errors?.required"
+          class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span
+              class="glyphicon glyphicon-list fs-2"></span></span>
+          <select formControlName="dejaInsrcit" class="form-select selectpicker"
+            (change)="changeValue($event,'dejaInsrcit')">
+            <option> -- Séléctionner votre réponse -- </option>
+            <option *ngFor="let dejaInsrcit of dejaInsrcits">{{dejaInsrcit}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!--fin select -->
+
+    <!-- Text input-->
+
+    <div class="form-group">
+      <label for="Nom" class="col-md-3 control-label px-0">Nom</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['nom']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input name="Nom" placeholder="Nom" formControlName="nom" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+
+    <div class="form-group">
+      <label for="Prenom" class="col-md-3 control-label px-0">Prénom</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['prenom']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="Prenom" placeholder="Prenom" formControlName="prenom" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label for="email" class="col-md-3 control-label px-0">E-Mail</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['email']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div *ngIf="formIsSubmit && contactForm.controls['email']?.errors?.email" class="text-start text-danger">Votre
+          email n'a pas un format valide!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><i
+              class="glyphicon glyphicon-envelope"></i></span>
+          <input name="email" placeholder="Adresse Email" formControlName="email" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- Text input-->
+
+    <div class="form-group">
+      <label for="adresse" class="col-md-3 control-label px-0">Adresse</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['adresse']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          <input id="adresse" placeholder="Adresse" formControlName="adresse" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+
+    <div class="form-group">
+      <label for="codePostal" class="col-md-3 control-label px-0">Code postal</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['codePostal']?.errors?.required"
+          class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span class="bi bi-geo-alt-fill"></span></span>
+          <input id="codePostal" placeholder="code Postal" formControlName="codePostal" class="form-control"
+            type="text">
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+
+    <div class="form-group">
+      <label for="ville" class="col-md-3 control-label px-0">Ville</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['ville']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span class="bi bi-geo-alt-fill"></span></span>
+          <input id="ville" placeholder="Ville" formControlName="ville" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+    <!-- select -->
+    <div class="form-group">
+      <label for="demande" class="col-md-3 control-label px-0">Votre demande concerne ?:</label>
+      <div class="col-md-8 selectContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['demande']?.errors?.required" class="text-start text-danger">
+          Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span
+              class="bi bi-info-circle-fill text-white"></span></span>
+          <select formControlName="demande" class="form-select selectpicker" (change)="changeValue($event,'demande')">
+            <option> -- Séléctionner votre demande -- </option>
+            <option *ngFor="let demande of demandes">{{demande}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <!--fin select -->
+    <div class="form-group">
+      <label for="message" class="col-md-3 control-label px-0">Votre message</label>
+      <div class="col-md-8 inputGroupContainer">
+        <div *ngIf="formIsSubmit && contactForm.controls['message']?.errors?.required" class="text-start text-danger">Ce
+          champs
+          est
+          requis!</div>
+        <div class="input-group">
+          <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span class="bi bi-chat-dots"></span></span>
+          <textarea name="message" placeholder="Votre message" formControlname="message" row="10" class="form-control"
+            type="text"></textarea>
+        </div>
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-dark-blue py-3 px-5">Envoyer vos informations</button>
+
+
+  </form>
+</div>

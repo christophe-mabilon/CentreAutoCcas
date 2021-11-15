@@ -1,0 +1,53 @@
+* {
+  font-size: 14px;
+}
+.formulaire {
+  width: 70%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.522);
+}
+.bg-dark-blue {
+  background: linear-gradient(to bottom, rgb(1, 24, 68), rgb(31, 80, 172));
+  color: white;
+}
+.btn-dark-blue {
+  background: linear-gradient(to bottom, rgb(1, 24, 68), rgb(31, 80, 172));
+  color: white;
+  border-radius: 10px;
+  border: solid 0.5px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 3px rgba(255, 255, 255, 0.5);
+}
+textarea {
+  height: 200px;
+}
+.background {
+  background: linear-gradient(
+      to top,
+      rgba(49, 111, 145, 0.6) 0%,
+      rgba(7, 8, 108, 0.5) 100%
+    ),
+    url(../../assets/audi_666.jpg);
+  background-size: cover;
+  background-position: center left;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgb(2, 2, 2, 0.4);
+  padding-bottom: 150px;
+}
+label {
+  color: white;
+}
+.genre {
+  background-image: url(../../assets/venus-mars-solid.svg);
+  color: white;
+  width: 15px;
+}
+
+@media screen and (min-width: 100px) and (max-width: 992px) {
+  .formulaire {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.522);
+  }
+}

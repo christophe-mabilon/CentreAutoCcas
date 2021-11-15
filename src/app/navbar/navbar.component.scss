@@ -30,6 +30,7 @@ nav {
 }
 .recherche-btn {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px !important;
   margin-bottom: -30px;
   padding: 15px 5px;
   border: 1px solid grey;
@@ -126,12 +127,23 @@ button[aria-expanded='true'] .navbar-toggler-icon::after {
   position: sticky;
   z-index: 800;
 }
+.icon-search:before {
+  font-size: 14px;
+  content: "\e93d";
+  color: #fff;
+}
+.icon-close:before {
+  font-size: 12px;
+  content: "\e90d";
+  color: #fff;
+}
+
 #search_bar,
 #search_bar2 {
   display: block;
   z-index: 2500;
   font-size: 1rem;
-  padding: 10px;
+  padding: 5px;
 }
 nav a:not(#search_bar, #search_bar2):hover {
   padding-bottom: 3px;

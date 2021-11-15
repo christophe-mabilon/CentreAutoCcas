@@ -4,12 +4,13 @@
     <a class="navbar-brand d-block d-xs-flex d-lg-none" href="#">Centre’Auto’Ccas</a>
     <!--menu de recherche-->-->
     <button *ngIf="searchButton; else elseSearch" (click)="clickEvent()"
-      class="navbar-brand recherche-btn btn_search_bar" id="search_bar"><i class="fas fa-search me-1"></i>Rechercher mon
+      class="navbar-brand recherche-btn btn_search_bar" id="search_bar"><span class="icon-search me-2"></span>Rechercher
+      mon
       véhicule
     </button>
     <ng-template #elseSearch>
-      <button (click)="clickEvent()" class="navbar-brand recherche-btn btn_search_bar" id="search_bar2"><i
-          class="far fa-times-circle me-1"></i>Fermer la barre de recherche
+      <button (click)="clickEvent()" class="navbar-brand recherche-btn btn_search_bar" id="search_bar2"><span
+          class="icon-close me-2"></span>Fermer la barre de recherche
       </button>
     </ng-template>
 

@@ -1,7 +1,8 @@
+import { NavbarComponent } from './../../navbar/navbar.component';
 import { User } from './../interface/user.interface';
-import {Injectable} from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {environment as env} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import jwt_decode from "jwt-decode";
@@ -12,20 +13,25 @@ import {FormGroup} from "@angular/forms";
 })
 export class UserService {
   private apiUrl = env.apiUrl;
-  currentUser = new Observable<User>();
   userId:any;
-  private _isLogged: boolean = false;
-  private _isAdmin:boolean | undefined ;
+  private _isLogged!: boolean;
+  private _isAdmin!:boolean ;
   private _refreshToken: any;
   private _username!:string ;
+  private customSubject = new Subject<any>();
+  customObservable = this.customSubject.asObservable();
 
 
 
   constructor(private http: HttpClient,private router:Router) {
 
   }
+  callComponentMethod(value:any) {
+    this.customSubject.next(value);
+  }
   getCurentUser(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + "user/currentUser");
+    const headers = {'Authorization': "Bearer " + this.getToken()};
+    return this.http.get<any>(this.apiUrl + "user/currentUser", {headers});
   }
   RefreshToken(): Observable<any> {
     const headers = {'Authorization': "Bearer " + this.getRefreshToken()};
@@ -69,15 +75,14 @@ connected(formLogin: FormGroup){
         this.setToken(data.token);
       this.setRefreshToken(data.refresh_token)
       this.getCurentUser().subscribe(user=>{
-        this.currentUser = user;
         localStorage.setItem('userId',user.id);
         localStorage.setItem('role',token.roles[0]);
         localStorage.setItem('username',token.username);
         localStorage.setItem('isLogged','true');
-        this._isLogged = true;
         window.sessionStorage.setItem("isAdmin", "false");
+        this._isLogged = true;
       if(token.roles[0] === "ROLE_ADMIN"){
-        this._isAdmin = this.setIsAdmin(true);
+        this._isAdmin = true;
         this.router.navigate(['/connectedAdmin']);
       }
       else{
@@ -86,8 +91,15 @@ connected(formLogin: FormGroup){
 
         this.router.navigate(['/connectedUser']);
       }
+      this.callComponentMethod({
+  islogged:this._isLogged,
+  isAdmin:this._isAdmin,
+  username:this._username
     })
-} )
+
+})
+})
+
 }
 
 loginUser(formLogin:FormGroup): Observable<any> {

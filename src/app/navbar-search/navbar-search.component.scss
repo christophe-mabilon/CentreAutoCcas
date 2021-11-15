@@ -1,3 +1,6 @@
+* {
+  font-size: 13px !important;
+}
 .stick {
   position: sticky;
   top: 37px;
@@ -17,8 +20,21 @@ ng-template:nth-child(3) {
   padding: 0;
   perspective: 3000px;
 }
-
-
+.icon-prev:before {
+  font-size: 11px;
+  content: "\e940";
+  color: #fff;
+}
+.icon-next:before {
+  font-size: 11px;
+  content: "\e940";
+  color: #fff;
+  transform: rotate(180deg);
+}
+ngb-carousel ol {
+  width: 100%;
+  margin: auto;
+}
 .carousel {
   width: 100%;
   position: absolute;
@@ -35,9 +51,9 @@ ng-template:nth-child(3) {
   font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
-  --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: rgba(255, 255, 255, 1);
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
@@ -160,13 +176,11 @@ button .precedant-button,
 personalisation select
 ********************************************/
 
-
-
 ul li {
-  margin:0;
+  margin: 0;
 }
 .bg-blue-light {
-  background:rgba(33, 37, 41, 1);
+  background: rgba(33, 37, 41, 1);
   /*background: linear-gradient(
       to top,
       rgba(5, 89, 138, 1) 0%,
@@ -191,10 +205,10 @@ ul li {
 
 .btn-select {
   background: linear-gradient(
-      to bottom,
-      rgba(13, 18, 80, 0.7) 0%,
-      rgba(13, 18, 80, 0.9) 50%,
-      rgba(13, 18, 80, 0.7) 100%
+    to bottom,
+    rgba(13, 18, 80, 0.7) 0%,
+    rgba(13, 18, 80, 0.9) 50%,
+    rgba(13, 18, 80, 0.7) 100%
   );
   border: 0.5px solid rgba(9, 12, 151, 0.3);
   border-radius: 7px;
@@ -202,34 +216,34 @@ ul li {
 
 .btn-select:hover {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   );
 }
 
 .page_suivante {
   background: linear-gradient(
-      to bottom,
-      rgba(12, 156, 240, 1) 0%,
-      rgba(12, 156, 240, 1) 100%
+    to bottom,
+    rgba(12, 156, 240, 1) 0%,
+    rgba(12, 156, 240, 1) 100%
   ) !important;
   color: white;
 }
 
 .page_suivante:hover {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   ) !important;
 }
 
 .retour {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 100%
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
   ) !important;
   color: white !important;
   border-radius: 7px;
@@ -238,31 +252,30 @@ ul li {
 
 .retour:hover {
   background: linear-gradient(
-      to bottom,
-      rgb(140, 0, 0) 0%,
-      rgba(140, 0, 0, 1) 100%
+    to bottom,
+    rgb(140, 0, 0) 0%,
+    rgba(140, 0, 0, 1) 100%
   ) !important;
 }
 
 .recherche {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   ) !important;
   color: white !important;
   border: 1px solid white !important;
   border-radius: 7px !important;
   margin-top: 30px;
-  width:100%;
-
+  width: 100%;
 }
 
 .recherche:hover {
   background: linear-gradient(
-      rgb(32, 230, 14) 0%,
-      rgba(0, 140, 0, 1) 15%,
-      rgba(9, 255, 0, 1) 100%
+    rgb(32, 230, 14) 0%,
+    rgba(0, 140, 0, 1) 15%,
+    rgba(9, 255, 0, 1) 100%
   ) !important;
 
   transition: 4s;
@@ -279,53 +292,54 @@ ul li {
 /**************************************
 Mat-select
 **************************************/
-.mat-form-field,mat-label,mat-select, {
-  color:white !important;
+.mat-form-field,
+mat-label,
+mat-select {
+  color: white !important;
 }
-mat-form-field{
-  border:solid 1px rgba(255, 255, 255, 0.6);
+mat-form-field {
+  border: solid 1px rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   box-shadow: 0 1px 1px rgb(111, 119, 148);
 }
 :host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none;
-  padding:0;
+  padding: 0;
 }
-:host ::ng-deep .mat-select-arrow{
+:host ::ng-deep .mat-select-arrow {
   color: #ffffff !important;
 }
-:host ::ng-deep .mat-select-arrow-wrapper{
+:host ::ng-deep .mat-select-arrow-wrapper {
   background-color: rgba(0, 162, 255, 0.66);
-  border-radius:5px;
+  border-radius: 5px;
 }
 :host ::ng-deep .mat-select-value-text {
   color: #03c6f3 !important;
 }
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
-
   .custom-slider .ngx-slider .ngx-slider-bar {
-    color:white;
+    color: white;
     background: #ffffff;
     height: 10px;
   }
   //couleur interieur slider
   .custom-slider .ngx-slider .ngx-slider-selection {
-    color:white;
+    color: white;
     background: linear-gradient(rgb(0, 132, 162) 3%, rgb(0, 132, 162) 87%);
   }
   //taille et position des ronds slider
   .custom-slider .ngx-slider .ngx-slider-pointer {
-    color:white;
+    color: white;
     width: 16px;
     height: 16px;
     top: auto; /* to remove the default positioning */
     bottom: -9px;
     background: linear-gradient(
-        to bottom,
-        rgba(1, 175, 214),
-        rgba(0, 96, 118, 1),
-        rgba(1, 175, 214)
+      to bottom,
+      rgba(1, 175, 214),
+      rgba(0, 96, 118, 1),
+      rgba(1, 175, 214)
     );
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
@@ -337,13 +351,13 @@ mat-form-field{
   }
   //position des barre (hauteur)
   .ngx-slider .ngx-slider-bar-wrapper {
-    margin:0 !important;
-    padding:0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   //couleur et size des valeurs en cours
   .custom-slider .ngx-slider .ngx-slider-bubble {
     font-size: 12px;
-    color:white;
+    color: white;
   }
   //couleur et size des valeurs mini/maxi
   .custom-slider .ngx-slider .ngx-slider-limit {
@@ -364,7 +378,6 @@ ngb-carousel {
     z-index: 500;
   }
 }
-
 
 ng-template:nth-child(2),
 ng-template:nth-child(3) {
@@ -396,9 +409,9 @@ ng-template:nth-child(3) {
   font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
-  --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: rgba(255, 255, 255, 1);
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
@@ -521,13 +534,11 @@ button .precedant-button,
 personalisation select
 ********************************************/
 
-
-
 ul li {
-  margin:0;
+  margin: 0;
 }
 .bg-blue-light {
-  background:rgba(33, 37, 41, 1);
+  background: rgba(33, 37, 41, 1);
   /*background: linear-gradient(
       to top,
       rgba(5, 89, 138, 1) 0%,
@@ -552,10 +563,10 @@ ul li {
 
 .btn-select {
   background: linear-gradient(
-      to bottom,
-      rgba(13, 18, 80, 0.7) 0%,
-      rgba(13, 18, 80, 0.9) 50%,
-      rgba(13, 18, 80, 0.7) 100%
+    to bottom,
+    rgba(13, 18, 80, 0.7) 0%,
+    rgba(13, 18, 80, 0.9) 50%,
+    rgba(13, 18, 80, 0.7) 100%
   );
   border: 0.5px solid rgba(9, 12, 151, 0.3);
   border-radius: 7px;
@@ -563,34 +574,34 @@ ul li {
 
 .btn-select:hover {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   );
 }
 
 .page_suivante {
   background: linear-gradient(
-      to bottom,
-      rgba(12, 156, 240, 1) 0%,
-      rgba(12, 156, 240, 1) 100%
+    to bottom,
+    rgba(12, 156, 240, 1) 0%,
+    rgba(12, 156, 240, 1) 100%
   ) !important;
   color: white;
 }
 
 .page_suivante:hover {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   ) !important;
 }
 
 .retour {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 100%
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
   ) !important;
   color: white !important;
   border-radius: 7px;
@@ -599,31 +610,30 @@ ul li {
 
 .retour:hover {
   background: linear-gradient(
-      to bottom,
-      rgb(140, 0, 0) 0%,
-      rgba(140, 0, 0, 1) 100%
+    to bottom,
+    rgb(140, 0, 0) 0%,
+    rgba(140, 0, 0, 1) 100%
   ) !important;
 }
 
 .recherche {
   background: linear-gradient(
-      to bottom,
-      rgba(0, 140, 0, 1) 0%,
-      rgba(0, 140, 0, 1) 100%
+    to bottom,
+    rgba(0, 140, 0, 1) 0%,
+    rgba(0, 140, 0, 1) 100%
   ) !important;
   color: white !important;
   border: 1px solid white !important;
   border-radius: 7px !important;
   margin-top: 30px;
-  width:100%;
-
+  width: 100%;
 }
 
 .recherche:hover {
   background: linear-gradient(
-      rgb(32, 230, 14) 0%,
-      rgba(0, 140, 0, 1) 15%,
-      rgba(9, 255, 0, 1) 100%
+    rgb(32, 230, 14) 0%,
+    rgba(0, 140, 0, 1) 15%,
+    rgba(9, 255, 0, 1) 100%
   ) !important;
 
   transition: 4s;
@@ -640,15 +650,17 @@ ul li {
 /**************************************
 Mat-select
 **************************************/
-.mat-form-field,mat-label,mat-select, {
-  color:white !important;
+.mat-form-field,
+mat-label,
+mat-select {
+  color: white !important;
 }
 
 :host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none;
-  padding:0;
+  padding: 0;
 }
-:host ::ng-deep .mat-select-arrow{
+:host ::ng-deep .mat-select-arrow {
   color: #ffffff !important;
 }
 :host ::ng-deep .mat-select-value-text {
@@ -656,29 +668,28 @@ Mat-select
 }
 // We need to use ::ng-deep to overcome view encapsulation
 ::ng-deep {
-
   .custom-slider .ngx-slider .ngx-slider-bar {
-    color:white;
+    color: white;
     background: #ffffff;
     height: 10px;
   }
   //couleur interieur slider
   .custom-slider .ngx-slider .ngx-slider-selection {
-    color:white;
+    color: white;
     background: linear-gradient(rgb(0, 132, 162) 3%, rgb(0, 132, 162) 87%);
   }
   //taille et position des ronds slider
   .custom-slider .ngx-slider .ngx-slider-pointer {
-    color:white;
+    color: white;
     width: 16px;
     height: 16px;
     top: auto; /* to remove the default positioning */
     bottom: -9px;
     background: linear-gradient(
-        to bottom,
-        rgba(1, 175, 214),
-        rgba(0, 96, 118, 1),
-        rgba(1, 175, 214)
+      to bottom,
+      rgba(1, 175, 214),
+      rgba(0, 96, 118, 1),
+      rgba(1, 175, 214)
     );
     border: 1px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
@@ -690,13 +701,13 @@ Mat-select
   }
   //position des barre (hauteur)
   .ngx-slider .ngx-slider-bar-wrapper {
-    margin:0 !important;
-    padding:0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   //couleur et size des valeurs en cours
   .custom-slider .ngx-slider .ngx-slider-bubble {
     font-size: 12px;
-    color:white;
+    color: white;
   }
   //couleur et size des valeurs mini/maxi
   .custom-slider .ngx-slider .ngx-slider-limit {
@@ -704,7 +715,6 @@ Mat-select
     color: white;
   }
 }
-
 
 @media only screen and (max-width: 485px) {
   .stick {

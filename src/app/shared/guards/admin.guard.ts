@@ -7,25 +7,12 @@ import { User } from '../interface/user.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate ,OnInit{
-  currentUser!: User;
-  isAdmin:Boolean = false;
-  constructor(private userserv:UserService){
+export class AdminGuard implements CanActivate {
 
-
-
-  }
-  ngOnInit(): void {
-    this.userserv.getCurentUser().subscribe(currentUser=>{
- if(currentUser.roles[0]==='ROLE_ADMIN'){
-   this.isAdmin;
- }
-    })
-  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-     if(this.isAdmin){
+     if(localStorage.getItem('role')==='ROLE_ADMIN'){
        return true;
      }else{
        return false

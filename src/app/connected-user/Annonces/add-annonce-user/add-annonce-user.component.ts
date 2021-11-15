@@ -133,7 +133,6 @@ export class AddAnnonceUserComponent implements OnInit {
     primeEco: [false],
     topOcass: [false],
     accept: [""],
-
   });
 }
 
