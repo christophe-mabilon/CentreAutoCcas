@@ -1,8 +1,9 @@
-import { Garage } from './../../../shared/interface/garage.interface';
-import {Component, OnInit} from '@angular/core';
+import { Garage } from '../../../shared/interface/garage.interface';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GarageService} from "../../../shared/services/garage.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,7 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './add-garage-user.component.html',
   styleUrls: ['./add-garage-user.component.scss']
 })
-export class AddGarageUserComponent implements OnInit {
+export class AddGarageUserComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
   currentGarage!:Garage;
   private formSubmitted!: boolean;
   loadingFinished:Boolean=false;
@@ -50,14 +52,14 @@ export class AddGarageUserComponent implements OnInit {
     if(this.editGarage){
       this.formSubmitted = true;
     if(this.loadingFinished && this.GarageForm.valid){
-      this.garageServ.update(this.GarageForm.value,this.currentGarage.id).subscribe(() => this.router.navigateByUrl('/garagesUser'));
+      this.subs.add(this.garageServ.update(this.GarageForm.value,this.currentGarage.id).subscribe(() => this.router.navigateByUrl('/garagesUser')));
       this.GarageForm.reset();
       this.formSubmitted = false;
     }
     }else if(this.addGarage){
       this.formSubmitted = true;
       if(this.loadingFinished && this.GarageForm.valid){
-        this.garageServ.add(this.GarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser'));
+        this.subs.add(this.garageServ.add(this.GarageForm.value).subscribe(() => this.router.navigateByUrl('/garagesUser')));
         this.GarageForm.reset();
         this.formSubmitted = false;
     }
@@ -73,12 +75,12 @@ export class AddGarageUserComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     if(id > 0) {
-      this.garageServ.findOne(id).subscribe(garage => {
+      this.subs.add(this.garageServ.findOne(id).subscribe(garage => {
         this.currentGarage = garage
         this.addGarage = false;
       this.editGarage = true;
     this.patchValues(this.currentGarage);
-      });
+      }));
 
     }else{
       this.editGarage = false
@@ -95,7 +97,10 @@ export class AddGarageUserComponent implements OnInit {
       city:["",Validators.required],
       accept:["",Validators.required]
     });
+  }
 
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
   }
 
 }

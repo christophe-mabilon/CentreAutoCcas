@@ -24,16 +24,14 @@ main #presentation ul {
 
 #presentation1 {
   color: white;
+  text-decoration: none;
+  background-size: cover;
   background: linear-gradient(
       to bottom,
       rgb(33, 37, 41, 1) 0%,
       rgba(33, 37, 41, 1) 35%,
       rgba(33, 37, 41, 0.3) 100%
-    ),
-    url('../../assets/header/1jumelle.png');
-  text-decoration: none;
-  background-size: cover;
-  background-position: center center;
+  ) ,url('../../assets/header/1jumelle.png') center center;
   border-radius: 5px;
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
 }
@@ -52,16 +50,14 @@ main #presentation ul {
 #presentation2 {
   color: white;
 
+  text-decoration: none;
+  background-size: cover;
   background: linear-gradient(
       to bottom,
       rgb(33, 37, 41, 1) 0%,
       rgba(33, 37, 41, 1) 35%,
       rgba(33, 37, 41, 0.3) 100%
-    ),
-    url('../../assets/header/2.loupe.png');
-  text-decoration: none;
-  background-size: cover;
-  background-position: center center;
+  ) ,url('../../assets/header/2.loupe.png') center center;
   border-radius: 5px;
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
 }
@@ -80,16 +76,14 @@ main #presentation ul {
 #presentation3 {
   color: white;
   padding: 10px 10px 50px 10px;
+  text-decoration: none;
+  background-size: cover;
   background: linear-gradient(
       to bottom,
       rgb(33, 37, 41, 1) 0%,
       rgba(33, 37, 41, 1) 35%,
       rgba(33, 37, 41, 0.3) 100%
-    ),
-    url('../../assets/header/reseserve.png');
-  text-decoration: none;
-  background-size: cover;
-  background-position: center center;
+  ) ,url('../../assets/header/reseserve.png') center center;
   border-radius: 5px;
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
 }
@@ -108,16 +102,14 @@ main #presentation ul {
 #presentation4 {
   color: white;
   padding: 10px 10px 50px 10px;
+  text-decoration: none;
+  background-size: cover;
   background: linear-gradient(
       to bottom,
       rgb(33, 37, 41, 1) 0%,
       rgba(33, 37, 41, 1) 35%,
       rgba(33, 37, 41, 0.3) 100%
-    ),
-    url('../../assets/header/road.jpg');
-  text-decoration: none;
-  background-size: cover;
-  background-position: center center;
+  ) ,url('/assets/header/road.jpg') center center;
   border-radius: 5px;
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.5);
 }

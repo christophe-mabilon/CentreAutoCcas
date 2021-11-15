@@ -1,13 +1,15 @@
-import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../../shared/services/user.service";
 import {MdbTableDirective, MdbTablePaginationComponent} from "ng-uikit-pro-standard";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-liste',
   templateUrl: './liste.component.html',
   styleUrls: ['./liste.component.scss']
 })
-export class ListeUsersComponent implements OnInit, AfterViewInit {
+export class ListeUsersComponent implements OnInit, AfterViewInit, OnDestroy {
+  subs: Subscription = new Subscription();
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination!: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable!: MdbTableDirective
   @HostListener('input') oninput() {
@@ -39,9 +41,9 @@ export class ListeUsersComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.userService.findAllUsers().subscribe(data => {
+    this.subs.add(this.userService.findAllUsers().subscribe(data => {
       this.listOfUsers = data;
-    });
+    }));
     for (let i = 1; i <= 15; i++) {
       this.elements.push({
         id: i,
@@ -54,5 +56,9 @@ export class ListeUsersComponent implements OnInit, AfterViewInit {
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
   }
 }

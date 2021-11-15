@@ -10,7 +10,7 @@
 
     <!-- select -->
     <div class="form-group">
-      <label for="genre" class="col-md-3 control-label px-0">Vous etes ?:</label>
+      <label  class="col-md-3 control-label px-0">Vous etes ?:</label>
       <div class="col-md-8 selectContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['genre']?.errors?.required" class="text-start text-danger">Ce
           champs
@@ -31,7 +31,7 @@
     <!-- select -->
 
     <div class="form-group">
-      <label for="type" class="col-md-3 control-label px-0">Vous etes un ?:</label>
+      <label class="col-md-3 control-label px-0">Vous etes un ?:</label>
       <div class="col-md-8 selectContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['type']?.errors?.required" class="text-start text-danger">Ce
           champs
@@ -51,7 +51,7 @@
 
     <!-- select -->
     <div class="form-group">
-      <label for="dejaInsrcit" class="col-md-3 control-label px-0">Etes vous déja inscrit sur notre site ?:</label>
+      <label  class="col-md-3 control-label px-0">Etes vous déja inscrit sur notre site ?:</label>
       <div class="col-md-8 selectContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['dejaInsrcit']?.errors?.required"
           class="text-start text-danger">Ce
@@ -74,7 +74,7 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label for="Nom" class="col-md-3 control-label px-0">Nom</label>
+      <label class="col-md-3 control-label px-0">Nom</label>
       <div class="col-md-8 inputGroupContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['nom']?.errors?.required" class="text-start text-danger">Ce
           champs
@@ -104,7 +104,7 @@
     </div>
     <!-- Text input-->
     <div class="form-group">
-      <label for="email" class="col-md-3 control-label px-0">E-Mail</label>
+      <label class="col-md-3 control-label px-0">E-Mail</label>
       <div class="col-md-8 inputGroupContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['email']?.errors?.required" class="text-start text-danger">Ce
           champs
@@ -170,7 +170,7 @@
     </div>
     <!-- select -->
     <div class="form-group">
-      <label for="demande" class="col-md-3 control-label px-0">Votre demande concerne ?:</label>
+      <label  class="col-md-3 control-label px-0">Votre demande concerne ?:</label>
       <div class="col-md-8 selectContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['demande']?.errors?.required" class="text-start text-danger">
           Ce
@@ -189,7 +189,7 @@
     </div>
     <!--fin select -->
     <div class="form-group">
-      <label for="message" class="col-md-3 control-label px-0">Votre message</label>
+      <label class="col-md-3 control-label px-0">Votre message</label>
       <div class="col-md-8 inputGroupContainer">
         <div *ngIf="formIsSubmit && contactForm.controls['message']?.errors?.required" class="text-start text-danger">Ce
           champs
@@ -198,7 +198,7 @@
         <div class="input-group">
           <span class="col-3 col-md-2 bg-dark-blue input-group-addon"><span class="bi bi-chat-dots"></span></span>
           <textarea name="message" placeholder="Votre message" formControlname="message" row="10" class="form-control"
-            type="text"></textarea>
+          ></textarea>
         </div>
       </div>
     </div>

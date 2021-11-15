@@ -1,12 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {environment as env} from "../../../environments/environment";
 import {Annonce} from "../interface/annonce.inteface";
 import {UserService} from "./user.service";
-import {FormGroup} from "@angular/forms";
-import {catchError} from "rxjs/operators";
-import {AnnoncesComponent} from "../../annonces/annonces.component";
 
 
 @Injectable({
@@ -23,13 +20,13 @@ export class AnnoncesService {
 
   setAnnonce(searchValue:any){
     this.searchForm.next(searchValue);
-
+    console.log('on passe dans le service set',searchValue)
   }
   getsearchForm(){
     return this.searchForm;
   }
   searchAnnonces(annonceSearch:any):Observable<Annonce>{
-
+console.log('on passe dans lservice',annonceSearch)
     return this.http.post<any>(this.apiUrl + 'search' ,annonceSearch);
 
   }

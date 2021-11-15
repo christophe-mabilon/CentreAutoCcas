@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, Output} from '@angular/core';
 import {environment as env} from "../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../../../../shared/services/user.service";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,8 @@ import {UserService} from "../../../../../shared/services/user.service";
   templateUrl: './upload-edit-annonce-user.component.html',
   styleUrls: ['./upload-edit-annonce-user.component.scss']
 })
-export class UploadEditAnnonceUserComponent{
+export class UploadEditAnnonceUserComponent implements OnDestroy{
+  subs: Subscription = new Subscription();
   @Input() importPhotos:any;
   private apiUrl = env.apiUrl.slice(0,22);
   @Output() photosEventEmitter:EventEmitter<any[]> = new EventEmitter<any[]>();
@@ -40,14 +42,14 @@ photosComplete(){
     for (let i = 0; i < this.files.length; i++) {
       formData.append("image", this.files[i], this.files[i].name);
       const headers = {'Authorization': this.userServ.getToken()};
-      this.http.post(this.apiUrl + 'api/photos', formData, {headers}).subscribe({
+      this.subs.add(this.http.post(this.apiUrl + 'api/photos', formData, {headers}).subscribe({
         next: (res: any) => this.photos.push(this.apiPhotos + res),
         error: (error: { toString: () => any; }) => alert(console.error(error.toString())),
         complete: () => {
           this.photosComplete();
 
         }
-      });
+      }));
     }
     this.selectPhotos(this.photos);
   }
@@ -56,6 +58,10 @@ photosComplete(){
   }
   onRemove(event: File) {
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
   }
 
 }

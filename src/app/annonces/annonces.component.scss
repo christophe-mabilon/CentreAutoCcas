@@ -6,16 +6,14 @@
   box-sizing: border-box;
   color: white;
   padding: 10px;
-  background: linear-gradient(
-    to bottom,
-    rgb(104, 145, 171) 0%,
-    rgba(33, 37, 41, 1) 70%,
-    rgba(33, 37, 41, 1) 100%
-  );
-
   text-decoration: none;
   background-size: cover;
-  background-position: bottom;
+  background: linear-gradient(
+      to bottom,
+      rgb(104, 145, 171) 0%,
+      rgba(33, 37, 41, 1) 70%,
+      rgba(33, 37, 41, 1) 100%
+  ) bottom;
   border: 1px solid rgba(13, 18, 80, 0.4);
   border-radius: 5px;
   box-shadow: 1px 3px 7px rgba(0, 0, 0, 1);
@@ -27,7 +25,7 @@
   box-shadow: 1px 2px 2.5px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.6);
   z-index: 0 !important;
-  border-radius: 0 30% 0% 30%;
+  border-radius: 0 30% 0 30%;
 }
 .slogan {
   position: relative;
@@ -39,9 +37,9 @@
   border-top: 100px solid rgb(2, 187, 2);
   border-right: 100px solid transparent;
   color: white;
-  top: 0px;
+  top: 0;
   position: absolute;
-  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 .prime p {
@@ -74,7 +72,7 @@
   right: 5px;
   text-align: center;
   z-index: 7;
-  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.4);
 }
 .topOccas p:nth-child(2) {
   transform: rotate(0deg);
@@ -83,7 +81,7 @@
   right: 5px;
   text-align: center;
   z-index: 7;
-  text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.4);
+  text-shadow: 2px 1px 0 rgba(0, 0, 0, 0.4);
 }
 .annonce h4 {
   margin-top: 20px;

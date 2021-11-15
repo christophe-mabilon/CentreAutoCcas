@@ -1,14 +1,12 @@
-import { Subscription } from 'rxjs';
-import { User } from './../shared/interface/user.interface';
+import { User } from '../shared/interface/user.interface';
 import { MdpOublieComponent } from '../mdp-oublie/mdp-oublie.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalProComponent } from '../modal-pro/modal-pro.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MarqueService } from '../shared/services/marque.service';
 import {UserService} from "../shared/services/user.service";
 import {Router} from "@angular/router";
-import { Observable } from 'rxjs';
-import jwtDecode from 'jwt-decode';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,7 +14,9 @@ import jwtDecode from 'jwt-decode';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
+
   public currentUser:User | undefined;
 
   searchButton = true;
@@ -98,11 +98,13 @@ export class NavbarComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.userServ.customObservable.subscribe((res) => {
+    this.subs.add(this.userServ.customObservable.subscribe((res) => {
       this.myFunction(res)
     }
-  );
+  ));
 }
-
+ngOnDestroy(): void {
+  if (this.subs) this.subs.unsubscribe();
+}
   }
 

@@ -1,7 +1,0 @@
-<form [formGroup]="sliderPriceForm" (ngSubmit)="submit()">
-  <p>Low value: {{ sliderPriceForm.value.sliderControl[0] }}</p>
-  <p>High value: {{ sliderPriceForm.value.sliderControl[1] }}</p>
-  <p><button (click)="resetForm()">Reset</button></p>
-  <ngx-slider [options]="options" formControlName="sliderControl"></ngx-slider>
-  <button type="submit">envoyer</button>
-</form>

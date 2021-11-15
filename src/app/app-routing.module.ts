@@ -4,10 +4,9 @@ import {PolitiqueDeConfComponent} from './footer/politique-de-conf/politique-de-
 import {ContactComponent} from './contact/contact.component';
 import {MainComponent} from './main/main.component';
 import {NgModule} from '@angular/core';
-import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {MdpOublieComponent} from './mdp-oublie/mdp-oublie.component';
-import {MentionsLegalesComponent} from './footer/mentions-legales/mentions-legales.component';
 import {AnnoncesDetailsComponent} from './annonces-details/annonces-details.component';
 import {ConnectedUserComponent} from './connected-user/connected-user.component';
 import {ConnectedAdminComponent} from './connected-admin/connected-admin.component';
@@ -24,6 +23,7 @@ import {ListeUsersComponent} from "./connected-admin/users/liste/liste.component
 import {DetailsComponent} from "./connected-admin/users/details/details.component";
 import { EditUserComponent } from './connected-user/User/edit-user/edit-user.component';
 import { AdminGuard } from './shared/guards/admin.guard';
+import { MentionsLegalesComponent } from './footer/mentions-legales/mentions-legales.component';
 
 export const routes: Routes = [
   {path: 'home', component: MainComponent},

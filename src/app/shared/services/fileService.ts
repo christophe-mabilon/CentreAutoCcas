@@ -1,16 +1,10 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {
-  HttpClient,
-  HttpRequest,
-  HttpEvent,
-  HttpEventType
+  HttpClient
 } from '@angular/common/http';
 import {environment as env} from "../../../environments/environment";
 import {UserService} from "./user.service";
-import * as http from "@angular/common/http";
-import {FormBuilder} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'

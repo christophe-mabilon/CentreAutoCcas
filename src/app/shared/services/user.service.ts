@@ -1,8 +1,6 @@
-import { NavbarComponent } from './../../navbar/navbar.component';
-import { User } from './../interface/user.interface';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {Observable, Subject, Subscription} from "rxjs";
 import {environment as env} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import jwt_decode from "jwt-decode";
@@ -11,7 +9,8 @@ import {FormGroup} from "@angular/forms";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnDestroy{
+  subs: Subscription = new Subscription();
   private apiUrl = env.apiUrl;
   userId:any;
   private _isLogged!: boolean;
@@ -67,14 +66,14 @@ export class UserService {
    ******************************/
 
 connected(formLogin: FormGroup){
-  this.loginUser(formLogin).subscribe(
+  this.subs.add(this.loginUser(formLogin).subscribe(
     (data: any) => {
       const token: any = jwt_decode(data.token);
       this.setUsername(token.username);
       this.setRefreshToken(data.refresh_token);
         this.setToken(data.token);
       this.setRefreshToken(data.refresh_token)
-      this.getCurentUser().subscribe(user=>{
+      this.subs.add(this.getCurentUser().subscribe(user=>{
         localStorage.setItem('userId',user.id);
         localStorage.setItem('role',token.roles[0]);
         localStorage.setItem('username',token.username);
@@ -97,8 +96,8 @@ connected(formLogin: FormGroup){
   username:this._username
     })
 
-})
-})
+}));
+}));
 
 }
 
@@ -192,5 +191,8 @@ loginUser(formLogin:FormGroup): Observable<any> {
     this.router.navigate(['/home']);
   }
 
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
+  }
 
 }

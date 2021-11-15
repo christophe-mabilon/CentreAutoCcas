@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {MdpOublieComponent} from '../mdp-oublie/mdp-oublie.component';
-import {User} from "../shared/interface/user.interface";
-import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../shared/services/user.service";
-import {environment as env} from "../../environments/environment";
 
 @Component({
   selector: 'app-modal-pro',
@@ -32,7 +29,7 @@ export class ModalProComponent implements OnInit {
   /****************************
    MODALS
    ***************************/
-  //ouvre la modal de connexion
+  //Ouvre la modal de connexion
   open() {
     this.modalService.open(ModalProComponent);
   }

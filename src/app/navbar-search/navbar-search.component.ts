@@ -1,27 +1,23 @@
-import {ChangeContext, LabelType, Options, PointerType} from '@angular-slider/ngx-slider'
-import {Component, OnInit, ViewChild} from '@angular/core'
+import {LabelType, Options} from '@angular-slider/ngx-slider'
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core'
 import {NgbCarousel, NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap'
 import {Marque} from '../shared/interface/marque.interface'
 import {MarqueService} from '../shared/services/marque.service'
 import {ModelService} from "../shared/services/model.service";
 import {BrandAndModel} from "../shared/interface/brand-and-model.interface";
 import {RegionService} from "../shared/services/region.service";
-import {convertUpdateArguments} from "@angular/compiler/src/compiler_util/expression_converter";
-import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {AnnoncesService} from "../shared/services/annonces.service";
 import {Router} from "@angular/router";
-import {Annonce} from "../shared/interface/annonce.inteface";
-import {BehaviorSubject, Observable} from "rxjs";
-import {Region} from "../shared/interface/region.interface";
-import {isObservable} from "rxjs/internal-compatibility";
-import {keyValuesToMap} from "@angular/flex-layout/extended/typings/style/style-transforms";
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-navbar-search',
   templateUrl: './navbar-search.component.html',
   styleUrls: ['./navbar-search.component.scss'],
 })
-export class NavbarSearchComponent implements OnInit {
+export class NavbarSearchComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
   @ViewChild('carousel', {static: true}) carousel!: NgbCarousel
   brandAndmodels!: BrandAndModel[];
   brands!: Marque[];
@@ -149,7 +145,7 @@ selectedModel:string ="";
    ****************************************/
   //selection des marques dans le carousel
   selectionMarques(number: number) {
-    var index = this.selectedMarques.indexOf(this.brand[number])
+    const index = this.selectedMarques.indexOf(this.brand[number]);
 
     if (index > -1) {
       this.selectedMarques.splice(index, 1)
@@ -225,7 +221,7 @@ selectedModel:string ="";
       minPower:this.searchForm.value.powers[0],
       maxPower:this.searchForm.value.powers[1]
       });
-      this.annonceServ.setAnnonce(this.searchForm);
+      this.subs.add(this.annonceServ.setAnnonce(this.searchForm));
     this.router.navigate(['/home']);
       this.searchForm.reset;
   }
@@ -233,7 +229,7 @@ selectedModel:string ="";
     this.regions = this.regionServ.regions.value;
     this.brand = this.marqueServ.marque;
     this.brands = this.marqueServ.marques.value;
-    this.marqueServ.countAnnoucesByBrand().subscribe(marque=>{
+    this.subs.add(this.marqueServ.countAnnoucesByBrand().subscribe(marque=>{
       this.countBrands = marque;
       for( let brand of this.brands){
         for(let [key, value] of Object.entries(this.countBrands)  ){
@@ -243,11 +239,14 @@ selectedModel:string ="";
             }
           }
         }
-      };
+      }
 
-    })
+    }));
     this.brandAndmodels = this.modelServ.brandAndModel.value;
 
-    this.marqueServ.emitterr.subscribe(() => (this.display = !this.display));
+    this.subs.add(this.marqueServ.emitterr.subscribe(() => (this.display = !this.display)));
+  }
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
   }
 }

@@ -1,17 +1,17 @@
-import { error } from '@angular/compiler/src/util';
-import { Observer } from 'rxjs';
 import { UserService } from '../../../shared/services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/interface/user.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnDestroy {
+subs: Subscription = new Subscription();
 currentUser!:User;
 isAdmin = false;
 submitted =false;
@@ -58,7 +58,7 @@ patchValues(currentUser:User){
   editUser(){
     this.submitted = true;
     if(this.editCurrentUser.valid){
-      this.userserv.updateUser(this.currentUser.id,this.editCurrentUser.value).subscribe(()=>{
+      this.subs.add(this.userserv.updateUser(this.currentUser.id,this.editCurrentUser.value).subscribe(()=>{
         if(this.currentUser.roles.toString() === "ROLE_ADMIN"){
 
           this.router.navigate(['/connectedAdmin']);
@@ -68,20 +68,22 @@ this.router.navigate(['/connectedUser']);
         }
       },(err)=>{
         this.error = err?.error || 'Il y a eu un petit probleme merci de recommencer votre saisie';
-      })
+      }));
     }
     this.editCurrentUser.reset;
 }
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userserv.showUser(id).subscribe((user:User)=>{
-this.currentUser = user;this.patchValues(this.currentUser);
-    });
+    this.subs.add(this.userserv.showUser(id).subscribe((user:User)=>{
+    this.currentUser = user;this.patchValues(this.currentUser);
+     }));
     if(localStorage.getItem('IsAdmin') === 'true'){
       this.isAdmin=true;
     }
+}
 
-
+ngOnDestroy(): void {
+  if (this.subs) this.subs.unsubscribe();
 }
 
 }

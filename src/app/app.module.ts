@@ -29,7 +29,6 @@ import { AddGarageUserComponent } from './connected-user/Garages/add-garage-user
 import { GaragesUserComponent } from './connected-user/Garages/garages-user/garages-user.component';
 import { AnnoncesUserComponent } from './connected-user/Annonces/annonces-user/annonces-user.component';
 import { MarqueService } from './shared/services/marque.service';
-import { AuthService } from './shared/services/auth.service';
 import { AnnoncesDetailsComponent } from './annonces-details/annonces-details.component';
 import {ModelService} from "./shared/services/model.service";
 import {RegionService} from "./shared/services/region.service";
@@ -71,12 +70,12 @@ import { UserGuard } from './shared/guards/user.guard';
 
 @NgModule({
   declarations: [
+    ModalProComponent,
     AppComponent,
     PolitiqueDeConfComponent,
     PageNotFoundComponent,
     NavbarSearchComponent,
     NavbarComponent,
-    ModalProComponent,
     MentionsLegalesComponent,
     MdpOublieComponent,
     MarqueComponent,
@@ -109,8 +108,7 @@ import { UserGuard } from './shared/guards/user.guard';
     ListeUsersComponent,
     UploadGarageComponent,
     UploadEditAnnonceUserComponent,
-    EditUserComponent
-
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,7 +147,7 @@ import { UserGuard } from './shared/guards/user.guard';
     AdminGuard,
     UserGuard,
     { provide: LOCALE_ID, useValue: 'fr-FR' },
-    DatePipe,AuthService],
+    DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

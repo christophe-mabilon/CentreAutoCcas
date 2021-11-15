@@ -1,8 +1,8 @@
-import { UserService } from './../services/user.service';
+// noinspection ES6UnusedImports
+
 import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../interface/user.interface';
 
 @Injectable({
   providedIn: 'root'

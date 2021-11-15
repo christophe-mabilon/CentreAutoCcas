@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MarqueService} from "../../../shared/services/marque.service";
 import {RegionService} from "../../../shared/services/region.service";
 import {Marque} from "../../../shared/interface/marque.interface";
@@ -11,6 +11,7 @@ import {AnnoncesService} from "../../../shared/services/annonces.service";
 import {UserService} from "../../../shared/services/user.service";
 import {environment as env} from "../../../../environments/environment";
 import {FileService} from "../../../shared/services/fileService";
+import { Subscription } from 'rxjs';
 
 
 
@@ -19,7 +20,8 @@ import {FileService} from "../../../shared/services/fileService";
   templateUrl: './add-annonce-user.component.html',
   styleUrls: ['./add-annonce-user.component.scss']
 })
-export class AddAnnonceUserComponent implements OnInit {
+export class AddAnnonceUserComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
   private apiUrl = env.apiUrl;
   marques!: Marque[];
   regions!: Region[];
@@ -40,6 +42,7 @@ export class AddAnnonceUserComponent implements OnInit {
   constructor(private userServ:UserService,private marqueServ: MarqueService, private regionServ: RegionService, private modelServ: ModelService
     , private garageServ: GarageService, private fb: FormBuilder, private router: Router, private annonceServ: AnnoncesService,private fileServ:FileService) {
   }
+
 
   //construction de la reference annonce unique
   makeRandomReference() {
@@ -91,24 +94,11 @@ export class AddAnnonceUserComponent implements OnInit {
   addAnnonce(){
     this.formSubmitted = true;
     if (this.addForm.valid) {
-      this.annonceServ.add(this.addForm.value).subscribe(v => this.router.navigate(['/annoncesUser']));
+      this.subs.add(this.annonceServ.add(this.addForm.value).subscribe(v => this.router.navigate(['/annoncesUser'])));
       this.addForm.reset();
       this.formSubmitted = false;
     }
   }
-  ngOnInit(): void {
-    this.marques = this.marqueServ.marques.value;
-    this.types = this.modelServ.types.value;
-    this.carburants = this.modelServ.carburants.value;
-    this.regions = this.regionServ.regions.value;
-    this.brandAndmodels = this.modelServ.brandAndModel.value;
-    this.garageServ.findAllByUser().subscribe((data: any) => {
-      this.garages = data;
-    });
-
-
-  }
-
   public addForm: FormGroup = this.fb.group({
     photos : [""],
     user: localStorage.getItem('userId'),
@@ -134,6 +124,22 @@ export class AddAnnonceUserComponent implements OnInit {
     topOcass: [false],
     accept: [""],
   });
+  ngOnInit(): void {
+    this.marques = this.marqueServ.marques.value;
+    this.types = this.modelServ.types.value;
+    this.carburants = this.modelServ.carburants.value;
+    this.regions = this.regionServ.regions.value;
+    this.brandAndmodels = this.modelServ.brandAndModel.value;
+    this.subs.add(this.garageServ.findAllByUser().subscribe((data: any) => {
+      this.garages = data;
+    }));
+
+  }
+
+ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
+  }
+
 }
 
 

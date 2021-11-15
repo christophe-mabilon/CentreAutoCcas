@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Region} from "../interface/region.interface";
 import {HttpClient} from "@angular/common/http";
-import {Marque} from "../interface/marque.interface";
-import {Annonce} from "../interface/annonce.inteface";
 import {environment as env} from "../../../environments/environment";
 
 @Injectable({

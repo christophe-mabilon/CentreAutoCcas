@@ -1,16 +1,18 @@
-import { Annonce } from './../shared/interface/annonce.inteface';
+// noinspection ES6UnusedImports
+
+import { Annonce } from '../shared/interface/annonce.inteface';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnnoncesService} from "../shared/services/annonces.service";
-import {BehaviorSubject, Observer} from "rxjs";
-import {error} from "@angular/compiler/src/util";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-annonces',
   templateUrl: './annonces.component.html',
   styleUrls: ['./annonces.component.scss']
 })
-export class AnnoncesComponent implements OnInit {
+export class AnnoncesComponent implements OnInit,OnDestroy {
+  subs: Subscription = new Subscription();
   adReceived:any;
   searchAnnonces!:Annonce[];
   annonces!:Annonce[] ;
@@ -20,7 +22,7 @@ export class AnnoncesComponent implements OnInit {
   pageSizeSearch!: number ;
   itemsPerPage = 12;
   collectionSize = 12;
-  constructor(private annoncesService:AnnoncesService,private fb:FormBuilder) {
+  constructor(private annoncesService:AnnoncesService) {
 
 
   }
@@ -45,17 +47,24 @@ countLenghtAnnonces():number{
   return this.collectionSize;
 }
   ngOnInit(): void {
-    this.annoncesService.getsearchForm().subscribe(adReceived=>{
+    this.subs.add(this.annoncesService.getsearchForm().subscribe(adReceived=>{
       this.adReceived = adReceived;
-  });
-    if(this.adReceived.valid){
+      if(this.adReceived.valid){
       this.annoncesService.searchAnnonces(this.adReceived.value).subscribe(
-      (data:any)=>{ this.searchAnnonces = data;
+      (data:any)=>{ this.searchAnnonces = data;console.log("retour de l'api" ,this.adReceived)
     })
   }
-  this.annoncesService.findAll().subscribe((r:any) =>
+  }));
+
+
+  this.subs.add(this.annoncesService.findAll().subscribe((r:any) =>
     this.annonces = r
-    )}
+    ));
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
+  }
 
 }
 

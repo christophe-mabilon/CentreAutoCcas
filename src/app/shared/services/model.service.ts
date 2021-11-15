@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Model} from "../interface/model.interface";
 import {BehaviorSubject} from "rxjs";
 import {BrandAndModel} from "../interface/brand-and-model.interface";
-import {environment as env} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

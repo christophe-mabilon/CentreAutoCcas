@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+// noinspection ES6UnusedImports
+
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { UserService } from '../../../shared/services/user.service';
 
 @Component({
@@ -7,8 +10,8 @@ import { UserService } from '../../../shared/services/user.service';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit {
-
+export class AddComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
     addUserForm: FormGroup = new FormGroup({});
 
     constructor(private formBuilder: FormBuilder, private userService: UserService) { }
@@ -28,13 +31,16 @@ export class AddComponent implements OnInit {
     }
 
     addUser() {
-      this.userService.newUser(this.addUserForm.value).subscribe(data => {
+      this.subs.add(this.userService.newUser(this.addUserForm.value).subscribe(data => {
 
       }, err => {
         console.log(err);
 
-      });
-
+      })
+      );
+    }
+    ngOnDestroy(): void {
+      if (this.subs) this.subs.unsubscribe();
     }
 
 }

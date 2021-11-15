@@ -1,11 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
 import { Observable} from "rxjs";
-import {HttpClient, HttpEvent} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment as env} from "../../../environments/environment";
-import {User} from "../interface/user.interface";
 import {Garage} from "../interface/garage.interface";
 import {UserService} from "./user.service";
-import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'

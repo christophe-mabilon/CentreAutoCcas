@@ -1,25 +1,23 @@
-import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AnnoncesService} from "../../../../shared/services/annonces.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MarqueService} from "../../../../shared/services/marque.service";
 import {RegionService} from "../../../../shared/services/region.service";
 import {ModelService} from "../../../../shared/services/model.service";
 import {GarageService} from "../../../../shared/services/garage.service";
 import {Marque} from "../../../../shared/interface/marque.interface";
 import {Region} from "../../../../shared/interface/region.interface";
-import {Subscription} from "rxjs";
 import {UserService} from "../../../../shared/services/user.service";
-import {first} from "rxjs/operators";
-import {error} from "@angular/compiler/src/util";
-import {Annonce} from "../../../../shared/interface/annonce.inteface";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-annonce-user',
   templateUrl: './edit-annonce-user.component.html',
   styleUrls: ['./edit-annonce-user.component.scss']
 })
-export class EditAnnonceUserComponent implements OnInit {
+export class EditAnnonceUserComponent implements OnInit, OnDestroy {
+  subs: Subscription = new Subscription();
   importPhotos:any;
   annonce!: any;
   marques!: Marque[];
@@ -96,20 +94,23 @@ this.editAnnonceForm.patchValue({
               });
 }
 
-
+submit() {
+  }
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if(id){
-      this.annonceService.findOne(id).subscribe((data:any) => {
-    this.patchValue(data);
-    this.annonce = data;
-    });
+      this.subs.add(this.annonceService.findOne(id).subscribe((data:any) => {
+        this.patchValue(data);
+        this.annonce = data;
+        }));
+      }
     }
 
+    ngOnDestroy(): void {
+      if (this.subs) this.subs.unsubscribe();
     }
 
-  submit() {
-  }
+
 
 
 

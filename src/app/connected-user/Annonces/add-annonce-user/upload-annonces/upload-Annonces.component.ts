@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../../../../shared/services/user.service";
 import {environment as env} from "../../../../../environments/environment";
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +10,8 @@ import {environment as env} from "../../../../../environments/environment";
   templateUrl: './upload-Annonces.component.html',
   styleUrls: ['./upload-Annonces.component.scss']
 })
-export class UploadAnnoncesComponent {
+export class UploadAnnoncesComponent implements OnDestroy {
+  subs: Subscription = new Subscription();
   private apiUrl = env.apiUrl;
   private apiPhotos = this.apiUrl + "uploads/images/vehicules/";
   title = 'dropzone';
@@ -38,13 +40,13 @@ export class UploadAnnoncesComponent {
 formData.set("image", this.files[i], this.files[i].name);
       formData.append("image", this.files[i], this.files[i].name);
       const headers = {'Authorization': this.userServ.getToken()};
-      this.http.post(this.apiUrl + 'photos', formData, {headers}).subscribe({
+      this.subs.add(this.http.post(this.apiUrl + 'photos', formData, {headers}).subscribe({
         next: (res: any) => this.photos.push(this.apiPhotos + res),
         error: (error: { toString: () => any; }) => alert(console.error(error.toString())),
         complete: () => {
           this.photosComplete();
         }
-      });
+      }));
     }
     this.selectPhotos(this.photos);
   }
@@ -53,5 +55,9 @@ formData.set("image", this.files[i], this.files[i].name);
   }
   onRemove(event: File) {
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs) this.subs.unsubscribe();
   }
 }
